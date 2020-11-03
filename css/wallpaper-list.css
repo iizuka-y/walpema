@@ -1,0 +1,63 @@
+#wrap{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#contents{
+    display: block;
+    width: 100%;
+    padding: 20px 30px;
+    margin: 80px auto;
+    background-color: #eafff4;
+}
+
+/* #contents h2{
+    width: 100%;
+    font-size: 25px;
+    line-height: 30px;
+    padding: 20px 0;
+    border-bottom: solid 3px #ff7d64;
+    margin: 10px auto;
+} */
+
+.wallpaper-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+div.card{
+    width: 33.3%;
+    padding: 0 10px;
+    margin: 40px 0;
+}
+
+figure{
+    background-color: #EFEFEF;
+    height: 170px;
+}
+
+figure img{
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 170px;
+}
+
+.del{
+    margin-top: 10px;
+    text-align: right;
+}
+
+button{
+    border: none;
+    background-color: #ff7d64;
+    color: white;
+    border-radius: 5px;
+}
+
+.more{
+    text-align: right;
+    margin-top: 20px;
+}

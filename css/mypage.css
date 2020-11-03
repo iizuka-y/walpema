@@ -1,0 +1,415 @@
+@charset "utf-8";
+
+#user-container{
+  width: 1000px;
+  margin: 100px auto;
+  background-color: #eafff4;
+}
+
+.user-info{
+  width: 100%;
+  padding: 30px 30px 40px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.user-info-left{
+  position: relative;
+  width: 70%;
+}
+
+.user-info-left h2{
+  text-align: left;
+}
+
+.user-info-left .self-introduction{
+  padding: 30px 0;
+  line-height: 30px;
+}
+
+.user-info-left .logout{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.chat-btn{
+  display: inline-block;
+  width: 30%;
+  padding: 10px 0;
+  margin-top: 50px;
+  text-align: center;
+  color: #fff;
+  background-color: #ff7d64;
+  border-radius: 5px;
+}
+
+
+.user-info-right{
+  width: 30%;
+
+}
+
+.follow-and-point{}
+
+.follow-and-point p{
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.follow-and-point p a{
+  color: black;
+}
+
+
+.user-info-right{
+  width: 30%;
+  text-align: center;
+}
+
+.user-info-right img{
+  display: block;
+  width: 80%;
+  height: 260px;
+  border: solid 1px #d3d3d3;
+  margin: 0 auto;
+  background-color: white;
+  object-fit: cover;
+}
+
+.user-info-right a.button{
+  display: inline-block;
+  width: 80%;
+  padding: 10px 0;
+  margin-top: 50px;
+  color: black;
+  background-color: gold;
+  border-radius: 5px;
+}
+
+
+.user-nav-container{
+  width: 100%;
+  display: flex;
+}
+
+.user-nav{
+  width: 25%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #eafff4;
+  border-right: solid 1px #d3d3d3;
+}
+
+.user-nav:last-of-type{
+  border-right: solid 0px; 
+}
+
+.user-nav a{
+  display: inline-block;
+  width: 100%;
+  color: black;
+}
+
+.now{
+  background-color: gold;
+}
+
+.nav-content{
+  width: 100%;
+  padding: 50px 30px;
+  background-color: gold;
+}
+
+
+/* チャットのレイアウト */
+li.chat{
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: white;
+  list-style: none;
+}
+
+.chat:last-of-type{
+  margin-bottom: 0px;
+}
+
+.chat a{
+  color: black;
+}
+
+.chat a:visited{
+  color: black;
+}
+
+.chat-box{
+  display: flex;
+  padding: 20px;
+}
+
+.chat-box img{
+  max-width: 50px;
+  max-height: 60px;
+  border: solid 1px #d3d3d3;
+  margin-right: 30px;
+  background-color: white;
+  object-fit: cover;
+}
+
+.chat-user-name{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.chat-content{
+  margin-bottom: 20px;
+}
+
+.chat-others{
+  font-size: 10px;
+}
+
+/* 壁紙投稿画面のレイアウト */
+.nav-content label{
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#img-field{
+  width: 100%;
+  height: 500px;
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#img-field i{
+  font-size: 100px;
+  display: block;
+  text-align: center;
+  color: #aaa;
+  line-height: 500px;
+}
+
+
+.input-box{
+  margin-bottom: 40px;
+}
+
+.input-box:last-of-type{
+  margin-bottom: 0;
+}
+
+.input-box label{
+  display: block;
+}
+
+.input-box input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 0px;
+  font-size: 16px;
+}
+
+.input-box span{
+  display: block;
+  color: red;
+  margin-top: 10px;
+}
+
+.input-box input.file{
+  display: none;
+}
+
+.input-box input.price{
+  width: 300px;
+  margin-right: 10px;
+}
+
+.input-box input.radio{
+  width: auto;
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+.input-box .radio-box{
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.input-box textarea{
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 0px;
+  font-size: 16px;
+}
+
+.input-box input.submit{
+  display: block;
+  width: 150px;
+  height: 60px;
+  background-color: #ff7d64;
+  color: white;
+  font-size: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+/* 壁紙投稿チェックのレイアウト */
+.postcheck-content{
+  padding: 50px 80px;
+}
+
+.postcheck-content h2{
+  border-bottom: dashed 0px;
+  margin-bottom: 50px;
+}
+
+.postcheck-content .img-box{
+  width: 100%;
+  padding: 10px 0;
+  background-image: url(../images/transparent.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.postcheck-content .img-box img{
+  display: block;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+.postcheck-content .kindOfWp{
+  padding: 30px 0;
+}
+
+.postcheck-content .postcheck-item{
+  padding: 30px 0;
+}
+
+.postcheck-content .postcheck-item h3{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cp_tag01 a{
+  background: #ff7d64;
+  color: white;
+}
+
+.cp_tag01 a::before, .cp_tag01 a::after {
+  background: gold;/*背景色*/
+}
+
+.cp_tag01 a::after {
+  border-color: transparent transparent transparent #ff7d64;
+}
+
+.postcheck-content .postBtn-box{
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.postcheck-content .postBtn-box input{
+  display: block;
+  width: 150px;
+  height: 60px;
+  font-size: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+  border: solid 0px;
+  border-radius: 10px;
+}
+
+.postcheck-content .postBtn-box input.modify{
+  color: white;
+  background-color: #ff7d64;
+}
+
+.postcheck-content .postBtn-box input.submit{
+  background-color: aquamarine;
+}
+
+
+/* 壁紙表示のレイアウト */
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.nav-content .img-container{
+  width : -webkit-calc(100% / 3) ;
+  width : calc(100% / 3) ;
+  padding: 0 20px 40px 0;
+}
+
+.nav-content .img-container a{
+  color: black;
+}
+
+.nav-content .img-container .img-box{
+  width: 100%;
+  height: 180px;
+  background-color: #EFEFEF;
+  position: relative;
+}
+
+.nav-content .img-container .img-box img{
+  display: block;
+  max-width: 100%;
+  max-height: 180px;
+  margin: 0 auto;
+}
+
+.nav-content .img-container .img-name{
+  text-align: center;
+  margin: 10px 0
+}
+
+.nav-content .img-container .downlode-checkbox{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.downlode{
+  width: 100%;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.downlode-btn{
+  position: absolute;
+  width: 20%;
+  top: 10px;
+  right: 10px;
+  background-color: #ff7d64;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  color: #fff;
+}
+
+
+/* 自分以外のユーザーのレイアウト */
+.user-post-h2{
+  border: dotted 0px;
+  padding-top: 20px;
+  background-color: gold;
+}
+

@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+/* 人気作品 */
+#popular-works{
+    width: 100%;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.popular-box{
+  width: 100%;
+}
+
+.slider{
+    margin: 40px auto;
+    width: 100%;
+}
+.slider img{
+    height: auto;
+    width: 100%;
+    height: 600px;
+    margin: 0 auto;
+    padding: 0 10px;
+    object-fit: cover;
+}
+
+/*slick setting*/
+.slick-prev{
+  left: 5%;
+  z-index: 99;
+  width: 50px;
+}
+
+.slick-next{
+  right: 5%;
+  width: 50px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #534741;
+    font-size: 50px;
+}
+
+
+#favorite{
+  margin-bottom: 100px;
+}
+
+.images-box{
+  width: 1000px;
+  margin: 0 auto;
+  padding: 50px 0 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.images-box a{
+  display: inline-block;
+  width: 23%;
+}
+
+.images-box img{
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+#favorite .link{
+  width: 1000px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+
+
+/* タグ用のCSS */
+#favorite-tag{
+  margin-bottom: 100px;
+}
+
+
+
+/* 新着壁紙用CSS */
+#new-wallpaper{
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+#new-wallpaper .wallpaper-box{
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 50px 0 20px 0;
+}
+
+#new-wallpaper .wallpaper-box a{
+  display: inline-block;
+  width: 23%;
+  margin-right: 2.666%;
+  margin-bottom: 50px;
+}
+
+#new-wallpaper .wallpaper-box a:nth-child(4n){
+  margin-right: 0;
+}
+
+#new-wallpaper .wallpaper-box a img{
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+
+footer{
+  width: 100%;
+  background-color: aquamarine;
+}
+
+footer .flex-box{
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,56 @@
+#wrap{
+    width: 1000px;
+    display: block;
+    margin: 0 auto;
+    background-color: #eafff4;
+}
+
+#notice{
+    display: block;
+    width: 100%;
+    padding: 20px 30px;
+    margin: 80px auto;
+}
+
+#notice h2{
+    width: 100%;
+    margin-bottom: 50px;
+    border-bottom: solid 3px #ff7d64;
+}
+
+.content{
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.date{
+    margin-bottom: 5px;
+}
+
+.img-text{
+    display: flex;
+}
+
+.content figure{
+    width: 50%;
+}
+
+.content figure img{
+    height: 150px;
+}
+
+.content.img-text.text{
+    width: 45%;
+    height: 150px;
+}
+
+.text p{
+    padding-top: 67px;/*line-heightだとborder-bottomがうまく入らないため*/
+    border-bottom: #ff7d64 2px solid;
+}
+
+.gap{
+    margin: 50px;
+}
