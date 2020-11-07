@@ -1,5 +1,5 @@
 <?php
-require_once('component/db_connect.php');
+require_once(dirname(__FILE__).'/app/fn_components/db_connect.php');
 
 header('Content-Type: text/html; charset=utf-8');
 

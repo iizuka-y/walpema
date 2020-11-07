@@ -1,3 +1,8 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -24,7 +29,7 @@
 
             <div id="wrap">
 
-                <h2>アカウント作成成功</h2>
+                <h2>アカウントを作成しました</h2>
 
                 <div id="login">
 					

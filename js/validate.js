@@ -12,8 +12,8 @@ window.onload = function (){
   $('.login-btn').on('click', function(){
     var flag = 0;
 
-    if($('.user_id').val() === ""){
-      $('.userIdMsg').html("ユーザーIDを入力してください");
+    if($('.user_name').val() === ""){
+      $('.userNameMsg').html("ユーザー名を入力してください");
       flag = 1;
     }
 

@@ -23,6 +23,16 @@
     flex-direction: column;
 }
 
+#login #errorMsg-box{
+    width: 70%;
+    margin: 10px auto;
+}
+
+#login #errorMsg-box li{
+    color: red;
+    line-height: 20px;
+}
+
 #login form{
     display: flex;
     flex-direction: column;

@@ -1,3 +1,14 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+if(isset($_SESSION["params"])){
+    $params = fnc_getData("session", "params");
+    fnc_delData("session", "params", "");
+}else{
+    header("Location: signup.php");
+}
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -27,14 +38,18 @@
 
                 <div id="login">
 
-                    <form action="signup_comp.php" method="POST">
+                    <form action="../app/controller/user_create.php" method="POST">
 
-                        <p>ユーザID</p>
+                        <p>以下の内容で登録します。</p>
 
-                        <p>パスワード</p>
+                        <p>ユーザ名<br><br><?php print $params['user_name'] ?></p>
+                        <input type="hidden" name="user_name" value="<?php print $params['user_name'] ?>">
 
-                        <p>メールアドレス</p>
-        
+                        <p>メールアドレス<br><br><?php print $params['email'] ?></p>
+                        <input type="hidden" name="email" value="<?php print $params['user_name'] ?>">
+
+                        <input type="hidden" name="password" value="<?php print $params['password'] ?>">
+
                         <input type="submit" value="登録" class="login-btn">
         
                     </form>

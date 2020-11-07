@@ -1,3 +1,14 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+
+// 入力内容に不備がある場合
+if(isset($_SESSION["errorMsg"])){
+    $errorMsgs = fnc_getData("session", "errorMsg");
+    fnc_delData("session", "errorMsg", "");
+}
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -12,7 +23,7 @@
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="../js/validate.js"></script>
+        <!-- <script type="text/javascript" src="../js/validate.js"></script> -->
 
     </head>
 
@@ -28,21 +39,27 @@
                 <h2>アカウント作成</h2>
 
                 <div id="login">
+                
+                    <ul id="errorMsg-box">
+                    <?php foreach($errorMsgs as $errorMsg): ?>
+                        <li><?php print $errorMsg?></li>
+                    <?php endforeach ?>
+                    </ul>
 
-                <form action="new-login-check.html" method="POST">
+                    <form action="../app/controller/validate.php" method="POST">
 
-                    <input type="text" placeholder="ユーザID" class="user_id">
-                    <span class="userIdMsg"></span>
+                        <input type="text" placeholder="ユーザ名" class="user_name" name="user_name">
+                        <span class="userNameMsg"></span>
 
-                    <input type="text" placeholder="パスワード" class="password">
-                    <span class="passwordMsg"></span>
+                        <input type="text" placeholder="メールアドレス" class="email" name="email">
+                        <span class="emailMsg"></span>
 
-                    <input type="text" placeholder="メールアドレス" class="email">
-                    <span class="emailMsg"></span>
+                        <input type="password" placeholder="パスワード" class="password" name="password">
+                        <span class="passwordMsg"></span>
 
-                    <input type="submit" value="登録内容確認" class="login-btn">
+                        <input type="submit" value="登録内容確認" class="login-btn">
 
-                </form>
+                    </form>
 
                     <a href="login.html">ログインに戻る</a>
 
