@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../fn_components/session_cookie.php');
+require_once(dirname(__FILE__).'/../class/User.php');
 
 if(!isset($_POST['user_name']) && !isset($_POST['email']) && !isset($_POST['password']) ){
     header("Location: signup.php");
@@ -29,6 +30,11 @@ if(!$_POST['password']){
 // 文字数バリデーション
 if(mb_strlen($_POST['user_name']) > 10){
     $errorMsg[] = "名前は10文字以内で入力してください";
+}
+
+// メールアドレス重複チェック
+if(!User::uniqueness($_POST['email'])){
+    $errorMsg[] = "送信されたメールアドレスは使用できません";
 }
 
 

@@ -15,6 +15,8 @@ $params = [
 if(User::create($params)){
     header("Location: ../../view/signup_comp.php");
 }else{
+    $errorMsg = ["ユーザー登録に失敗しました。"];
+    fnc_setData("session", "errorMsg", $errorMsg);
     header("Location: ../../view/signup.php");
 }
 

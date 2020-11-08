@@ -46,7 +46,7 @@ if(isset($_SESSION["params"])){
                         <input type="hidden" name="user_name" value="<?php print $params['user_name'] ?>">
 
                         <p>メールアドレス<br><br><?php print $params['email'] ?></p>
-                        <input type="hidden" name="email" value="<?php print $params['user_name'] ?>">
+                        <input type="hidden" name="email" value="<?php print $params['email'] ?>">
 
                         <input type="hidden" name="password" value="<?php print $params['password'] ?>">
 
