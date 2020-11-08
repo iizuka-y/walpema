@@ -2,7 +2,8 @@
 require_once(dirname(__FILE__).'/../fn_components/session_cookie.php');
 require_once(dirname(__FILE__).'/../class/User.php');
 
-if(!isset($_POST['user_name']) && !isset($_POST['email']) && !isset($_POST['password']) ){
+
+if(!isset($_POST['user_name']) || !isset($_POST['email']) || !isset($_POST['password'])){
     header("Location: signup.php");
 }
 

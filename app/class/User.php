@@ -27,6 +27,23 @@ class User extends Model{
 
   }
 
+  // ログインチェック
+  public static function find($email, $password){
+    $sql = implode(' ', [
+      'SELECT * FROM',
+      static::$table,
+      'WHERE email = ?',
+      'AND password = ?'
+    ]);
+
+    $dbh = db_connect()->prepare($sql);
+    $dbh->bindValue(1,$email,PDO::PARAM_STR);
+    $dbh->bindValue(2,$password,PDO::PARAM_STR);
+    $dbh->execute();
+    return $dbh->fetch();
+
+  }
+
 }
 
 ?>

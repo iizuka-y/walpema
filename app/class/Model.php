@@ -19,6 +19,20 @@ class Model{
         return $dbh->fetchAll();
     }
 
+    public static function findById($id){
+        $sql = implode(' ', [
+            'SELECT * FROM',
+            static::$table,
+            'WHERE id = ?'
+        ]);
+        
+        $dbh = db_connect()->prepare($sql);
+        $dbh->bindValue(1,$id,PDO::PARAM_STR);
+        $dbh->execute();
+
+        return $dbh->fetchAll();
+    }
+
     public static function create($params){
         if (static::$timestamps) {
             $now = date('Y-m-d H:i:s');

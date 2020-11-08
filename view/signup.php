@@ -46,7 +46,7 @@ if(isset($_SESSION["errorMsg"])){
                     <?php endforeach ?>
                     </ul>
 
-                    <form action="../app/controller/validate.php" method="POST">
+                    <form action="../app/controller/signup_validate.php" method="POST">
 
                         <input type="text" placeholder="ユーザ名" class="user_name" name="user_name">
                         <span class="userNameMsg"></span>
@@ -61,7 +61,7 @@ if(isset($_SESSION["errorMsg"])){
 
                     </form>
 
-                    <a href="login.html">ログインに戻る</a>
+                    <a href="login.php">ログインに戻る</a>
 
                 </div>
 

@@ -10,10 +10,9 @@
         <div class="follow-and-point">
             <p><a href="follow.php">フォロー　　　70</a></p>
             <p><a href="follower.php">フォロワー　　70</a></p>
-            <!-- <p>保有ポイント　1000</p> -->
         </div>
 
-        <div class="logout"><a href="logout.php">ログアウトする</a></div>
+        <div class="logout"><a href="../app/controller/logout.php">ログアウトする</a></div>
     </div>
 
 

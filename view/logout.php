@@ -1,3 +1,10 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+if($current_user){
+	fnc_delData("session","","all");
+}
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
