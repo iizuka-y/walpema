@@ -1,3 +1,17 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+if(!isset($_GET['id'])){
+    header("Location: index.php");
+}
+$user_id = $_GET['id'];
+$user = User::findbyId($user_id);
+
+if(!$user){
+    header("Location: index.php");
+}
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -29,7 +43,11 @@
 
             <?php require_once('layouts/_user-info.php'); //ユーザー情報の読み込み ?>
 
-            <?php require_once('layouts/_user-nav.php'); //ナビゲーションの読み込み ?>
+            <?php
+            if($user['id'] === $current_user['id']){
+                require_once('layouts/_user-nav.php'); //ナビゲーションの読み込み
+            }
+            ?>
 
             <div class="nav-content flex">
                 <div class="img-container">
