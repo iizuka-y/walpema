@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
-if($current_user){
+if(isset($current_user)){
 	fnc_delData("session","","all");
 }
 ?>

@@ -9,6 +9,6 @@ const USER = "root";
 //パスワード情報
 const PASS = "root";
 //データベースの名前
-const DB_NAME = "IW27_shopping";
+const DB_NAME = "walpema";
 
 ?>

@@ -34,7 +34,7 @@ require_once(dirname(__FILE__).'/../app/controller/before_view.php');
                 <div id="login">
 					
 					<div id="title">
-						ウォルペマへようこそ！
+						ようこそ<b><?php print $current_user['user_name'] ?></b>さん！
 					</div>
 					<div id="text">
 						あなたは画像の投稿や画像の購入等、<br>

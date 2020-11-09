@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__).'/../fn_components/session_cookie.php');
 require_once(dirname(__FILE__).'/../class/User.php');
 
 if(!isset($_POST['user_name']) && !isset($_POST['email']) && !isset($_POST['password']) ){
@@ -13,6 +14,8 @@ $params = [
 
 
 if(User::create($params)){
+    $user = User::find($_POST['email'], $_POST['password']);
+    fnc_setData("session", "login_userId", $user['id']);
     header("Location: ../../view/signup_comp.php");
 }else{
     $errorMsg = ["ユーザー登録に失敗しました。"];

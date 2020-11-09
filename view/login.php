@@ -40,9 +40,11 @@ if(isset($_SESSION["errorMsg"])){
                 <div id="login">
 
                     <ul id="errorMsg-box">
-                    <?php foreach($errorMsgs as $errorMsg): ?>
-                        <li><?php print $errorMsg?></li>
-                    <?php endforeach ?>
+                    <?php if(isset($errorMsgs)): ?>
+                        <?php foreach($errorMsgs as $errorMsg): ?>
+                            <li><?php print $errorMsg?></li>
+                        <?php endforeach ?>
+                    <?php endif ?>
                     </ul>
 
                     <form action="../app/controller/login_validate.php" method="POST">

@@ -30,7 +30,7 @@ class Model{
         $dbh->bindValue(1,$id,PDO::PARAM_STR);
         $dbh->execute();
 
-        return $dbh->fetchAll();
+        return $dbh->fetch();
     }
 
     public static function create($params){
