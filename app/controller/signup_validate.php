@@ -34,7 +34,7 @@ if(mb_strlen($_POST['user_name']) > 10){
 }
 
 // メールアドレス重複チェック
-if(!User::uniqueness($_POST['email'])){
+if(User::where(['email' => $_POST['email']])){
     $errorMsg[] = "送信されたメールアドレスは使用できません";
 }
 

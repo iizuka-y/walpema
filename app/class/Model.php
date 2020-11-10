@@ -19,6 +19,7 @@ class Model{
         return $dbh->fetchAll();
     }
 
+
     public static function findById($id){
         $sql = implode(' ', [
             'SELECT * FROM',
@@ -32,6 +33,48 @@ class Model{
 
         return $dbh->fetch();
     }
+
+
+    // 条件に合うレコードを１軒取得
+    public static function find($params){
+        $keys   = array_keys($params);
+        $values = array_values($params);
+        
+        $sql = implode(' ',[
+            'SELECT * FROM',
+            static::$table,
+            'WHERE',
+            implode(' = ? AND ', $keys).' =?'
+        ]);
+        // print $sql;
+
+        $dbh = db_connect()->prepare($sql);
+        $dbh->execute($values);
+        
+        return $dbh->fetch();
+    }
+
+
+    // 条件に合うレコードを複数件取得
+    public static function where($params){
+        $keys   = array_keys($params);
+        $values = array_values($params);
+        
+        $sql = implode(' ',[
+            'SELECT * FROM',
+            static::$table,
+            'WHERE',
+            implode(' = ? AND ', $keys).' =?'
+        ]);
+        // print $sql;
+
+        $dbh = db_connect()->prepare($sql);
+        $dbh->execute($values);
+        
+        return $dbh->fetchAll();
+    }
+
+
 
     public static function create($params){
         if (static::$timestamps) {

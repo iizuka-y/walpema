@@ -14,7 +14,7 @@ $params = [
 
 
 if(User::create($params)){
-    $user = User::find($_POST['email'], $_POST['password']);
+    $user = User::find($params);
     fnc_setData("session", "login_userId", $user['id']);
     header("Location: ../../view/signup_comp.php");
 }else{

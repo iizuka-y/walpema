@@ -7,10 +7,10 @@ if(!isset($_POST['email']) || !isset($_POST['password'])){
     header("Location: login.php");
 }
 
-// $params = [
-//     'email' => $_POST['email'],
-//     'password' => $_POST['password']
-// ];
+$params = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password']
+];
 
 $errorMsg = array();
 
@@ -28,7 +28,7 @@ if(!empty($errorMsg)){
     fnc_setData("session", "errorMsg", $errorMsg);
     header("Location: ../../view/login.php");
 }else{
-    $user = User::find($_POST['email'], $_POST['password']);
+    $user = User::find($params);
     // print_r($user);
     if($user){
         fnc_setData("session", "login_userId", $user['id']);
