@@ -16,7 +16,18 @@ class User extends Model{
   public $updated_at;
   public $admin;
 
-  public function __construct($id, $user_name, $email, $password, $image, $self_introduction, $credit_card_num, $created_at, $updated_at, $admin) {
+  public function __construct(
+    $id,
+    $user_name,
+    $email,
+    $password,
+    $image,
+    $self_introduction,
+    $credit_card_num,
+    $created_at,
+    $updated_at,
+    $admin
+    ) {
     
     $this->id = $id;
     $this->name = $user_name;

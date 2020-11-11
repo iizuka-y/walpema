@@ -39,9 +39,13 @@ class Model{
         $dbh->bindValue(1,$id,PDO::PARAM_STR);
         $dbh->execute();
         $result = $dbh->fetch();
+        // var_dump($result);
+        
+        if(!$result){
+            return null;
+        }
 
         $values = array_values($result);
-
         return new static(...$values);
     }
 
@@ -61,6 +65,10 @@ class Model{
         $dbh = db_connect()->prepare($sql);
         $dbh->execute($values);
         $result = $dbh->fetch();
+
+        if(!$result){
+            return null;
+        }
         
         $values = array_values($result);
 
@@ -84,6 +92,7 @@ class Model{
         $dbh = db_connect()->prepare($sql);
         $dbh->execute($values);
         $results = $dbh->fetchAll();
+        // var_dump($results);
         
         $array = array();
         foreach($results as $result){
