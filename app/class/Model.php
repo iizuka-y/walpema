@@ -16,10 +16,18 @@ class Model{
         $dbh = db_connect()->prepare($sql);
         $dbh->execute();
 
-        return $dbh->fetchAll();
+        $results = $dbh->fetchAll();
+
+        $array = array();
+        foreach($results as $result){
+            $values = array_values($result);
+            $array[] = new static(...$values);
+        }
+        
+        return $array;
     }
 
-
+    // idで取得
     public static function findById($id){
         $sql = implode(' ', [
             'SELECT * FROM',
@@ -30,10 +38,12 @@ class Model{
         $dbh = db_connect()->prepare($sql);
         $dbh->bindValue(1,$id,PDO::PARAM_STR);
         $dbh->execute();
+        $result = $dbh->fetch();
 
-        return $dbh->fetch();
+        $values = array_values($result);
+
+        return new static(...$values);
     }
-
 
     // 条件に合うレコードを１軒取得
     public static function find($params){
@@ -44,14 +54,17 @@ class Model{
             'SELECT * FROM',
             static::$table,
             'WHERE',
-            implode(' = ? AND ', $keys).' =?'
+            implode(' = ? AND ', $keys).' = ?'
         ]);
         // print $sql;
 
         $dbh = db_connect()->prepare($sql);
         $dbh->execute($values);
+        $result = $dbh->fetch();
         
-        return $dbh->fetch();
+        $values = array_values($result);
+
+        return new static(...$values);
     }
 
 
@@ -64,16 +77,22 @@ class Model{
             'SELECT * FROM',
             static::$table,
             'WHERE',
-            implode(' = ? AND ', $keys).' =?'
+            implode(' = ? AND ', $keys).' = ?'
         ]);
         // print $sql;
 
         $dbh = db_connect()->prepare($sql);
         $dbh->execute($values);
+        $results = $dbh->fetchAll();
         
-        return $dbh->fetchAll();
+        $array = array();
+        foreach($results as $result){
+            $values = array_values($result);
+            $array[] = new static(...$values);
+        }
+        
+        return $array;
     }
-
 
 
     public static function create($params){

@@ -31,7 +31,7 @@ if(!empty($errorMsg)){
     $user = User::find($params);
     // print_r($user);
     if($user){
-        fnc_setData("session", "login_userId", $user['id']);
+        fnc_setData("session", "login_userId", $user->id);
         header("Location: ../../view/index.php");
     }else{
         $errorMsg = ["メールアドレスまたはパスワードが間違っています"];

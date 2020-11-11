@@ -44,7 +44,7 @@ if(!$user){
             <?php require_once('layouts/_user-info.php'); //ユーザー情報の読み込み ?>
 
             <?php
-            if($user['id'] === $current_user['id']){
+            if($user->id === $current_user->id){
                 require_once('layouts/_user-nav.php'); //ナビゲーションの読み込み
             }
             ?>

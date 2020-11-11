@@ -15,7 +15,7 @@ $params = [
 
 if(User::create($params)){
     $user = User::find($params);
-    fnc_setData("session", "login_userId", $user['id']);
+    fnc_setData("session", "login_userId", $user->id);
     header("Location: ../../view/signup_comp.php");
 }else{
     $errorMsg = ["ユーザー登録に失敗しました。"];
