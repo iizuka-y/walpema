@@ -12,14 +12,13 @@
   background-color: gold;
 }
 
-/* #wrap h2{
-  width: 100%;
-  font-size: 25px;
-  line-height: 30px;
-  padding: 20px 0;
-  border-bottom: solid 3px #ff7d64;
+#errorMsg-box{
+  width: 40%;
   margin: 0 auto;
-} */
+  color: red;
+  margin-top: 20px;
+}
+
 
 .file{
   display: none;

@@ -2,7 +2,7 @@
     <div class="user-info-left">
         <h2><?php print $user->name ?></h2>
         <div class="self-introduction">
-            <?php $user->self_introduction ?>
+            <?php print $user->self_introduction ?>
         </div>
 
         <div class="follow-and-point">

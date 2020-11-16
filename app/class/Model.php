@@ -105,7 +105,7 @@ class Model{
 
 
     public static function create($params){
-        if (static::$timestamps) {
+        if(static::$timestamps) {
             $now = date('Y-m-d H:i:s');
             foreach (['created_at', 'updated_at'] as $timestamps_key) {
                 $params[$timestamps_key] = $now;
@@ -126,6 +126,41 @@ class Model{
         $dbh = db_connect()->prepare($sql);
 
         if (!$dbh->execute($values)) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public static function update($params){
+        $id = $params['id'];
+        unset($params['id']); // idを取り出し$params上からは削除
+
+        $keys   = array_keys($params);
+        $values = array_values($params);
+
+        $sql = implode(' ',[
+            'UPDATE',
+            static::$table,
+            'SET',
+            implode(' = ?,',$keys).' = ?',
+            'WHERE',
+            'id = ?'
+        ]);
+        
+        print $sql;
+
+        $dbh = db_connect()->prepare($sql);
+        
+        $i = 1;
+        foreach($values as $value){
+            $dbh->bindValue($i,$value,PDO::PARAM_STR);
+            $i ++;
+        }
+        $dbh->bindValue($i,$id,PDO::PARAM_STR);
+
+        if (!$dbh->execute()) {
             return false;
         }
 

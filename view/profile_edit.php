@@ -1,3 +1,18 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+if(!isset($current_user)){
+    header("Location: index.php");
+}
+
+// 入力内容に不備がある場合
+if(isset($_SESSION["errorMsg"])){
+    $errorMsgs = fnc_getData("session", "errorMsg");
+    fnc_delData("session", "errorMsg", "");
+}
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -13,7 +28,7 @@
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="../js/image-preview.js"></script>
-        <script type="text/javascript" src="../js/validate.js"></script>
+        <!-- <script type="text/javascript" src="../js/validate.js"></script> -->
 
     </head>
 
@@ -30,17 +45,25 @@
             <div id="edit">
                 <h2>マイページ編集</h2>
 
-                <form action="profile.php" method="POST">
+                <ul id="errorMsg-box">
+                    <?php if(isset($errorMsgs)): ?>
+                        <?php foreach($errorMsgs as $errorMsg): ?>
+                            <li><?php print $errorMsg?></li>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </ul>
+
+                <form action="../app/controller/profile_update.php" method="POST">
 
                     <input type="file" class="file">
                     <img src="../images/hyoujou_shinda_me_man.png" alt="アイコン" class="edit" id="img-field">
 
-                    <label>ユーザー名(15字以内)</label>
-                    <input type="text" class="edit user_name" value="HAL太郎">
+                    <label>ユーザー名</label>
+                    <input type="text" class="edit user_name" name="name" value="<?php print $current_user->name ?>">
                     <span class="userNameMsg"></span>
 
                     <label>コメント(100字以内)</label>
-                    <textarea class="edit message">こんにちは</textarea>
+                    <textarea class="edit message" name="self_introduction"><?php print $current_user->self_introduction ?></textarea>
                     <span class="messageMsg"></span>
 
                     <input type="submit" value="変更する" class="edit-submit"> 
