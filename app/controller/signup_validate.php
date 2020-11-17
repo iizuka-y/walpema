@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../fn_components/session_cookie.php');
 require_once(dirname(__FILE__).'/../class/User.php');
+require_once(dirname(__FILE__).'/../../config/validate_config.php');
 
 
 if(!isset($_POST['user_name']) || !isset($_POST['email']) || !isset($_POST['password'])){
@@ -29,8 +30,8 @@ if(!$_POST['password']){
 }
 
 // 文字数バリデーション
-if(mb_strlen($_POST['user_name']) > 10){
-    $errorMsg[] = "名前は10文字以内で入力してください";
+if(mb_strlen($_POST['user_name']) > USER_NAME){
+    $errorMsg[] = "名前は".USER_NAME."文字以内で入力してください";
 }
 
 // メールアドレス重複チェック

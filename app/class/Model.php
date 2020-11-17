@@ -149,7 +149,7 @@ class Model{
             'id = ?'
         ]);
         
-        print $sql;
+        // print $sql;
 
         $dbh = db_connect()->prepare($sql);
         
