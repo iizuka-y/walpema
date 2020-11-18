@@ -18,7 +18,7 @@
 
     <div class="user-info-right">
         <?php if($user->image): ?>
-        <img src="../images/hyoujou_shinda_me_man.png">
+        <img src="../<?php print $user->image ?>">
         <?php else: ?>
         <img src="../images/default-user-image.png">
         <?php endif ?>

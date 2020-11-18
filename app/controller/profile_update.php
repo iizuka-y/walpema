@@ -1,20 +1,27 @@
 <?php
 require_once('before_view.php');
 require_once('../../config/validate_config.php');
+require_once('../fn_components/file_upload.php');
 
 
-
-if(!isset($_POST) && !isset($current_user)){
+if(!isset($_POST) || !isset($current_user)){
     header("Location: ../../view/index.php");
 }
+
+$errorMsg = array();
+
+// 送信された画像を取り扱う処理
+$img_path = file_upload($_FILES['upfile']);
+
+
 
 $params = [
     'id' => $current_user->id,
     'user_name' => $_POST['name'],
+    'image' => $img_path,
     'self_introduction' => $_POST['self_introduction']
 ];
 
-$errorMsg = array();
 
 if(!$_POST['name']){
     $errorMsg[] = "ユーザー名が入力されていません";
