@@ -4,8 +4,7 @@ function file_upload($files){
     global $errorMsg;
 
     if(!isset($files) || !is_uploaded_file($files['tmp_name'])){
-        header("Location: ../../view/index.php");
-        exit();
+        return null;
     }
 
     $directory_path = "../../upload";

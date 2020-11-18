@@ -13,6 +13,13 @@ $errorMsg = array();
 // 送信された画像を取り扱う処理
 $img_path = file_upload($_FILES['upfile']);
 
+if(!$img_path){
+    $img_path = $current_user->image;
+    $imgChangeFlg = false;
+}else{
+    $imgChangeFlg = true;
+    $oldImg = $current_user->image;
+}
 
 
 $params = [
@@ -47,6 +54,10 @@ if(!empty($errorMsg)){
 }else{
     
     if(User::update($params)){
+        // ユーザー画像が更新された場合、uploadフォルダ内の前の画像は削除
+        if(file_exists('../../'.$oldImg) && $imgChangeFlg){
+            unlink('../../'.$oldImg);
+        }
         header("Location: ../../view/profile.php?id=$current_user->id");
 
     }else{
