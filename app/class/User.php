@@ -8,10 +8,10 @@ class User extends Model{
   public $id;
   public $name;
   public $email;
-  public $password;
+  private $password;
   public $image;
   public $self_introduction;
-  public $credit_card_num;
+  private $credit_card_num;
   public $created_at;
   public $updated_at;
   public $admin;
@@ -42,6 +42,17 @@ class User extends Model{
 
   }
 
+
+
+  public function items(){
+    $params = [
+      'user_id' => $this->id
+    ];
+  
+    return Item::where($params);
+  }
+
 }
+
 
 ?>
