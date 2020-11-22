@@ -2,6 +2,9 @@
 require_once(dirname(__FILE__).'/Model.php');
 
 class Item extends Model{
+
+  protected static $table = 'item';
+
   public $id;
   public $name;
   public $user_id;
