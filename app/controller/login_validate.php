@@ -5,6 +5,7 @@ require_once(dirname(__FILE__).'/../class/User.php');
 
 if(!isset($_POST['email']) || !isset($_POST['password'])){
     header("Location: login.php");
+    exit();
 }
 
 $params = [

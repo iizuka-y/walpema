@@ -57,9 +57,9 @@ if(isset($_SESSION["errorMsg"])){
 
                     <input type="file" class="file" name="upfile">
                     <?php if($current_user->image): ?>
-                    <img src="../<?php print $current_user->image ?>" alt="アイコン" class="edit" id="img-field">
+                    <img src="../<?php print $current_user->image ?>" alt="アイコン" class="edit preview" id="img-field">
                     <?php else: ?>
-                    <img src="../images/default-user-image.png" alt="アイコン" class="edit" id="img-field">
+                    <img src="../images/default-user-image.png" alt="アイコン" class="edit preview" id="img-field">
                     <?php endif ?>
 
                     <label>ユーザー名</label>

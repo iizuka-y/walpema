@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).'/../class/User.php');
 
 if(!isset($_POST['user_name']) && !isset($_POST['email']) && !isset($_POST['password']) ){
     header("Location: ../../view/signup.php");
+    exit();
 }
 
 $params = [

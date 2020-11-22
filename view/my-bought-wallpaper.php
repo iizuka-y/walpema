@@ -1,3 +1,14 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+$user = $current_user;
+
+if(!$user){
+    header("Location: index.php");
+}
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">

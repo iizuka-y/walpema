@@ -8,7 +8,7 @@
 // <body>に指定された各エレメントが表示され準備が整ったら実行される
 
 $(function() {
-	$('#img-field').on('click', function(){
+	$('#img-field').on('click', function(event){
     $('.file').trigger("click");
   });
 
@@ -18,7 +18,7 @@ $(function() {
     reader = new FileReader();
 
     reader.onload = function (e) {
-      $('#img-field').attr('src', e.target.result);
+      $('.preview').attr('src', e.target.result);
     }
 
     reader.readAsDataURL(file); // 画像の読み込み

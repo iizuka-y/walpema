@@ -172,6 +172,11 @@ li.chat{
 }
 
 /* 壁紙投稿画面のレイアウト */
+.nav-content #errorMsg-box{
+  color: red;
+  margin-bottom: 40px;
+}
+
 .nav-content label{
   display: inline-block;
   font-size: 18px;
@@ -189,14 +194,15 @@ li.chat{
   transition: 0.3s ease-out;
   cursor: pointer;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#img-field i{
-  font-size: 100px;
+#img-field img{
+  max-width: 100%;
+  max-height: 100%;
   display: block;
-  text-align: center;
-  color: #aaa;
-  line-height: 500px;
 }
 
 

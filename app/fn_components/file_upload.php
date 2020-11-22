@@ -13,8 +13,8 @@ function file_upload($files){
     }
     
     // 保存する画像の名前の生成
-    $img_name = date ( "YmdHis" );
-    $img_name .= mt_rand ();
+    $img_name = date("YmdHis");
+    $img_name .= mt_rand();
     
     switch (exif_imagetype($files['tmp_name'])){
         case IMAGETYPE_JPEG:

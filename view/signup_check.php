@@ -6,6 +6,7 @@ if(isset($_SESSION["params"])){
     fnc_delData("session", "params", "");
 }else{
     header("Location: signup.php");
+    exit();
 }
 ?>
 

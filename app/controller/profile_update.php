@@ -6,6 +6,7 @@ require_once('../fn_components/file_upload.php');
 
 if(!isset($_POST) || !isset($current_user)){
     header("Location: ../../view/index.php");
+    exit();
 }
 
 $errorMsg = array();

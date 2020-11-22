@@ -6,6 +6,7 @@ require_once(dirname(__FILE__).'/../../config/validate_config.php');
 
 if(!isset($_POST['user_name']) || !isset($_POST['email']) || !isset($_POST['password'])){
     header("Location: signup.php");
+    exit();
 }
 
 $params = [
