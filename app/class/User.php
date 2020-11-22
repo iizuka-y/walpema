@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/Model.php');
+require_once(dirname(__FILE__).'/Item.php');
 
 class User extends Model{
 

@@ -55,7 +55,7 @@ if($_POST['price'] > MAX_PRICE){
 
 }
 
-if($_POST['price'] < 0){
+if(!preg_match('/^[0-9]+$/', $_POST['price'])){
 
     $errorMsg[] = "価格の値が不正です";
 

@@ -1,3 +1,19 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+if(!isset($_GET['id'])){
+    header("Location: index.php");
+    exit();
+}
+$item_id = $_GET['id'];
+$item = Item::findbyId($item_id);
+
+if(!$item){
+    header("Location: index.php");
+    exit();
+}
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -34,20 +50,25 @@
                 <div id="cart">
                     
                     <div class="wallpaper">
-                        <img src="../images/windows xp.jpg" alt="windows">
+                        <img src="../<?php print $item->image ?>">
                     </div>
     
                     <div class="details">
                         <div class="contributor">
                             <a href="user.html">
-                                <img src="../images/pien_uruuru_woman.png" alt="icon">
-                                <p>HAL花子</p>
+                                <?php if($item->user()->image): ?>
+                                <img src="../<?php print $item->user()->image ?>" alt="icon">
+                                <?php else: ?>
+                                <img src="../images/default-user-image.png" alt="icon">
+                                <?php  endif ?>
+                                <p><?php print $item->user()->name ?></p>
                             </a>
                         </div>
     
                         <div class="text">
                             <h3>作品詳細</h3>
-                            <p>世界で一番有名な壁紙です。草原のように見えますがぶどう畑らしいです。パソコンをwindows xpっぽくしたい人はどうぞ。
+                            <p>
+                                <?php print $item->explanation ?>
                             </p>
                         </div>
 
@@ -77,10 +98,17 @@
                         </div>
 
                         <div id="buy">
-                            <p>￥300</p>
+                            <p><?php print $item->price ?>円</p>
+                            <?php if($current_user->id === $item->user()->id): ?>
+                            <form action="cart.html" method="POST">
+                                <input type="submit" value="編集する" name="cart" class="submit">
+                            </form>
+                            <?php else: ?>
                             <form action="cart.html" method="POST">
                                 <input type="submit" value="カートに入れる" name="cart" class="submit">
                             </form>
+                            <?php endif ?>
+
                         </div>
                     </div>
 

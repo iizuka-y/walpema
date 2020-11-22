@@ -66,7 +66,7 @@ if(isset($_SESSION["params"])){
 
                 <div class="postcheck-item">
                     <h3>価格</h3>
-                    <p><?php print $params['price'] ?></p>
+                    <p><?php print $params['price'] ?>円</p>
                 </div>
 
                 <div class="postBtn-box">

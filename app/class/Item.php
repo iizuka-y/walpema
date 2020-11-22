@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/Model.php');
+require_once(dirname(__FILE__).'/User.php');
 
 class Item extends Model{
 
@@ -28,11 +29,9 @@ class Item extends Model{
   }
 
   public function user(){
-    $params = [
-      'id' => $this->user_id
-    ];
     
-    return User::find($params);
+    return User::findById($this->user_id);
+
   }
 
 }

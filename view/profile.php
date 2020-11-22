@@ -2,12 +2,14 @@
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 if(!isset($_GET['id'])){
     header("Location: index.php");
+    exit();
 }
 $user_id = $_GET['id'];
 $user = User::findbyId($user_id);
 
 if(!$user){
     header("Location: index.php");
+    exit();
 }
 
 ?>
@@ -50,54 +52,21 @@ if(!$user){
             ?>
 
             <div class="nav-content flex">
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/Mac-Pro-macOS-Catalina-Wallpaper.jpg">
-                        </div>
-                        <div class="img-name">Catalina</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/Sierra.jpg">
-                        </div>
-                        <div class="img-name">sierra</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
+                <?php if($user->items()): ?>
+                    <?php foreach($user->items() as $item): ?>
+                    <div class="img-container">
+                        <a href="wallpaper_detail.php?id=<?php print $item->id ?>">
+                            <div class="img-box">
+                                <img src="../<?php print $item->image ?>">
+                            </div>
+                            <div class="img-name"><?php print $item->name ?></div>
+                        </a>
+                    </div>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <div>投稿した壁紙はありません</div>
+                <?php endif ?>
+
             </div>
         </div>
 
