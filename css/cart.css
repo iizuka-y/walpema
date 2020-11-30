@@ -43,7 +43,7 @@ h3{
     width: 100%;
 }
 
-.wallpaper{
+.cart-item-box{
     display: flex;
     justify-content: space-between;
     background-color: #fff;
@@ -52,18 +52,18 @@ h3{
     margin-bottom: 20px;
 }
 
-.wallpaper figure{
+.cart-item-box figure{
     width: 320px;
 }
 
-.wallpaper figure img{
+.cart-item-box figure img{
     display: block;
     max-width: 320px;
     max-height: 180px;
     margin: 0 auto;
 }
 
-.wallpaper .cart-text p{
+.cart-item-box .cart-text p{
     width: 350px;
     line-height: 50px;
     font-size: 20px;

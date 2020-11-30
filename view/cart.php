@@ -1,3 +1,27 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/cart_processing.php');
+
+
+if(isset($_POST['deleteItemId'])){
+    del_cartItem($_POST['deleteItemId']); // カートの中身を削除する処理
+}
+
+if(isset($_POST['deleteAllItem'])){
+    del_cartItem(null, 'all'); // カートの中身を全部消去
+}
+
+$items = get_cartItem(); // 現在のカートの商品を取得
+
+// カート内の合計を計算
+$total_price = 0;
+foreach($items as $item){
+    $total_price += $item->price;
+}
+
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -30,55 +54,44 @@
 
                 <div id="cart-wallpaper">
                     
-                    <div class="wallpaper">
-                        <figure>
-                            <img src="../images/windows xp.jpg">
-                        </figure>
-                        <div class="cart-text">
-                            <p>windowsXPの壁紙</p>
-                            <p>￥300</p>
-                            <form method="post" action="cart.html">
-                                <input type="submit" value="カートから削除">
-                            </form>
+                    <?php if(!empty($items)): ?>
+                        <?php foreach($items as $item): ?>
+                        <div class="cart-item-box">
+                            <figure>
+                                <img src="../<?php print $item->image?>">
+                            </figure>
+                            <div class="cart-text">
+                                <p><?php print $item->name // 商品名 ?></p>
+                                <p>￥<?php print $item->price // 価格 ?></p>
+                                <form method="post" action="cart.php">
+                                    <input type="hidden" name="deleteItemId" value="<?php print $item->id ?>">
+                                    <input type="submit" value="カートから削除">
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                        <?php endforeach ?>
+                    <?php else: ?>
                     
-                    <div class="wallpaper">
-                        <figure>
-                            <img src="../images/Mac-Pro-macOS-Catalina-Wallpaper.jpg">
-                        </figure>
-                        <div class="cart-text">
-                            <p>Mac Proの壁紙</p>
-                            <p>￥300</p>
-                            <form method="post" action="cart.html">
-                                <input type="submit" value="カートから削除">
-                            </form>
-                        </div>
-                    </div>
-                    
-                    <div class="wallpaper">
-                        <figure>
-                            <img src="../images/Sierra.jpg">
-                        </figure>
-                        <div class="cart-text">
-                            <p>ちょっと前のMacの壁紙</p>
-                            <p>￥300</p>
-                            <form method="post" action="cart.html">
-                                <input type="submit" value="カートから削除">
-                            </form>
-                        </div>
-                    </div>
+                    <div>カートに商品がありません</div>
+
+                    <?php endif ?>
+
 
                     <div id="buy">
                         <div>
                             <p>合計</p>
-                            <p class="price">￥900</p>
+                            <p class="price">￥<?php print $total_price ?></p>
 
                             <form action="check_out.php" method="POST">
                                 <input type="submit" value="購入する">
                             </form>
                         </div>
                     </div>
+
+                    <form action="cart.php" method="POST">
+                        <input type="hidden" name="deleteAllItem">
+                        <input type="submit" value="カートの中身を空にする">
+                    </form>
                     
                 </div>
 

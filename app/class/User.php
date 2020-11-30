@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/Model.php');
 require_once(dirname(__FILE__).'/Item.php');
+require_once(dirname(__FILE__).'/Cart.php');
 
 class User extends Model{
 
@@ -46,11 +47,15 @@ class User extends Model{
 
 
   public function items(){
-    $params = [
-      'user_id' => $this->id
-    ];
-  
-    return Item::where($params);
+
+    return Item::where(['user_id' => $this->id]);
+
+  }
+
+  public function cart_items(){
+
+    return Cart::where(['user_id' => $this->id]);
+    
   }
 
 }

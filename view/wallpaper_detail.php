@@ -45,7 +45,7 @@ if(!$item){
             
             <div id="w-detail">
 
-                <h2>画像タイトル</h2>
+                <h2><?php print $item->name ?></h2>
 
                 <div id="cart">
                     
@@ -99,12 +99,14 @@ if(!$item){
 
                         <div id="buy">
                             <p><?php print $item->price ?>円</p>
-                            <?php if($current_user->id === $item->user()->id): ?>
-                            <form action="cart.html" method="POST">
+                            <?php if(isset($current_user) && $current_user->id === $item->user()->id): ?>
+                            <form action="../app/controller/cart.php" method="POST">
+                                <input type="hidden" value="<?php print $item->id ?>" name="item_id">
                                 <input type="submit" value="編集する" name="cart" class="submit">
                             </form>
                             <?php else: ?>
-                            <form action="cart.html" method="POST">
+                            <form action="../app/controller/cart.php" method="POST">
+                                <input type="hidden" value="<?php print $item->id ?>" name="item_id">
                                 <input type="submit" value="カートに入れる" name="cart" class="submit">
                             </form>
                             <?php endif ?>

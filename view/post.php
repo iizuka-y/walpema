@@ -57,7 +57,7 @@ if(isset($_POST['modify'])){
         
 
         <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="profile.php">ユーザー</a>><a href="post.php">壁紙投稿</a>
+            <a href="index.php">トップ</a>><a href="profile.php?id=<?php print $user->id ?>">ユーザー</a>><a href="post.php">壁紙投稿</a>
         </div>
 
         <div id="user-container">

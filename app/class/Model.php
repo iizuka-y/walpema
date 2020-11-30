@@ -133,6 +133,7 @@ class Model{
 
     }
 
+
     public static function update($params){
         $id = $params['id'];
         unset($params['id']); // idを取り出し$params上からは削除
@@ -167,6 +168,29 @@ class Model{
         return true;
 
     }
+
+
+    public static function delete($id){
+
+        $sql = implode(' ',[
+            'DELETE FROM',
+            static::$table,
+            'WHERE id = ?'
+        ]);
+
+        // print $sql;
+
+        $dbh = db_connect()->prepare($sql);
+        $dbh->bindValue(1,$id,PDO::PARAM_STR);
+        
+        if (!$dbh->execute()) {
+            return false;
+        }
+
+        return true;
+
+    }
+    
 }
 
 ?>

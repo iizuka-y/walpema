@@ -33,7 +33,7 @@ if(!$user){
         
 
         <div class="bread-nav">
-            <a href="index.html">トップ</a>><a href="mypage.html">ユーザー</a>
+            <a href="index.php">トップ</a>><a href="profile.php?id=<?php print $user->id ?>">ユーザー</a>
         </div>
 
         <div id="user-container">
