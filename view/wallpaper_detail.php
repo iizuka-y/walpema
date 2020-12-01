@@ -1,5 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/cart_processing.php');
+
 if(!isset($_GET['id'])){
     header("Location: index.php");
     exit();
@@ -11,6 +13,20 @@ if(!$item){
     header("Location: index.php");
     exit();
 }
+
+// カートの内容を削除した場合の処理
+if(isset($_POST['deleteCartItem'])){
+    $deleteItemId = $_POST['deleteCartItem'];
+    del_cartItem('an_item', $deleteItemId);
+}
+
+// カートの中にこのページに表示させる商品が入っているかどうかをチェック
+$alreadyIntheCart = false;
+$cart_items = get_cartItem(); // 現在のカートの商品を取得
+foreach($cart_items as $cart_item){
+    if($cart_item->id === $item->id) $alreadyIntheCart = true;
+}
+
 
 ?>
 
@@ -81,38 +97,49 @@ if(!$item){
 
                 </div>
 
-                    <div id="tag-buy">
-                        <div id="tag">
-                            <ul class="cp_tag01">
-                                <li><a href="#">タグ</a></li>
-                                <li><a href="#">tag</a></li>
-                                <li><a href="#">長いタイプのタグ</a></li>
-                                <li><a href="#">犬</a></li>
-                                <li><a href="#">風景</a></li>
-                                <li><a href="#">タグ</a></li>
-                                <li><a href="#">tag</a></li>
-                                <li><a href="#">長いタイプのタグ</a></li>
-                                <li><a href="#">犬</a></li>
-                                <li><a href="#">風景</a></li>
-                            </ul>
-                        </div>
-
-                        <div id="buy">
-                            <p><?php print $item->price ?>円</p>
-                            <?php if(isset($current_user) && $current_user->id === $item->user()->id): ?>
-                            <form action="../app/controller/cart.php" method="POST">
-                                <input type="hidden" value="<?php print $item->id ?>" name="item_id">
-                                <input type="submit" value="編集する" name="cart" class="submit">
-                            </form>
-                            <?php else: ?>
-                            <form action="../app/controller/cart.php" method="POST">
-                                <input type="hidden" value="<?php print $item->id ?>" name="item_id">
-                                <input type="submit" value="カートに入れる" name="cart" class="submit">
-                            </form>
-                            <?php endif ?>
-
-                        </div>
+                <div id="tag-buy">
+                    <div id="tag">
+                        <ul class="cp_tag01">
+                            <li><a href="#">タグ</a></li>
+                            <li><a href="#">tag</a></li>
+                            <li><a href="#">長いタイプのタグ</a></li>
+                            <li><a href="#">犬</a></li>
+                            <li><a href="#">風景</a></li>
+                            <li><a href="#">タグ</a></li>
+                            <li><a href="#">tag</a></li>
+                            <li><a href="#">長いタイプのタグ</a></li>
+                            <li><a href="#">犬</a></li>
+                            <li><a href="#">風景</a></li>
+                        </ul>
                     </div>
+
+                    <div id="buy">
+                        <p><?php print $item->price ?>円</p>
+                        <?php if($alreadyIntheCart): ?>
+
+                        <form action="wallpaper_detail.php?id=<?php print $item->id ?>" method="POST">
+                            <input type="hidden" value="<?php print $item->id ?>" name="deleteCartItem">
+                            <input type="submit" value="カートから削除" name="cart" class="submit">
+                        </form>
+                        
+                        <?php elseif(isset($current_user) && $current_user->id === $item->user()->id): ?>
+
+                        <form action="../app/controller/cart.php" method="POST">
+                            <input type="hidden" value="<?php print $item->id ?>" name="item_id">
+                            <input type="submit" value="編集する" name="cart" class="submit">
+                        </form>
+
+                        <?php else: ?>
+
+                        <form action="../app/controller/cart.php" method="POST">
+                            <input type="hidden" value="<?php print $item->id ?>" name="item_id">
+                            <input type="submit" value="カートに入れる" name="cart" class="submit">
+                        </form>
+
+                        <?php endif ?>
+
+                    </div>
+                </div>
 
             </div>
 

@@ -4,11 +4,11 @@ require_once(dirname(__FILE__).'/../app/fn_components/cart_processing.php');
 
 
 if(isset($_POST['deleteItemId'])){
-    del_cartItem($_POST['deleteItemId']); // カートの中身を削除する処理
+    del_cartItem('an_item', $_POST['deleteItemId']); // カートの中身を削除する処理
 }
 
-if(isset($_POST['deleteAllItem'])){
-    del_cartItem(null, 'all'); // カートの中身を全部消去
+if(isset($_POST['deleteAllItems'])){
+    del_cartItem('all_items'); // カートの中身を全部消去
 }
 
 $items = get_cartItem(); // 現在のカートの商品を取得
@@ -89,7 +89,7 @@ foreach($items as $item){
                     </div>
 
                     <form action="cart.php" method="POST">
-                        <input type="hidden" name="deleteAllItem">
+                        <input type="hidden" name="deleteAllItems">
                         <input type="submit" value="カートの中身を空にする">
                     </form>
                     

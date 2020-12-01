@@ -25,11 +25,11 @@ function get_cartItem(){
 }
 
 
-function del_cartItem($del_itemId, $del_type = ''){
+function del_cartItem($del_type, $del_itemId = null){
     global $current_user;
     // ログイン中ならデータベースの内容を削除
     // ログイン中＆カートの商品を一個だけ削除の場合
-    if(isset($current_user) && $del_type != 'all' ){
+    if(isset($current_user) && $del_type != 'all_items' ){
     
         $delete_item = Cart::find(['item_id' => $del_itemId, 'user_id' => $current_user->id]);
         if(!Cart::delete($delete_item->id)){
@@ -41,7 +41,7 @@ function del_cartItem($del_itemId, $del_type = ''){
     }
 
     // ログイン中＆カートの商品を全部削除する場合
-    if(isset($current_user) && $del_type == 'all'){
+    if(isset($current_user) && $del_type === 'all_items'){
 
         $delete_items = Cart::where(['user_id' => $current_user->id]);
         foreach($delete_items as $delete_item){
@@ -61,7 +61,7 @@ function del_cartItem($del_itemId, $del_type = ''){
         return false;
     }
 
-    if(!isset($current_user) && $del_type != 'all'){
+    if(!isset($current_user) && $del_type != 'all_items'){
 
         $ser_items = fnc_getData("session", "cart"); // セッションから取り出したカート商品はシリアライズ化されているので注意
         // シリアライズを解除
@@ -88,7 +88,7 @@ function del_cartItem($del_itemId, $del_type = ''){
     }
 
     // ログインしていない＆カートの商品を全部削除する場合
-    if(!isset($current_user) && $del_type == 'all'){
+    if(!isset($current_user) && $del_type === 'all_items'){
         fnc_delData("session", "cart");
         return true;
     }
