@@ -10,7 +10,9 @@ $item = Item::findById($_POST['item_id']);
 
 // カートに入れる直前に商品が削除されてしまった場合
 if(!$item){
-    header("Location: ../../view/index.php");
+    $errorMsg = ["この商品は現在販売されておりません。"];
+    fnc_setData('session', 'errorMsg', $errorMsg);
+    header("Location: ../../view/error_page.php");
     exit();
 }
 

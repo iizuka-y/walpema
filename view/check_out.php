@@ -1,3 +1,29 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/cart_processing.php');
+
+
+// ログインしていない場合ログインさせる
+if(!isset($current_user)){
+    header("Location: login.php");
+    exit();
+}
+
+// カートが空の状態でアクセスした場合
+$items = get_cartItem();
+if(empty($items)){
+    header("Location: login.php");
+    exit();
+}
+
+// カート内の合計を計算
+$total_price = 0;
+foreach($items as $item){
+    $total_price += $item->price;
+}
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -37,51 +63,24 @@
                 <div id="cart-wallpaper">
                     <h3>注文内容</h3>
                     
-                    <div class="wallpaper">
+                    <?php foreach($items as $item): ?>
+                    <div class="cart-item-box">
                         <figure>
-                            <img src="../images/windows xp.jpg">
+                            <img src="../<?php print $item->image?>">
                         </figure>
                         <div class="cart-text">
-                            <p>windowsXPの壁紙</p>
-                            <p>￥300</p>
-                            <form method="post" action="cart.html">
-                                <input type="submit" value="カートから削除">
-                            </form>
+                            <p><?php print $item->name // 商品名 ?></p>
+                            <p><?php print $item->price // 価格 ?>円</p>
                         </div>
                     </div>
-                    
-                    <div class="wallpaper">
-                        <figure>
-                            <img src="../images/Mac-Pro-macOS-Catalina-Wallpaper.jpg">
-                        </figure>
-                        <div class="cart-text">
-                            <p>Mac Proの壁紙</p>
-                            <p>￥300</p>
-                            <form method="post" action="cart.html">
-                                <input type="submit" value="カートから削除">
-                            </form>
-                        </div>
-                    </div>
-                    
-                    <div class="wallpaper">
-                        <figure>
-                            <img src="../images/Sierra.jpg">
-                        </figure>
-                        <div class="cart-text">
-                            <p>ちょっと前のMacの壁紙</p>
-                            <p>￥300</p>
-                            <form method="post" action="cart.html">
-                                <input type="submit" value="カートから削除">
-                            </form>
-                        </div>
-                    </div>
+                    <?php endforeach ?>
 
                     <div id="buy">
                         <div>
                             <p>合計</p>
-                            <p class="price">￥900</p>
+                            <p class="price">￥<?php print $total_price ?></p>
 
-                            <form action="index.php" method="POST">
+                            <form action="../app/controller/purchase.php" method="POST">
                                 <input type="submit" value="注文を確定">
                             </form>
                         </div>

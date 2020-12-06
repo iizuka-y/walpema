@@ -115,6 +115,7 @@ foreach($cart_items as $cart_item){
 
                     <div id="buy">
                         <p><?php print $item->price ?>円</p>
+                        
                         <?php if($alreadyIntheCart): ?>
 
                         <form action="wallpaper_detail.php?id=<?php print $item->id ?>" method="POST">

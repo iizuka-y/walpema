@@ -71,7 +71,7 @@ if(isset($_POST['modify'])){
                 <ul id="errorMsg-box">
                     <?php if(isset($errorMsgs)): ?>
                         <?php foreach($errorMsgs as $errorMsg): ?>
-                            <li><?php print $errorMsg?></li>
+                            <li><?php print $errorMsg ?></li>
                         <?php endforeach ?>
                     <?php endif ?>
                 </ul>
