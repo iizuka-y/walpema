@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__).'/Model.php');
 require_once(dirname(__FILE__).'/Item.php');
 require_once(dirname(__FILE__).'/Cart.php');
+require_once(dirname(__FILE__).'/Purchase_history.php');
 
 class User extends Model{
 
@@ -56,6 +57,19 @@ class User extends Model{
 
     return Cart::where(['user_id' => $this->id]);
     
+  }
+
+  public function bought_items(){
+    
+    $bought_items = Purchase_history::where(['user_id' => $this->id]);
+    $items = [];
+
+    foreach($bought_items as $bought_item){
+      $items[] = Item::findById($bought_item->item_id);
+    }
+
+    return $items;
+
   }
 
 }

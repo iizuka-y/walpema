@@ -1,9 +1,10 @@
 <?php
 require_once(dirname(__FILE__).'/Model.php');
+require_once(dirname(__FILE__).'/User.php');
 
 class Purchase_history extends Model{
 
-    protected static $table = 'user';
+    protected static $table = 'purchase_history';
 
     public $id;
     public $user_id;
@@ -24,8 +25,21 @@ class Purchase_history extends Model{
         $this->item_id = $item_id;
         $this->created_at;
         $this->updated_at;
-        
+
     }
+
+
+    public function user(){
+
+        return User::findById($this->user_id);
+    
+      }
+    
+      public function item(){
+    
+        return Item::findById($this->item_id);
+    
+      }
 
 }
 

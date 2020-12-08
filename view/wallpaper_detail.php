@@ -21,10 +21,24 @@ if(isset($_POST['deleteCartItem'])){
 }
 
 // カートの中にこのページに表示させる商品が入っているかどうかをチェック
-$alreadyIntheCart = false;
-$cart_items = get_cartItem(); // 現在のカートの商品を取得
-foreach($cart_items as $cart_item){
-    if($cart_item->id === $item->id) $alreadyIntheCart = true;
+function alreadyIntheCart(){
+    global $item;
+    $cart_items = get_cartItem(); // 現在のカートの商品を取得
+    foreach($cart_items as $cart_item){
+        if($cart_item->id === $item->id) return true;
+    }
+
+    return false;
+}
+
+// すでにこのページの商品を買ったことがあるかをチェック
+function alreadyBoughtItem($user_id, $item_id){
+    if(!Purchase_history::find(['user_id' => $user_id, 'item_id' => $item_id])){
+        // 自分のIDと商品IDでpurchase_historyテーブルを検索してヒットしなかった場合(nullのとき)
+        return false;
+    }
+
+    return true;
 }
 
 
@@ -115,8 +129,8 @@ foreach($cart_items as $cart_item){
 
                     <div id="buy">
                         <p><?php print $item->price ?>円</p>
-                        
-                        <?php if($alreadyIntheCart): ?>
+
+                        <?php if(alreadyIntheCart()): ?>
 
                         <form action="wallpaper_detail.php?id=<?php print $item->id ?>" method="POST">
                             <input type="hidden" value="<?php print $item->id ?>" name="deleteCartItem">
@@ -128,6 +142,13 @@ foreach($cart_items as $cart_item){
                         <form action="../app/controller/cart.php" method="POST">
                             <input type="hidden" value="<?php print $item->id ?>" name="item_id">
                             <input type="submit" value="編集する" name="cart" class="submit">
+                        </form>
+
+                        <?php elseif(isset($current_user) && alreadyBoughtItem($current_user->id, $item->id)): ?>
+
+                        <form action="../app/controller/cart.php" method="POST">
+                            <input type="hidden" value="<?php print $item->id ?>" name="item_id">
+                            <input type="submit" value="ダウンロード" name="cart" class="submit">
                         </form>
 
                         <?php else: ?>

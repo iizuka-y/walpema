@@ -46,63 +46,26 @@ if(!$user){
             <?php require_once('layouts/_user-nav.php'); //ナビゲーションの読み込み ?>
 
             <div class="nav-content flex">
-                <div class="img-container ">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                            <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/Sierra.jpg">
-                            <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
-                        </div>
-                        <div class="img-name">Sierra.jpg</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                            <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/Big Sur Waters Edge.jpg">
-                            <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
-                        </div>
-                        <div class="img-name">Big Sur Waters Edge</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                            <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
-                <div class="img-container">
-                    <a href="wallpaper_detail.php">
-                        <div class="img-box">
-                            <img src="../images/windows xp.jpg">
-                            <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
-                        </div>
-                        <div class="img-name">Windows XP</div>
-                    </a>
-                </div>
+                <?php if($user->bought_items()): ?>
+                    <?php foreach($user->bought_items() as $bought_item): ?>
+                    <div class="img-container ">
+                        <a href="wallpaper_detail.php">
+                            <div class="img-box">
+                                <img src="../<?php print $bought_item->image ?>">
+                                <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
+                            </div>
+                            <div class="img-name"><?php $bought_item->name ?></div>
+                        </a>
+                    </div>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <div>購入した壁紙はありません</div>
+                <?php endif ?>
+                
                 <div class="downlode">
                     <button class="downlode-btn">画像をダウンロード</button>
                 </div>
+                
             </div>
         </div>
 

@@ -26,13 +26,13 @@ foreach($items as $item){
         'item_id' => $item->id
     ];
 
-    // if(!Purchase_history::create($params)){
-    //     // 購入が失敗したときの処理
-    //     $errorMsg = ["購入処理に失敗しました。"];
-    //     fnc_setData('session', 'errorMsg', $errorMsg);
-    //     header("Location: ../../view/error_page.php");
-    //     exit();
-    // }
+    if(!Purchase_history::create($params)){
+        // 購入が失敗したときの処理
+        $errorMsg = ["購入処理に失敗しました。"];
+        fnc_setData('session', 'errorMsg', $errorMsg);
+        header("Location: ../../view/error_page.php");
+        exit();
+    }
 
     // 購入に成功した商品から順にカートから商品を削除する
     del_cartItem('an_item', $item->id);
