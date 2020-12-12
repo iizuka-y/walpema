@@ -31,14 +31,41 @@ function alreadyIntheCart(){
     return false;
 }
 
+$params = [
+    'user_id' => $current_user->id,
+    'item_id' => $item->id
+];
+
 // すでにこのページの商品を買ったことがあるかをチェック
-function alreadyBoughtItem($user_id, $item_id){
-    if(!Purchase_history::find(['user_id' => $user_id, 'item_id' => $item_id])){
+function alreadyBoughtItem(){
+    global $params;
+    if(!Purchase_history::find($params)){
         // 自分のIDと商品IDでpurchase_historyテーブルを検索してヒットしなかった場合(nullのとき)
         return false;
     }
 
     return true;
+}
+
+
+// このページの商品をお気に入り登録しているかどうかのチェック
+function is_favriteItem(){
+    global $params;
+    if(!Favorite::find($params)){
+        // 自分のIDと商品IDでpurchase_historyテーブルを検索してヒットしなかった場合(nullのとき)
+        return false;
+    }
+
+    return true;
+}
+
+// formタグのaction(送信先)を指定する関数
+function form_action_controller(){
+    if($thisItem = is_favriteItem()){
+        print "favorite_delete.php";
+    }else{
+        print "favorite_create.php";
+    }
 }
 
 
@@ -58,7 +85,7 @@ function alreadyBoughtItem($user_id, $item_id){
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="../js/fav.js"></script>
+        <!-- <script type="text/javascript" src="../js/fav.js"></script> -->
 
     </head>
 
@@ -85,7 +112,7 @@ function alreadyBoughtItem($user_id, $item_id){
     
                     <div class="details">
                         <div class="contributor">
-                            <a href="user.html">
+                            <a href="profile.php?id=<?php print $item->user()->id ?>">
                                 <?php if($item->user()->image): ?>
                                 <img src="../<?php print $item->user()->image ?>" alt="icon">
                                 <?php else: ?>
@@ -103,7 +130,15 @@ function alreadyBoughtItem($user_id, $item_id){
                         </div>
 
                         <div id="favorite">
-                            <img src="../images/fav-0.png" class="fav">
+                            <form method="post" action="../app/controller/<?php form_action_controller() ?>">
+                                <input type="hidden" name="item_id" value="<?php print $item->id ?>"></input>
+                                <?php if($thisItem = is_favriteItem()): ?>
+                                <input type="image" src="../images/fav-1.png" class="fav"></input>
+                                <?php else: ?>
+                                <input type="image" src="../images/fav-0.png" class="fav"></input>
+                                <?php endif ?>
+                            </form>
+                            <!-- <img src="../images/fav-0.png" class="fav"> -->
                             お気に入り登録する
                         </div>
 
@@ -144,7 +179,7 @@ function alreadyBoughtItem($user_id, $item_id){
                             <input type="submit" value="編集する" name="cart" class="submit">
                         </form>
 
-                        <?php elseif(isset($current_user) && alreadyBoughtItem($current_user->id, $item->id)): ?>
+                        <?php elseif(isset($current_user) && alreadyBoughtItem()): ?>
 
                         <form action="../app/controller/cart.php" method="POST">
                             <input type="hidden" value="<?php print $item->id ?>" name="item_id">

@@ -3,6 +3,7 @@ require_once(dirname(__FILE__).'/Model.php');
 require_once(dirname(__FILE__).'/Item.php');
 require_once(dirname(__FILE__).'/Cart.php');
 require_once(dirname(__FILE__).'/Purchase_history.php');
+require_once(dirname(__FILE__).'/Favorite.php');
 
 class User extends Model{
 

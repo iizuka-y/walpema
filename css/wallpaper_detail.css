@@ -91,10 +91,16 @@
     font-size: 12px;
 }
 
-#favorite img{
+/* #favorite img{
     width: 20px;
     margin-right: 10px;
     cursor: pointer;
+} */
+
+#favorite .fav{
+    width: 20px;
+    margin-right: 10px;
+    font-size: 12px;
 }
 
 #tag-buy{
