@@ -4,6 +4,7 @@
 var $form;
 var formAction;
 var imageSrc;
+var favState;
 
 
 // オンロードイベント
@@ -20,18 +21,20 @@ window.onload = function (){
 
       formAction = "../app/controller/favorite_create.php";
       imageSrc = "../images/fav-1.png";
+      favState = "お気に入り登録済み";
 
     }else{
 
       formAction = "../app/controller/favorite_delete.php";
       imageSrc = "../images/fav-0.png";
+      favState = "お気に入り登録する";
 
     }
 
     // console.log($form.serialize());
     
     $.ajax({
-      url : $form.attr('action'),
+      url : formAction,
       type : $form.attr('method'),
       data : $form.serialize(), // データにFormをserializeした結果を入れる
       timeout : 10000,
@@ -44,6 +47,7 @@ window.onload = function (){
       console.log('ajax success');
       $form.attr('action', formAction);
       $('.fav').attr('src', imageSrc);
+      $('.fav-state').text(favState);
 
     }).fail(function(){
       // 失敗時
@@ -53,7 +57,7 @@ window.onload = function (){
       // 成功失敗に関係なく実行
       $('.fav').attr('disabled' , false); // ボタンの無効化を解除
 
-    });;
+    });
 
     
   });
