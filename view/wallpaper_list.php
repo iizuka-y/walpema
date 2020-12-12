@@ -1,3 +1,52 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+function valid_access(){
+
+    if(!isset($_GET['type'])){
+        return false;
+    }
+
+    if($_GET['type'] != 'fav' && $_GET['type'] != 'search' && $_GET['type'] != 'popular'){
+        return false;
+    }
+
+    return true;
+}
+
+if(!valid_access()){
+    header("Location: index.php");
+    exit();
+}
+
+
+function get_items(){
+    global $current_user;
+
+    // お気に入りの壁紙を取得する場合
+    if($_GET['type'] === 'fav'){
+        if(isset($current_user)){
+            $fav_items = Favorite::where(['user_id' => $current_user->id]);
+            $items = [];
+            foreach($fav_items as $fav_item){
+                $items[] = Item::find(['id' => $fav_item->item_id]);
+            }
+            return $items;
+        }else{
+            header("Location: index.php");
+            exit();
+        }
+    }
+
+    
+}
+
+$items = get_items();
+
+
+?>
+
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -27,54 +76,24 @@
         <div id="wrap">
             <div id="contents">
                 
+                <?php if($_GET['type'] === 'fav'): ?>
+                <h2>お気に入りの壁紙</h2>
+                <?php else: ?>
                 <h2>タグ：〇〇</h2>
+                <?php endif ?>
 
                 <div class="wallpaper-list">
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/prof.png" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/rank.png" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/hyoujou_shinda_me_man.png" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/Mac-Pro-macOS-Catalina-Wallpaper.jpg" alt="windows"></a>
-                        </figure>
-                    </div>
-                    <div class="card">
-                        <figure>
-                            <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg" alt="windows"></a>
-                        </figure>
-                    </div>
+                    <?php if($items): ?>
+                        <?php foreach($items as $item): ?>
+                        <div class="card">
+                            <figure>
+                                <a href="wallpaper_detail.php?id=<?php print $item->id ?>"><img src="../<?php print $item->image ?>"></a>
+                            </figure>
+                        </div>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <p>お気に入り登録した壁紙がありません</p>
+                    <?php endif ?>
 
                 </div>
 
