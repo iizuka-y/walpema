@@ -85,7 +85,7 @@ function form_action_controller(){
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-        <!-- <script type="text/javascript" src="../js/fav.js"></script> -->
+        <script type="text/javascript" src="../js/fav.js"></script>
 
     </head>
 
@@ -130,7 +130,7 @@ function form_action_controller(){
                         </div>
 
                         <div id="favorite">
-                            <form method="post" action="../app/controller/<?php form_action_controller() ?>">
+                            <form method="post" action="../app/controller/<?php form_action_controller() ?>" id="fav-form">
                                 <input type="hidden" name="item_id" value="<?php print $item->id ?>"></input>
                                 <?php if($thisItem = is_favriteItem()): ?>
                                 <input type="image" src="../images/fav-1.png" class="fav"></input>
@@ -139,7 +139,11 @@ function form_action_controller(){
                                 <?php endif ?>
                             </form>
                             <!-- <img src="../images/fav-0.png" class="fav"> -->
-                            お気に入り登録する
+                            <?php if($thisItem = is_favriteItem()): ?>
+                            <span class="fav-state">お気に入り登録済み</span>
+                            <?php else: ?>
+                            <span class="fav-state">お気に入り登録する</span>
+                            <?php endif ?>
                         </div>
 
                     </div>
