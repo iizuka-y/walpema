@@ -70,7 +70,12 @@ $items = get_items();
         
 		
 		<div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="wallpaper_list.php">検索</a>
+            <a href="index.php">トップ</a>>
+            <?php if($_GET['type'] === 'fav'): ?>
+            <a href="wallpaper_list.php?type=fav">お気に入り</a>
+            <?php elseif($_GET['type'] === 'search'): ?>
+            <a href="wallpaper_list.php">検索</a>
+            <?php endif ?>
         </div>
 
         <div id="wrap">
