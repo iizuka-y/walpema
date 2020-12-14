@@ -29,16 +29,16 @@
 
             <?php if($thisUser = is_followed()): ?>
 
-            <form method="post" action="../app/controller/follow_delete.php">
+            <form method="post" action="../app/controller/follow_delete.php" id="follow-form">
                 <input type="hidden" name="user_id" value="<?php print $user->id ?>">
-                <input type="submit" value="フォロー解除" class="button">
+                <input type="submit" value="フォロー解除" class="button follow-btn">
             </form>
 
             <?php else: ?>
 
-            <form method="post" action="../app/controller/follow_create.php">
+            <form method="post" action="../app/controller/follow_create.php" id="follow-form">
                 <input type="hidden" name="user_id" value="<?php print $user->id ?>">
-                <input type="submit" value="フォローする" class="button">
+                <input type="submit" value="フォローする" class="button follow-btn">
             </form>
                 
             <?php endif ?>

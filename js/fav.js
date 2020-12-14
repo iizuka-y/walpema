@@ -39,13 +39,13 @@ window.onload = function (){
       data : $form.serialize(), // データにFormをserializeした結果を入れる
       timeout : 10000,
       beforeSend : function(){
-        $('.fav').attr('disabled' , true); // ボタンを無効化する
+        $('.fav').attr('disabled', true); // ボタンを無効化する
       }
 
     }).done(function(data){
       // 成功時
       console.log('ajax success');
-      $form.attr('action', formAction);
+      // $form.attr('action', formAction);
       $('.fav').attr('src', imageSrc);
       $('.fav-state').text(favState);
 
@@ -55,7 +55,7 @@ window.onload = function (){
 
     }).always(function(){
       // 成功失敗に関係なく実行
-      $('.fav').attr('disabled' , false); // ボタンの無効化を解除
+      $('.fav').attr('disabled', false); // ボタンの無効化を解除
 
     });
 
