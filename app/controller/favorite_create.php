@@ -18,7 +18,7 @@ $params = [
     'item_id' => $item->id
 ];
 
-// Favoriteテーブルに保存
+// favoriteテーブルに保存
 if(Favorite::create($params)){
     header("Location: ../../view/wallpaper_detail.php?id=".$item->id);
 }

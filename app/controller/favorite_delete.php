@@ -23,7 +23,7 @@ if(!$fav = Favorite::find($params)){
     exit();
 }
 
-// Favoriteテーブルから削除
+// favoriteテーブルから削除
 if(Favorite::delete($fav->id)){
     header("Location: ../../view/wallpaper_detail.php?id=".$item->id);
 }

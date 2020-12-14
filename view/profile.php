@@ -12,6 +12,23 @@ if(!$user){
     exit();
 }
 
+function is_followed(){
+    global $current_user, $user;
+    if(isset($current_user)){
+        $params = [
+            "following_id" => $current_user->id,
+            "followed_id" => $user->id
+        ];
+
+        if(Follow::find($params)){
+            return true;
+        }
+        return false;
+    }
+    
+    return false;
+}
+
 ?>
 
 <html>

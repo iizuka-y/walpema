@@ -26,10 +26,23 @@
         <?php if(isset($current_user) && $user->id === $current_user->id): ?>
         <a href="profile_edit.php" class="button">プロフィールを編集する</a>
         <?php else: ?>
-        <form method="post" action="../app/controller/follow.php">
-            <input type="hidden" name="user_id" value="<?php print $user->id ?>">
-            <input type="submit" value="フォローする" class="button">
-        </form>
+
+            <?php if($thisUser = is_followed()): ?>
+
+            <form method="post" action="../app/controller/follow_delete.php">
+                <input type="hidden" name="user_id" value="<?php print $user->id ?>">
+                <input type="submit" value="フォロー解除" class="button">
+            </form>
+
+            <?php else: ?>
+
+            <form method="post" action="../app/controller/follow_create.php">
+                <input type="hidden" name="user_id" value="<?php print $user->id ?>">
+                <input type="submit" value="フォローする" class="button">
+            </form>
+                
+            <?php endif ?>
+
         <?php endif ?>
 
     </div>
