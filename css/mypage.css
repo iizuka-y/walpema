@@ -88,6 +88,17 @@
   border-radius: 5px;
 }
 
+.user-info-right input.button{
+  display: inline-block;
+  width: 80%;
+  padding: 10px 0;
+  margin-top: 50px;
+  color: black;
+  background-color: gold;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+}
 
 .user-nav-container{
   width: 100%;

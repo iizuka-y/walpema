@@ -10,7 +10,7 @@
             <p><a href="follower.php">フォロワー　　70</a></p>
         </div>
 
-        <?php if($user->id === $current_user->id): ?>
+        <?php if(isset($current_user) && $user->id === $current_user->id): ?>
         <div class="logout"><a href="../app/controller/logout.php">ログアウトする</a></div>
         <?php endif ?>
     </div>
@@ -23,10 +23,13 @@
         <img src="../images/default-user-image.png">
         <?php endif ?>
 
-        <?php if($user->id === $current_user->id): ?>
+        <?php if(isset($current_user) && $user->id === $current_user->id): ?>
         <a href="profile_edit.php" class="button">プロフィールを編集する</a>
         <?php else: ?>
-        <a href="#" class="button">フォローする</a>
+        <form method="post" action="../app/controller/follow.php">
+            <input type="hidden" name="user_id" value="<?php print $user->id ?>">
+            <input type="submit" value="フォローする" class="button">
+        </form>
         <?php endif ?>
 
     </div>
