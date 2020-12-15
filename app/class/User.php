@@ -74,6 +74,32 @@ class User extends Model{
 
   }
 
+  public function following_users(){
+
+    $following_records = Follow::where(['following_id' => $this->id]);
+    $following_users = [];
+
+    foreach($following_records as $following_record){
+      $following_users[] = User::findById($following_record->followed_id); 
+    }
+
+    return $following_users;
+
+  }
+
+  public function follower_users(){
+
+    $followed_records = Follow::where(['followed_id' => $this->id]);
+    $follower_users = [];
+
+    foreach($followed_records as $followed_record){
+      $follower_users[] = User::findById($followed_record->following_id);
+    }
+
+    return $follower_users;
+
+  }
+
 }
 
 

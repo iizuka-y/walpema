@@ -1,6 +1,7 @@
 var $form;
 var formAction;
 var followState;
+var follower_num;
 
 $(document).ready(function() { 
 
@@ -10,17 +11,22 @@ $(document).ready(function() {
 
         $form = $(this).parents('#follow-form');
 
+        follower_num = $('.follower_num').text();
+
         if($(this).val() === 'フォローする'){
 
             formAction = '../app/controller/follow_create.php';
             followState = 'フォロー解除';
+            follower_num ++;
 
         }else{
 
             formAction = '../app/controller/follow_delete.php';
             followState = 'フォローする';
+            follower_num --;
 
         }
+
 
 
         $.ajax({
@@ -36,6 +42,7 @@ $(document).ready(function() {
             // 成功時
             console.log('ajax success');
             $('.follow-btn').val(followState);
+            $('.follower_num').text(follower_num);
             
 
         }).fail(function(){
