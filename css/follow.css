@@ -4,10 +4,16 @@
   background-color: gold;
 }
 
+h2{
+  margin-top: 50px;
+  border-bottom: 0px;
+}
+
 #follow-container{
   width: 1000px;
   margin: 100 auto;
   border: solid 2px aquamarine;
+  margin-top: 50px;
 }
 
 #follow-container .follow-tab-box{

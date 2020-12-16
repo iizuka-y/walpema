@@ -15,11 +15,11 @@ $errorMsg = array();
 $img_path = file_upload($_FILES['upfile']);
 
 if(!$img_path){
-    $img_path = $current_user->image;
+    $img_path = $current_user->image();
     $imgChangeFlg = false;
 }else{
     $imgChangeFlg = true;
-    $oldImg = $current_user->image;
+    $oldImg = $current_user->image();
 }
 
 

@@ -56,11 +56,7 @@ if(isset($_SESSION["errorMsg"])){
                 <form action="../app/controller/profile_update.php" method="POST" enctype="multipart/form-data">
 
                     <input type="file" class="file" name="upfile">
-                    <?php if($current_user->image): ?>
-                    <img src="../<?php print $current_user->image ?>" alt="アイコン" class="edit preview" id="img-field">
-                    <?php else: ?>
-                    <img src="../images/default-user-image.png" alt="アイコン" class="edit preview" id="img-field">
-                    <?php endif ?>
+                    <img src="../<?php print $current_user->image() ?>" alt="アイコン" class="edit preview" id="img-field">
 
                     <label>ユーザー名</label>
                     <input type="text" class="edit user_name" name="name" value="<?php print $current_user->name ?>">

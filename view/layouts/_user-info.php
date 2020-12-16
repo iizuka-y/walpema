@@ -6,8 +6,8 @@
         </div>
 
         <div class="follow-and-point">
-            <p><a href="follow.php">フォロー　　　<span class="follew_num"><?php print count($user->following_users()) ?></span></a></p>
-            <p><a href="follower.php">フォロワー　　<span class="follower_num"><?php print count($user->follower_users()) ?></span></a></p>
+            <p><a href="follow.php?type=follow&user_id=<?php print $user->id ?>">フォロー　　　<span class="follew_num"><?php print count($user->following_users()) ?></span></a></p>
+            <p><a href="follow.php?type=follower&user_id=<?php print $user->id ?>">フォロワー　　<span class="follower_num"><?php print count($user->follower_users()) ?></span></a></p>
         </div>
 
         <?php if(isset($current_user) && $user->id === $current_user->id): ?>
@@ -17,11 +17,9 @@
 
 
     <div class="user-info-right">
-        <?php if($user->image): ?>
-        <img src="../<?php print $user->image ?>">
-        <?php else: ?>
-        <img src="../images/default-user-image.png">
-        <?php endif ?>
+
+        <img src="../<?php print $user->image() ?>">
+ 
 
         <?php if(isset($current_user) && $user->id === $current_user->id): ?>
         <a href="profile_edit.php" class="button">プロフィールを編集する</a>

@@ -14,7 +14,7 @@ class User extends Model{
   public $name;
   public $email;
   private $password;
-  public $image;
+  private $image;
   public $self_introduction;
   private $credit_card_num;
   public $created_at;
@@ -97,6 +97,16 @@ class User extends Model{
     }
 
     return $follower_users;
+
+  }
+
+  public function image(){
+
+    if($this->image){
+      return $this->image;
+    }else{
+      return "images/default-user-image.png";
+    }
 
   }
 

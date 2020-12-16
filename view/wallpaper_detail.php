@@ -113,11 +113,7 @@ function form_action_controller(){
                     <div class="details">
                         <div class="contributor">
                             <a href="profile.php?id=<?php print $item->user()->id ?>">
-                                <?php if($item->user()->image): ?>
-                                <img src="../<?php print $item->user()->image ?>" alt="icon">
-                                <?php else: ?>
-                                <img src="../images/default-user-image.png" alt="icon">
-                                <?php  endif ?>
+                                <img src="../<?php print $item->user()->image() ?>" alt="icon">
                                 <p><?php print $item->user()->name ?></p>
                             </a>
                         </div>
