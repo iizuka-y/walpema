@@ -115,18 +115,6 @@ header nav ul li .number-of-cartItem{
   color: #b7b7b7;
 }
 
-.images-box{
-  width: 1000px;
-  margin: 0 auto;
-  padding: 50px 0 20px 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.images-box img{
-  width: 23%;
-}
-
 
 
 /* タグ用のCSS */

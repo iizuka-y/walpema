@@ -1,3 +1,19 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+function getFavItem(){
+    global $current_user;
+    $fav_records = Favorite::where(['user_id' => $current_user->id]);
+    $fav_items = [];
+    foreach($fav_records as $fav_record){
+        $fav_items[] = Item::find(['id' => $fav_record->item_id]);
+    }
+    return $fav_items;
+}
+
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -37,22 +53,31 @@
         </div>
 
 
+        <?php if(isset($current_user)): ?>
         <div id="favorite">
 
             <h2>お気に入り</h2>
+            
             <div class="images-box">
-                <a href="c-check.html"><img src="../images/windows xp.jpg"></a>
-                <a href="c-check.html"><img src="../images/Appearance.jpg"></a>
-                <a href="c-check.html"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="c-check.html"><img src="../images/Big Sur Waters Edge.jpg"></a>
+                <?php if($fav_items = getFavItem()): ?>
+                    <?php foreach($fav_items as $fav_item): ?>
+                    <a href="wallpaper_detail.php?id=<?php print $fav_item->id ?>"><img src="../<?php print $fav_item->image ?>"></a>
+                    <?php endforeach ?>
+                
+                <?php else: ?>
+                <p class="not-found-fav">お気に入り登録した壁紙がありません</p>
+                <?php endif ?>
             </div>
-
+            
+            <?php if($fav_items = getFavItem()): ?>
             <div class="link">
-                <a href="favorite.html">もっと見る</a>
+                <a href="wallpaper_list.php?type=fav">もっと見る</a>
             </div>
+            <?php endif ?>
 
 
         </div>
+        <?php endif ?>
 
 
 
