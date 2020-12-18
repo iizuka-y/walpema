@@ -25,6 +25,10 @@ if(!$follow_record = Follow::find($params)){
 
 // favoriteテーブルから削除
 if(Follow::delete($follow_record->id)){
+    if(isset($_POST['from_followList'])){
+        header("Location: ../../view/follow.php?type=follow&user_id=".$current_user->id);
+        exit();
+    }
     header("Location: ../../view/profile.php?id=".$user->id);
 }
 

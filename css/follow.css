@@ -56,6 +56,10 @@ h2{
   font-size: 18px;
 }
 
+#follow-container .user-container .user-container-left a{
+  color: black;
+}
+
 #follow-container .user-container .user-container-left img{
   width: 60px;
   height: 60px;

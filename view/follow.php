@@ -18,7 +18,7 @@ if($_GET['type'] === "follow"){
 }
 
 if($_GET['type'] === "follower"){
-    $f_users = $profile_user ->follower_users();
+    $f_users = $profile_user->follower_users();
 }
 
 // typeが"follow"でも"follower"でもない場合
@@ -83,14 +83,22 @@ if(!isset($f_users)){
             <?php foreach($f_users as $f_user): ?>
             <div class="user-container">
                 <div class="user-container-left">
-                    <img src="../<?php print $f_user->image() ?>">
-                    <?php print $f_user->name ?>
+                    <a href="profile.php?id=<?php print $f_user->id ?>">
+                        <img src="../<?php print $f_user->image() ?>">
+                    </a>
+
+                    <a href="profile.php?id=<?php print $f_user->id ?>">
+                        <span><?php print $f_user->name ?></span>
+                    </a>
                 </div>
                 <div class="user-container-right">
-                    <form method="post" action="#">
+                    <?php if(isset($current_user) && $profile_user->id === $current_user->id && $_GET['type'] === "follow"): ?>
+                    <form method="post" action="../app/controller/follow_delete.php">
+                        <input type="hidden" name="from_followList" value="from_followList">
                         <input type="hidden" name="user_id" value="<?php print $f_user->id ?>">
                         <input type="submit" value="フォロー中" class="submit">
                     </form>
+                    <?php endif ?>
                 </div>
             </div>
             <?php endforeach ?>
