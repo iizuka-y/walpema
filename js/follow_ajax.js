@@ -1,7 +1,10 @@
+// このJS処理はプロフィールページからフォロー解除するときとフォロー一覧からフォロー解除時に使用
+
 var $form;
 var formAction;
 var followState;
-var follower_num;
+var follower_num; // プロフィールページからのフォロー解除用
+var following_num; // フォロー一覧からフォロー解除用
 
 $(document).ready(function() { 
 
@@ -12,19 +15,21 @@ $(document).ready(function() {
         $form = $(this).parents('#follow-form');
 
         follower_num = $('.follower_num').text();
+        following_num = $('.following_num').text();
 
         if($(this).val() === 'フォローする'){
 
             formAction = '../app/controller/follow_create.php';
-            followState = 'フォロー解除';
+            followState = 'フォロー中';
             follower_num ++;
+            following_num ++;
 
         }else{
 
             formAction = '../app/controller/follow_delete.php';
             followState = 'フォローする';
             follower_num --;
-
+            following_num --;
         }
 
 
@@ -38,11 +43,12 @@ $(document).ready(function() {
                 $('.follow-btn').attr('disabled', true); // ボタンを無効化する
             }
 
-        }).done(function(date){
+        }).done(function(data){
             // 成功時
             console.log('ajax success');
             $('.follow-btn').val(followState);
             $('.follower_num').text(follower_num);
+            $('.following_num').text(following_num);
             
 
         }).fail(function(){

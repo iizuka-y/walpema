@@ -44,6 +44,7 @@ if(!isset($f_users)){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/follow_ajax.js"></script>
 
     </head>
 
@@ -70,12 +71,12 @@ if(!isset($f_users)){
             <div class="follow-tab-box">
                 <a href="follow.php?type=follow&user_id=<?php print $profile_user->id ?>">
                     <div class="follow-tab <?php if($_GET['type'] === "follow") print "now" ?>">
-                        フォロー(<?php print count($profile_user->following_users()) ?>)
+                        フォロー(<span class="following_num"><?php print count($profile_user->following_users()) ?></span>)
                     </div>
                 </a>
                 <a href="follow.php?type=follower&user_id=<?php print $profile_user->id ?>">
                     <div class="follower-tab <?php if($_GET['type'] === "follower") print "now" ?>">
-                        フォロワー(<?php print count($profile_user->follower_users()) ?>)
+                        フォロワー(<span><?php print count($profile_user->follower_users()) ?></span>)
                     </div>
                 </a>
             </div>
@@ -93,10 +94,10 @@ if(!isset($f_users)){
                 </div>
                 <div class="user-container-right">
                     <?php if(isset($current_user) && $profile_user->id === $current_user->id && $_GET['type'] === "follow"): ?>
-                    <form method="post" action="../app/controller/follow_delete.php">
+                    <form method="post" action="../app/controller/follow_delete.php" id="follow-form">
                         <input type="hidden" name="from_followList" value="from_followList">
                         <input type="hidden" name="user_id" value="<?php print $f_user->id ?>">
-                        <input type="submit" value="フォロー中" class="submit">
+                        <input type="submit" value="フォロー中" class="submit follow-btn">
                     </form>
                     <?php endif ?>
                 </div>

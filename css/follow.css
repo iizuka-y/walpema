@@ -70,7 +70,7 @@ h2{
 
 #follow-container .user-container .user-container-right input.submit{
   display: block;
-  width: 100px;
+  /* width: 100px; */
   height: 40px;
   background-color: #ff7d64;
   color: white;
