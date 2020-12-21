@@ -190,7 +190,50 @@ class Model{
         return true;
 
     }
-    
+
+    // あるカラムの同じデータの数を集計して多かった件数順でデータを返す関数(人気のカラム値を取得するときなどに使用)
+    // 引数に集計するカラムを入れる
+    public static function popular($column){
+
+        $sql = implode(' ',[
+            'SELECT',
+            $column.',',
+            'count('.$column.')',
+            'FROM',
+            static::$table,
+            'GROUP BY',
+            $column,
+            'ORDER BY',
+            'count('.$column.') DESC'
+        ]);
+        // print $sql;
+        
+        $dbh = db_connect()->prepare($sql);
+        $dbh->execute();
+        $results = $dbh->fetchAll();
+        // var_dump($results);
+        
+        return $results;
+
+    }
+
+    // sql文を引数としてもらってデータを返す関数。複雑なことをやる用。
+    public static function sql($sql){
+
+        $dbh = db_connect()->prepare($sql);
+        $dbh->execute();
+        $results = $dbh->fetchAll();
+        // var_dump($results);
+        
+        $array = array();
+        foreach($results as $result){
+            $values = array_values($result);
+            $array[] = new static(...$values);
+        }
+        
+        return $array;
+    }
+
 }
 
 ?>

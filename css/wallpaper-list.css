@@ -11,26 +11,22 @@
     background-color: #eafff4;
 }
 
-/* #contents h2{
-    width: 100%;
-    font-size: 25px;
-    line-height: 30px;
-    padding: 20px 0;
-    border-bottom: solid 3px #ff7d64;
-    margin: 10px auto;
-} */
 
 .wallpaper-list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     margin-top: 40px;
 }
 
 div.card{
     width: 33.3%;
-    padding: 0 10px;
+    padding-right: 10px;
     margin: 40px 0;
+}
+
+div.card:nth-child(3n){
+    padding-right: 0;
 }
 
 figure{
