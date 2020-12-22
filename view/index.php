@@ -15,6 +15,7 @@ function getFavItem(){
         $fav_items[] = Item::find(['id' => $fav_record->item_id]);
         $count ++;
     }
+    
     return $fav_items;
 }
 

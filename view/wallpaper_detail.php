@@ -31,10 +31,12 @@ function alreadyIntheCart(){
     return false;
 }
 
-$params = [
-    'user_id' => $current_user->id,
-    'item_id' => $item->id
-];
+if(isset($current_user)){
+    $params = [
+        'user_id' => $current_user->id,
+        'item_id' => $item->id
+    ];
+}
 
 // すでにこのページの商品を買ったことがあるかをチェック
 function alreadyBoughtItem(){
@@ -61,7 +63,7 @@ function is_favriteItem(){
 
 // formタグのaction(送信先)を指定する関数
 function form_action_controller(){
-    if($thisItem = is_favriteItem()){
+    if(isset($current_user) && $thisItem = is_favriteItem()){
         print "favorite_delete.php";
     }else{
         print "favorite_create.php";
@@ -85,7 +87,9 @@ function form_action_controller(){
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <?php if(isset($current_user)): ?>
         <script type="text/javascript" src="../js/fav.js"></script>
+        <?php endif ?>
 
     </head>
 
@@ -128,14 +132,14 @@ function form_action_controller(){
                         <div id="favorite">
                             <form method="post" action="../app/controller/<?php form_action_controller() ?>" id="fav-form">
                                 <input type="hidden" name="item_id" value="<?php print $item->id ?>"></input>
-                                <?php if($thisItem = is_favriteItem()): ?>
+                                <?php if(isset($current_user) && $thisItem = is_favriteItem()): ?>
                                 <input type="image" src="../images/fav-1.png" class="fav"></input>
                                 <?php else: ?>
                                 <input type="image" src="../images/fav-0.png" class="fav"></input>
                                 <?php endif ?>
                             </form>
                             <!-- <img src="../images/fav-0.png" class="fav"> -->
-                            <?php if($thisItem = is_favriteItem()): ?>
+                            <?php if(isset($current_user) && $thisItem = is_favriteItem()): ?>
                             <span class="fav-state">お気に入り登録済み</span>
                             <?php else: ?>
                             <span class="fav-state">お気に入り登録する</span>
