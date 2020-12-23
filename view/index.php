@@ -1,23 +1,9 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 
-define('MAX_FAVITEM_NUM', 4); // 画面に表示するお気に入り商品の最大数
 define('POPULAR_ITEM_NUM', 5); // 画面に表示する人気の商品の数
-
-function getFavItem(){
-    global $current_user;
-    $fav_records = Favorite::where(['user_id' => $current_user->id]);
-    $fav_records = array_reverse($fav_records); // 降順にする
-    $fav_items = [];
-    $count = 0;
-    foreach($fav_records as $fav_record){
-        if($count >= MAX_FAVITEM_NUM) break;
-        $fav_items[] = Item::find(['id' => $fav_record->item_id]);
-        $count ++;
-    }
-    
-    return $fav_items;
-}
+define('MAX_FAVITEM_NUM', 4); // 画面に表示するお気に入り商品の最大数
+define('MAX_NEWITEM_NUM', 24); // 画面に表示する新着商品の最大数
 
 function getPopularItem(){
     $popular_itemRecords = Favorite::popular('item_id');
@@ -30,6 +16,35 @@ function getPopularItem(){
     }
 
     return $popular_items;
+}
+
+function getFavItem(){
+    global $current_user;
+    $fav_records = Favorite::where(['user_id' => $current_user->id]);
+    $fav_records = array_reverse($fav_records); // 降順にする
+    $fav_items = [];
+    $count = 0;
+    foreach($fav_records as $fav_record){
+        if($count >= MAX_FAVITEM_NUM) break;
+        $fav_items[] = Item::find(['id' => $fav_record->item_id]);
+        $count ++;
+    }
+
+    return $fav_items;
+}
+
+function getNewItem(){
+    $newAllItems = Item::all();
+    $newAllItems = array_reverse($newAllItems);
+    $newItems = [];
+    $count = 0;
+    foreach($newAllItems as $newItem){
+        if($count >= MAX_NEWITEM_NUM) break;
+        $newItems[] = $newItem;
+        $count ++;
+    }
+    
+    return $newItems;
 }
 
 
@@ -145,30 +160,13 @@ function getPopularItem(){
         <div id="new-wallpaper">
             <h2>新着壁紙</h2>
             <div class="wallpaper-box">
-                <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/windows xp.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Appearance Dynamic.jpg"></a>
-                <a href="wallpaper_detail.php"><img src="../images/Big Sur Waters Edge.jpg"></a>
+                <?php if($newItems = getNewItem()): ?>
+                    <?php foreach($newItems as $newItem): ?>
+                    <a href="wallpaper_detail.php?id=<?php print $newItem->id ?>"><img src="../<?php print $newItem->image ?>"></a>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <p>新着の壁紙が存在しません</p>
+                <?php endif ?>
             </div>
         </div>
 
