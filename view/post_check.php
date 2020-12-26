@@ -8,6 +8,10 @@ if(isset($_SESSION["params"])){
     header("Location: signup.php");
     exit();
 }
+
+// 送信用にタグを配列からカンマ区切りに戻す
+$tagStr = implode(",", $params['tags']);
+
 ?>
 
 <html>
@@ -60,7 +64,9 @@ if(isset($_SESSION["params"])){
                 <div class="postcheck-item">
                     <h3>タグ</h3>
                     <ul class="cp_tag01">
-                        <li><a href="#">windows</a></li>
+                        <?php foreach($params['tags'] as $tag ): ?>
+                        <li><a href="#"><?php print $tag ?></a></li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
 
@@ -76,6 +82,7 @@ if(isset($_SESSION["params"])){
                         <input type="hidden" value="<?php print $params['price'] ?>" name="price">
                         <input type="hidden" value="<?php print $params['explanation'] ?>" name="explanation">
                         <input type="hidden" value="<?php print $params['image'] ?>" name="image">
+                        <input type="hidden" value="<?php print $tagStr ?>" name="tag">
 
                         <input type="hidden" name="modify">
                         <input type="submit" value="訂正する" class="modify">
@@ -86,6 +93,7 @@ if(isset($_SESSION["params"])){
                         <input type="hidden" value="<?php print $params['price'] ?>" name="price">
                         <input type="hidden" value="<?php print $params['explanation'] ?>" name="explanation">
                         <input type="hidden" value="<?php print $params['image'] ?>" name="image">
+                        <input type="hidden" value="<?php print $tagStr ?>" name="tag">
 
                         <input type="submit" value="投稿する" class="submit">
                     </form>

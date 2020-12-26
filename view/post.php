@@ -107,7 +107,7 @@ if(isset($_POST['modify'])){
 
                     <div class="input-box">
                         <label>タグ</label>
-                        <input type="text" class="tag" id="tag-input">
+                        <input type="text" class="tag" id="tag-input" name="tag">
                         <span class="tagMsg error"></span>
                     </div>
 

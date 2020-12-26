@@ -10,6 +10,10 @@ if(!isset($_POST) || !isset($current_user)){
 
 $errorMsg = array();
 
+// tagの整理
+$tags = $_POST['tag'];
+$tags = explode(",", $tags); // カンマ区切りを配列にする
+
 // 送信された画像を取り扱う処理
 $img_path = file_upload($_FILES['upfile']);
 
@@ -21,7 +25,8 @@ $params = [
     'item_name' => $_POST['name'],
     'price' => $_POST['price'],
     'explanation' => $_POST['explanation'],
-    'image' => $img_path
+    'image' => $img_path,
+    'tags' => $tags
 ];
 
 
@@ -35,6 +40,10 @@ if(!$_POST['explanation']){
 
 if(!$_POST['price']){
     $errorMsg[] = "価格が入力されていません";
+}
+
+if(!$_POST['tag']){
+    $errorMsg[] = "タグが入力されていません";
 }
 
 if(mb_strlen($_POST['name']) > ITEM_NAME){
