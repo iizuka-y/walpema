@@ -14,9 +14,10 @@ class Item extends Model{
   public $image;
   public $created_at;
   public $updated_at;
+  public $sale;
 
 
-  public function __construct($id, $name, $user_id, $price, $explanation, $image, $created_at, $updated_at) {
+  public function __construct($id, $name, $user_id, $price, $explanation, $image, $created_at, $updated_at, $sale) {
     $this->id = $id;
     $this->name = $name;
     $this->user_id = $user_id;
@@ -25,6 +26,7 @@ class Item extends Model{
     $this->image = $image;
     $this->created_at = $created_at;
     $this->updated_at = $updated_at;
+    $this->sale = $sale;
 
   }
 

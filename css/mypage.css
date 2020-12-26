@@ -237,7 +237,7 @@ li.chat{
   font-size: 16px;
 }
 
-.input-box span{
+.input-box span.error{
   display: block;
   color: red;
   margin-top: 10px;

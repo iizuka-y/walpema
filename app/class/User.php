@@ -5,6 +5,8 @@ require_once(dirname(__FILE__).'/Cart.php');
 require_once(dirname(__FILE__).'/Purchase_history.php');
 require_once(dirname(__FILE__).'/Favorite.php');
 require_once(dirname(__FILE__).'/Follow.php');
+require_once(dirname(__FILE__).'/Tag.php');
+
 
 class User extends Model{
 

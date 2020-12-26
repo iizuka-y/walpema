@@ -162,7 +162,9 @@ function getNewItem(){
             <div class="wallpaper-box">
                 <?php if($newItems = getNewItem()): ?>
                     <?php foreach($newItems as $newItem): ?>
-                    <a href="wallpaper_detail.php?id=<?php print $newItem->id ?>"><img src="../<?php print $newItem->image ?>"></a>
+                    <a href="wallpaper_detail.php?id=<?php print $newItem->id ?>">
+                        <img src="../<?php print $newItem->image ?>">
+                    </a>
                     <?php endforeach ?>
                 <?php else: ?>
                     <p>新着の壁紙が存在しません</p>
