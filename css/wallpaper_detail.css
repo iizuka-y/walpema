@@ -30,8 +30,9 @@
 #w-detail .wallpaper{
     width: 60%;
     height: 350px;
-    padding-right: 10px;
+    margin-right: 10px;
     margin-bottom: 30px;
+    background-color: #EFEFEF;
 }
 
 #w-detail .wallpaper img{

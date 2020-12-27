@@ -14,6 +14,8 @@ if(!$item){
     exit();
 }
 
+$tags = $item->tags();
+
 // カートの内容を削除した場合の処理
 if(isset($_POST['deleteCartItem'])){
     $deleteItemId = $_POST['deleteCartItem'];
@@ -153,16 +155,13 @@ function form_action_controller(){
                 <div id="tag-buy">
                     <div id="tag">
                         <ul class="cp_tag01">
-                            <li><a href="#">タグ</a></li>
-                            <li><a href="#">tag</a></li>
-                            <li><a href="#">長いタイプのタグ</a></li>
-                            <li><a href="#">犬</a></li>
-                            <li><a href="#">風景</a></li>
-                            <li><a href="#">タグ</a></li>
-                            <li><a href="#">tag</a></li>
-                            <li><a href="#">長いタイプのタグ</a></li>
-                            <li><a href="#">犬</a></li>
-                            <li><a href="#">風景</a></li>
+                            <?php foreach($tags as $tag): ?>
+                            <li>
+                                <a href="wallpaper_list.php?search=<?php print $tag['tag_name'] ?>">
+                                    <?php print $tag->name ?>
+                                </a>
+                            </li>
+                            <?php endforeach ?>
                         </ul>
                     </div>
 

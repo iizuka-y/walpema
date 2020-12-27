@@ -36,5 +36,11 @@ class Item extends Model{
 
   }
 
+  public function tags(){
+
+    return Tag::where(['item_id' => $this->id]);
+
+  }
+
 }
 ?>

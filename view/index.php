@@ -3,6 +3,7 @@ require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 
 define('POPULAR_ITEM_NUM', 5); // 画面に表示する人気の商品の数
 define('MAX_FAVITEM_NUM', 4); // 画面に表示するお気に入り商品の最大数
+define('MAX_TAG_NUM', 24); // 画面に表示する人気タグの最大数
 define('MAX_NEWITEM_NUM', 24); // 画面に表示する新着商品の最大数
 
 function getPopularItem(){
@@ -31,6 +32,21 @@ function getFavItem(){
     }
 
     return $fav_items;
+}
+
+function getPopularTag(){
+
+    $popularAllTags = Tag::popular('tag_name');
+    $popular_tags = [];
+    $count = 0;
+    foreach($popularAllTags as $popularTag){
+        if($count >= MAX_TAG_NUM) break;
+        $popular_tags[] = $popularTag;
+        $count ++;
+    }
+
+    return $popular_tags;
+
 }
 
 function getNewItem(){
@@ -128,30 +144,17 @@ function getNewItem(){
             <h2>人気のタグ</h2>
             <div class="tag-box">
                 <ul class="cp_tag01">
-                    <li><a href="wallpaper_list.php?search=#">tag</a></li>
-                    <li><a href="wallpaper_list.php?search=#">タグ</a></li>
-                    <li><a href="wallpaper_list.php?search=#">長いタイプのタグ</a></li>
-                    <li><a href="wallpaper_list.php?search=#">犬</a></li>
-                    <li><a href="wallpaper_list.php?search=#">風景</a></li>
-                    <li><a href="wallpaper_list.php?search=#">建物</a></li>
-                    <li><a href="wallpaper_list.php?search=#">キャラクター</a></li>
-                    <li><a href="wallpaper_list.php?search=#">イラスト</a></li>
-                    <li><a href="wallpaper_list.php?search=#">猫</a></li>
-                    <li><a href="wallpaper_list.php?search=#">食べ物</a></li>
-                    <li><a href="wallpaper_list.php?search=#">飲み物</a></li>
-                    <li><a href="wallpaper_list.php?search=#">インテリア</a></li>
-                    <li><a href="wallpaper_list.php?search=#">滝</a></li>
-                    <li><a href="wallpaper_list.php?search=#">富士山</a></li>
-                    <li><a href="wallpaper_list.php?search=#">乗り物</a></li>
-                    <li><a href="wallpaper_list.php?search=#">シンプル</a></li>
-                    <li><a href="wallpaper_list.php?search=#">カラフル</a></li>
-                    <li><a href="wallpaper_list.php?search=#">学校</a></li>
-                    <li><a href="wallpaper_list.php?search=#">動物</a></li>
-                    <li><a href="wallpaper_list.php?search=#">漫画</a></li>
-                    <li><a href="wallpaper_list.php?search=#">季節</a></li>
-                    <li><a href="wallpaper_list.php?search=#">砂漠</a></li>
-                    <li><a href="wallpaper_list.php?search=#">ジャングル</a></li>
-                    <li><a href="wallpaper_list.php?search=#">タグのサンプル</a></li>
+                    <?php if($popular_tags = getPopularTag()): ?>
+                        <?php foreach($popular_tags as $tag): ?>
+                        <li>
+                            <a href="wallpaper_list.php?search=<?php print $tag['tag_name'] ?>">
+                                <?php print $tag['tag_name'] ?>
+                            </a>
+                        </li>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <p>人気のタグが存在しません</p>
+                    <?php endif ?>
                 </ul>
             </div>
 
