@@ -147,7 +147,7 @@ function getNewItem(){
                     <?php if($popular_tags = getPopularTag()): ?>
                         <?php foreach($popular_tags as $tag): ?>
                         <li>
-                            <a href="wallpaper_list.php?search=<?php print $tag['tag_name'] ?>">
+                            <a href="wallpaper_list.php?type=search&search=<?php print $tag['tag_name'] ?>">
                                 <?php print $tag['tag_name'] ?>
                             </a>
                         </li>

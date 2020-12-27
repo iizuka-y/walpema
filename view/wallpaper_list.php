@@ -11,6 +11,12 @@ function valid_access(){
         return false;
     }
 
+    if($_GET['type'] === 'search'){
+        if(!isset($_GET['search'])){
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -38,7 +44,26 @@ function get_items(){
         }
     }
 
+    if($_GET['type'] === 'search'){
+        $tags = Tag::where(['tag_name' => $_GET['search']]);
+        $items = [];
+        foreach($tags as $tag){
+            $items[] = Item::find(['id' => $tag->item_id]);
+        }
+        return $items;
+    }
+
     
+}
+
+function no_items_sentence(){
+    if($_GET['type'] === 'fav'){
+        print "お気に入り登録した壁紙がありません";
+    }elseif($_GET['type'] === 'search'){
+        print $_GET['search']."のタグを持った投稿は見つかりませんでした";
+    }elseif($_GET['type'] === 'popular'){
+        print "人気の投稿がありません";
+    }
 }
 
 $items = get_items();
@@ -74,7 +99,7 @@ $items = get_items();
             <?php if($_GET['type'] === 'fav'): ?>
             <a href="wallpaper_list.php?type=fav">お気に入り</a>
             <?php elseif($_GET['type'] === 'search'): ?>
-            <a href="wallpaper_list.php">検索</a>
+            <a href="wallpaper_list.php?type=search&search=<?php print $_GET['search'] ?>">検索</a>
             <?php endif ?>
         </div>
 
@@ -83,8 +108,8 @@ $items = get_items();
                 
                 <?php if($_GET['type'] === 'fav'): ?>
                 <h2>お気に入りの壁紙</h2>
-                <?php else: ?>
-                <h2>タグ：〇〇</h2>
+                <?php elseif($_GET['type'] === 'search'): ?>
+                <h2>タグ：<?php print $_GET['search'] ?></h2>
                 <?php endif ?>
 
                 <div class="wallpaper-list">
@@ -97,7 +122,7 @@ $items = get_items();
                         </div>
                         <?php endforeach ?>
                     <?php else: ?>
-                        <p>お気に入り登録した壁紙がありません</p>
+                        <p><?php no_items_sentence() ?></p>
                     <?php endif ?>
 
                 </div>

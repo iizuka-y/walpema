@@ -157,7 +157,7 @@ function form_action_controller(){
                         <ul class="cp_tag01">
                             <?php foreach($tags as $tag): ?>
                             <li>
-                                <a href="wallpaper_list.php?search=<?php print $tag['tag_name'] ?>">
+                                <a href="wallpaper_list.php?type=search&search=<?php print $tag['tag_name'] ?>">
                                     <?php print $tag->name ?>
                                 </a>
                             </li>
