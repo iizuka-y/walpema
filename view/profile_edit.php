@@ -1,14 +1,15 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 
-if(!isset($current_user)){
-    header("Location: index.php");
-}
-
 // 入力内容に不備がある場合
 if(isset($_SESSION["errorMsg"])){
     $errorMsgs = fnc_getData("session", "errorMsg");
     fnc_delData("session", "errorMsg", "");
+}
+
+if(!isset($current_user)){
+    header("Location: index.php");
+    exit();
 }
 
 ?>

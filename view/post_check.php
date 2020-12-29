@@ -9,8 +9,8 @@ if(isset($_SESSION["params"])){
     exit();
 }
 
-// 送信用にタグを配列からカンマ区切りに戻す
-$tagStr = implode(",", $params['tags']);
+// 送信用にタグを配列からCSVに戻す
+$tagCsv = implode(",", $params['tags']);
 
 ?>
 
@@ -82,7 +82,7 @@ $tagStr = implode(",", $params['tags']);
                         <input type="hidden" value="<?php print $params['price'] ?>" name="price">
                         <input type="hidden" value="<?php print $params['explanation'] ?>" name="explanation">
                         <input type="hidden" value="<?php print $params['image'] ?>" name="image">
-                        <input type="hidden" value="<?php print $tagStr ?>" name="tag">
+                        <input type="hidden" value="<?php print $tagCsv ?>" name="tag">
 
                         <input type="hidden" name="modify">
                         <input type="submit" value="訂正する" class="modify">
@@ -93,7 +93,7 @@ $tagStr = implode(",", $params['tags']);
                         <input type="hidden" value="<?php print $params['price'] ?>" name="price">
                         <input type="hidden" value="<?php print $params['explanation'] ?>" name="explanation">
                         <input type="hidden" value="<?php print $params['image'] ?>" name="image">
-                        <input type="hidden" value="<?php print $tagStr ?>" name="tag">
+                        <input type="hidden" value="<?php print $tagCsv ?>" name="tag">
 
                         <input type="submit" value="投稿する" class="submit">
                     </form>

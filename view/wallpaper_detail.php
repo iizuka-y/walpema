@@ -101,7 +101,7 @@ function form_action_controller(){
         
 
         <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="wallpaper_detail.php">作品詳細</a>
+            <a href="index.php">トップ</a>><a href="wallpaper_detail.php?id=<?php print $item->id ?>">作品詳細</a>
         </div>
 
         <div id="wrap">
@@ -157,7 +157,7 @@ function form_action_controller(){
                         <ul class="cp_tag01">
                             <?php foreach($tags as $tag): ?>
                             <li>
-                                <a href="wallpaper_list.php?type=search&search=<?php print $tag['tag_name'] ?>">
+                                <a href="wallpaper_list.php?type=search&search=<?php print $tag->name ?>">
                                     <?php print $tag->name ?>
                                 </a>
                             </li>
@@ -177,7 +177,7 @@ function form_action_controller(){
                         
                         <?php elseif(isset($current_user) && $current_user->id === $item->user()->id): ?>
 
-                        <form action="../app/controller/cart.php" method="POST">
+                        <form action="wallpaper_edit.php" method="POST">
                             <input type="hidden" value="<?php print $item->id ?>" name="item_id">
                             <input type="submit" value="編集する" name="cart" class="submit">
                         </form>
