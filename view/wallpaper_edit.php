@@ -75,7 +75,7 @@ $tagCsv = implode(",", $tag_names);
                     <?php endif ?>
                 </ul>
 
-                <form action="../app/controller/profile_update.php" method="POST" enctype="multipart/form-data">
+                <form action="../app/controller/item_update.php" method="POST" enctype="multipart/form-data">
 
                     <div class="input-box">
                         <input type="file" class="file" name="upfile">
@@ -92,7 +92,7 @@ $tagCsv = implode(",", $tag_names);
 
                     <div class="input-box">
                         <label>説明(150字以内)</label>
-                        <textarea class="edit message" name="self_introduction"><?php print $item->explanation ?></textarea>
+                        <textarea class="edit message" name="explanation"><?php print $item->explanation ?></textarea>
                         <span class="messageMsg error"></span>
                     </div>
 
@@ -108,6 +108,7 @@ $tagCsv = implode(",", $tag_names);
                         <span class="priceMsg error"></span>
                     </div>
 
+                    <input type="hidden" value="<?php print $item->id ?>" name="item_id">
 
                     <input type="submit" value="変更する" class="edit-submit"> 
                 </form>
