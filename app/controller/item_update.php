@@ -11,7 +11,7 @@ if(!isset($_POST) || !isset($current_user)){
 }
 
 if(!$item = Item::findById($_POST['item_id'])){
-    header("Location: ../../view/wallpaper_edit.php");
+    header("Location: ../../view/error_page.php");
     $errorMsg[] = "ユーザー情報の更新に失敗しました";
     fnc_setData("session", "errorMsg", $errorMsg);
     exit();
@@ -83,7 +83,7 @@ if(!preg_match('/^[0-9]+$/', $_POST['price'])){
 
 if(!empty($errorMsg)){
     fnc_setData("session", "errorMsg", $errorMsg);
-    header("Location: ../../view/wallpaper_edit.php");
+    header("Location: ../../view/wallpaper_edit.php?id=$item->id");
 }else{
     
     if(Item::update($params)){
@@ -99,7 +99,7 @@ if(!empty($errorMsg)){
     }else{
         $errorMsg = ["ユーザー情報の更新に失敗しました"];
         fnc_setData("session", "errorMsg", $errorMsg);
-        header("Location: ../../view/wallpaper_edit.php");
+        header("Location: ../../view/wallpaper_edit.php?id=$item->id");
     }
 
 }

@@ -12,7 +12,16 @@ if(!isset($current_user)){
     exit();
 }
 
-if(!$item = Item::findById($_POST['item_id'])){
+if(isset($_GET['id'])) $item_id = $_GET['id'];
+
+if(isset($_POST['item_id'])) $item_id = $_POST['item_id'];
+
+if(!$item = Item::findById($item_id)){
+    header("Location: index.php");
+    exit();
+}
+
+if($item->user()->id != $current_user->id){
     header("Location: index.php");
     exit();
 }
