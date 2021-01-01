@@ -80,7 +80,7 @@ $chatList = get_chat_list();
                                         <?php print $chat->content ?>
                                     </div>
                                     <div class="chat-others">
-                                        2020/09/15/15:20
+                                        <?php print $chat->updated_at ?>
                                     </div>
                                 </div>
                             </div>

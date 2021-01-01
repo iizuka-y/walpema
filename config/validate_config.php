@@ -16,5 +16,8 @@ const ITEM_EXPLANATION = 150;
 // 価格の上限
 const MAX_PRICE = 999999;
 
+// チャットの文字数制限
+const CHAT_CONTENT = 100;
+
 
 ?>

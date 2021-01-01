@@ -2,6 +2,12 @@
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 require_once(dirname(__FILE__).'/../app/fn_components/create_chatroom.php');
 
+// 入力内容に不備がある場合
+if(isset($_SESSION["errorMsg"])){
+    $errorMsgs = fnc_getData("session", "errorMsg");
+    fnc_delData("session", "errorMsg", "");
+}
+
 if(!isset($current_user)){
     header("Location: index.php");
     exit();
@@ -45,9 +51,10 @@ $chatList = Chat::where(['chat_room' => $chat_room]);
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/chat.js"></script>
 
     </head>
-    <body>
+    <body id="move-bottom">
 
         <?php require_once('layouts/_header.php'); //headerの読み込み ?>
         
@@ -79,7 +86,9 @@ $chatList = Chat::where(['chat_room' => $chat_room]);
                 <div class="otherChatBox">
                     <div class="balloon6">
                     <div class="faceicon">
-                        <img src="../<?php print $opponent_user->image() ?>">
+                        <a href="profile.php?id=<?php print $opponent_user->id ?>">
+                            <img src="../<?php print $opponent_user->image() ?>">
+                        </a>
                     </div>
                     <div class="chatting">
                         <div class="says">
@@ -98,6 +107,13 @@ $chatList = Chat::where(['chat_room' => $chat_room]);
         </div>
 
         <div id="chatPost-container">
+            <ul id="errorMsg-box">
+                <?php if(isset($errorMsgs)): ?>
+                    <?php foreach($errorMsgs as $errorMsg): ?>
+                        <li><?php print $errorMsg ?></li>
+                    <?php endforeach ?>
+                <?php endif ?>
+            </ul>
             <form method="post" action="../app/controller/chat_create.php">
                 <textarea name="chat-content"></textarea>
                 <input type="hidden">
@@ -105,8 +121,6 @@ $chatList = Chat::where(['chat_room' => $chat_room]);
                 <input type="submit" value="送信" class="submit">
             </form>
         </div>
-
-        <?php require_once('layouts/_footer.php'); //footerの読み込み ?>
         
     </body>
 </html>

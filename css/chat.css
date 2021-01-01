@@ -53,8 +53,9 @@ header{
   position: relative;
   top: 120px;
   width: 1000px;
+  /* height: 100%; */
+  padding-bottom: 400px;
   margin: 0 auto;
-  margin-bottom: 100px;
 }
 
 
@@ -73,6 +74,11 @@ header{
   float: left;
   margin-right: -50px;
   width: 40px;
+}
+
+.balloon6 .faceicon a{
+    position: relative;
+    z-index: 9;
 }
 
 .balloon6 .faceicon img{
@@ -128,7 +134,7 @@ header{
   max-width: 250px;
   border-radius: 12px;
   background: aquamarine;
-  font-size: 15px:
+  font-size: 15px;
 }
 
 .mycomment p:after {
@@ -145,10 +151,11 @@ header{
 
 /* チャット投稿のレイアウト */
 #chatPost-container{
-  position: relative;
-  top: 120px;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   background-color: #d3d3d3;
+  z-index: 99;
 }
 
 
@@ -185,9 +192,17 @@ header{
 }
 
 
+/* エラー時のCSS */
+#errorMsg-box{
+    width: 1000px;
+    margin: 10px auto;
+    color: red;
+}
 
 
-footer{
+
+
+/* footer{
   position: relative;
   top: 120px;
-}
+} */
