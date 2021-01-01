@@ -1,3 +1,36 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/create_chatroom.php');
+
+if(!isset($current_user)){
+    header("Location: index.php");
+    exit();
+}
+
+if(!isset($_GET['id'])){
+    header("Location: chat-list.php");
+    exit();
+}
+
+if($_GET['id'] === $current_user->id){
+    header("Location: chat-list.php");
+    exit();
+}
+
+if(!$opponent_user = User::findById($_GET['id'])){
+    header("Location: chat-list.php");
+    exit();
+}
+
+if(!$chat_room = create_chatroomId($_GET['id'])){
+    header("Location: chat-list.php");
+    exit();
+}
+
+$chatList = Chat::where(['chat_room' => $chat_room]);
+
+?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -21,103 +54,54 @@
 
         <div id="chatUser-container">
             <div class="chatUser-innerbox">
-                <div class="arrow"><a href="mypage.html">＜</a></div>
-                <img src="../images/hyoujou_shinda_me_man.png">
-                <div class="user-name">ユーザー一号</div>
+                <div class="arrow"><a href="chat-list.php">＜</a></div>
+                <img src="../<?php print $opponent_user->image() ?>">
+
+                <div class="user-name"><?php print $opponent_user->name ?></div>
             </div>
         </div>
 
         <div id="chat-container">
 
-            <div class="yourChatBox">
-                <div class="mycomment">
-                    <p>
-                        自分のチャット内容です
-                    </p>
-                </div>
-            </div>
+            <?php foreach($chatList as $chat): ?>
+                <?php if($chat->chatting_id === $current_user->id): ?>
 
-            <div class="otherChatBox">
-                <div class="balloon6">
-                  <div class="faceicon">
-                    <img src="../images/hyoujou_shinda_me_man.png">
-                  </div>
-                  <div class="chatting">
-                    <div class="says">
-                      <p>相手のチャット内容です</p>
+                <div class="yourChatBox">
+                    <div class="mycomment">
+                        <p>
+                            <?php print $chat->content ?>
+                        </p>
                     </div>
-                  </div>
                 </div>
-            </div>
 
-            <div class="yourChatBox">
-                <div class="mycomment">
-                    <p>
-                        自分のチャット内容です
-                    </p>
-                </div>
-            </div>
-
-            <div class="otherChatBox">
-                <div class="balloon6">
-                  <div class="faceicon">
-                    <img src="../images/hyoujou_shinda_me_man.png">
-                  </div>
-                  <div class="chatting">
-                    <div class="says">
-                      <p>相手のチャット内容です</p>
+                <?php else: ?>
+                
+                <div class="otherChatBox">
+                    <div class="balloon6">
+                    <div class="faceicon">
+                        <img src="../<?php print $opponent_user->image() ?>">
                     </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="yourChatBox">
-                <div class="mycomment">
-                    <p>
-                        自分のチャット内容です
-                    </p>
-                </div>
-            </div>
-
-            <div class="otherChatBox">
-                <div class="balloon6">
-                  <div class="faceicon">
-                    <img src="../images/hyoujou_shinda_me_man.png">
-                  </div>
-                  <div class="chatting">
-                    <div class="says">
-                      <p>相手のチャット内容です</p>
+                    <div class="chatting">
+                        <div class="says">
+                        <p>
+                            <?php print $chat->content ?>
+                        </p>
+                        </div>
                     </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="yourChatBox">
-                <div class="mycomment">
-                    <p>
-                        自分のチャット内容です
-                    </p>
-                </div>
-            </div>
-
-            <div class="otherChatBox">
-                <div class="balloon6">
-                  <div class="faceicon">
-                    <img src="../images/hyoujou_shinda_me_man.png">
-                  </div>
-                  <div class="chatting">
-                    <div class="says">
-                      <p>相手のチャット内容です</p>
                     </div>
-                  </div>
                 </div>
-            </div>
+
+                <?php endif ?>
+            <?php endforeach ?>
+            
 
         </div>
 
         <div id="chatPost-container">
-            <form method="post" action="m-chat.html">
-                <textarea></textarea>
+            <form method="post" action="../app/controller/chat_create.php">
+                <textarea name="chat-content"></textarea>
+                <input type="hidden">
+                <input type="hidden" name="opponent_id" value="<?php print $opponent_user->id ?>">
                 <input type="submit" value="送信" class="submit">
             </form>
         </div>

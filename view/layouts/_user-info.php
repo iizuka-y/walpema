@@ -12,6 +12,8 @@
 
         <?php if(isset($current_user) && $user->id === $current_user->id): ?>
         <div class="logout"><a href="../app/controller/logout.php">ログアウトする</a></div>
+        <?php else: ?>
+        <div class="chat"><a href="chat.php?id=<?php print $user->id ?>">チャット</a></div>
         <?php endif ?>
     </div>
 

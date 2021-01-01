@@ -7,6 +7,29 @@ if(!$user){
     header("Location: index.php");
 }
 
+function get_chat_list(){
+    global $user;
+
+    // 自分が参加している各chat_roomの中で一番idが大きいレコードを取得
+    $sql = 'select chat_room, max(id) from chat where chatting_id = '.$user->id.' OR chatted_id = '.$user->id.' group by chat_room order by max(id) asc;';
+    $chatRecords = Chat::sql($sql); // この$chatRecordsにはchat_roomとmax(id)のカラムしかない
+
+    $mychatroom_maxId = [];
+    foreach($chatRecords as $chatRecord){
+        $mychatroom_maxId[] = $chatRecord['max(id)'];
+    }
+
+    // idを元にchatのインスタンスを作成して配列に格納
+    $chatList = [];
+    foreach($mychatroom_maxId as $chat_id){
+        $chatList[] = Chat::findById($chat_id);
+    }
+
+    return $chatList;
+}
+
+$chatList = get_chat_list();
+
 ?>
 
 
@@ -44,16 +67,17 @@ if(!$user){
 
             <div class="nav-content">
                 <ul>
+                    <?php foreach($chatList as $chat): ?>
                     <li class="chat">
-                        <a href="chat.php">
+                        <a href="chat.php?id=<?php print $chat->opponent_user()->id ?>">
                             <div class="chat-box">
-                                <img src="../images/windows xp.jpg">
+                                <img src="../<?php print $chat->opponent_user()->image() ?>">
                                 <div class="chat-box-main">
                                     <div class="chat-user-name">
-                                        ユーザー1
+                                        <?php print $chat->opponent_user()->name ?>
                                     </div>
                                     <div class="chat-content">
-                                        値下げしてください！(怒)
+                                        <?php print $chat->content ?>
                                     </div>
                                     <div class="chat-others">
                                         2020/09/15/15:20
@@ -62,64 +86,7 @@ if(!$user){
                             </div>
                         </a>
                     </li>
-
-                    <li class="chat">
-                        <a href="chat.php">
-                            <div class="chat-box">
-                                <img src="../images/transparent.jpg">
-                                <div class="chat-box-main">
-                                    <div class="chat-user-name">
-                                        ユーザー2
-                                    </div>
-                                    <div class="chat-content">
-                                        10円にしてください
-                                    </div>
-                                    <div class="chat-others">
-                                        2020/09/10/11:34
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="chat">
-                        <a href="chat.php">
-                            <div class="chat-box">
-                                <img src="../images/pien_uruuru_woman.png">
-                                <div class="chat-box-main">
-                                    <div class="chat-user-name">
-                                        ユーザー3
-                                    </div>
-                                    <div class="chat-content">
-                                        少し高いです
-                                    </div>
-                                    <div class="chat-others">
-                                        2020/09/09/16:19
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="chat">
-                        <a href="chat.php">
-                            <div class="chat-box">
-                                <img src="../images/distance_kankaku_seki.png">
-                                <div class="chat-box-main">
-                                    <div class="chat-user-name">
-                                        ユーザー4
-                                    </div>
-                                    <div class="chat-content">
-                                        ありがとうございました。
-                                    </div>
-                                    <div class="chat-others">
-                                        2020/09/04/10:30
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
+                    <?php endforeach ?>
                 </ul>
             </div>
         </div>

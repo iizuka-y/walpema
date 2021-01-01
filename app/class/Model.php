@@ -223,15 +223,9 @@ class Model{
         $dbh = db_connect()->prepare($sql);
         $dbh->execute();
         $results = $dbh->fetchAll();
-        // var_dump($results);
-        
-        $array = array();
-        foreach($results as $result){
-            $values = array_values($result);
-            $array[] = new static(...$values);
-        }
-        
-        return $array;
+
+        return $results;
+
     }
 
 }
