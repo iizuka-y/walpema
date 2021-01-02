@@ -5,6 +5,7 @@ $user = $current_user;
 
 if(!$user){
     header("Location: index.php");
+    exit();
 }
 
 // 入力内容に不備がある場合

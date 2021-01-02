@@ -33,7 +33,6 @@ $number_of_CartItems = count(get_cartItem());
         </ul>
         <?php else: ?>
         <ul>
-            <li><a href="notice.php"><img src="../images/news.png" alt="お知らせ"></a></li>
             <li><a href="cart.php"><img src="../images/cart.png" alt="カート"></a><?php if($number_of_CartItems > 0){print "<span class=\"number-of-cartItem\">${number_of_CartItems}</span>";} ?></li>
             <li><a href="login.php"><img src="../images/login.png" alt="ログイン"></a></li>
         </ul>

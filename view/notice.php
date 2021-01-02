@@ -1,3 +1,17 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+if(!isset($current_user)){
+    header("Location: index.php");
+    exit();
+}
+
+// $notification_records = Notification::where(['user_id'] => $current_user->id);
+
+
+?>
+
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -34,9 +48,9 @@
                             <p>2020/10/05/11:05</p>
                         </div>
 
-                        <div class="img-text">
+                        <div class="notification-box">
                             <figure>
-                                <img src="../images/windows xp.jpg" alt="windows"> 
+                                <img src="../images/windows xp.jpg" class="wallpaper">
                             </figure>
                             
                             <div class="text">
@@ -51,9 +65,9 @@
                             <p>2020/10/05/11:05</p>
                         </div>
 
-                        <div class="img-text">
+                        <div class="notification-box">
                             <figure>
-                                <img src="../images/windows xp.jpg" alt="windows"> 
+                                <img src="../images/windows xp.jpg" class="wallpaper">
                             </figure>
                             
                             <div class="text">
@@ -63,7 +77,22 @@
 
                     </div>
 
-                    <div class="gap">
+                    <div class="content">
+                        <div class="date">
+                            <p>2020/10/05/11:05</p>
+                        </div>
+
+                        <div class="notification-box">
+                            <figure>
+                                <img src="../images/windows xp.jpg" class="user">
+                            </figure>
+                            
+                            <div>               
+                                <p>○○さんからチャットが来ています。</p>
+                                <p class="chat-content">こんにちは！</p>             
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>

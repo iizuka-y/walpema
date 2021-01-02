@@ -19,38 +19,50 @@
 }
 
 .content{
-    padding: 20px;
+    padding: 20px 30px;
     margin: 0 auto;
     margin-bottom: 20px;
     background-color: #fff;
 }
 
 .date{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.img-text{
+.notification-box{
     display: flex;
 }
 
 .content figure{
-    width: 50%;
+    width: 250px;
 }
 
-.content figure img{
-    height: 150px;
+.content figure img.wallpaper{
+    width: 200px;
+    height: 130px;
+    background-color: white;
+    object-fit: cover;
 }
 
-.content.img-text.text{
-    width: 45%;
-    height: 150px;
+.content figure img.user{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.text p{
-    padding-top: 67px;/*line-heightだとborder-bottomがうまく入らないため*/
-    border-bottom: #ff7d64 2px solid;
+.content .notification-box .text{
+    display: flex;
+    align-items: center;
 }
 
-.gap{
-    margin: 50px;
+.content .notification-box p{
+    line-height: 30px;
 }
+
+.content .notification-box .chat-content{
+    color: #696969;
+}
+
+

@@ -66,6 +66,7 @@ $chatList = get_chat_list();
             <?php require_once('layouts/_user-nav.php'); //ナビゲーションの読み込み ?>
 
             <div class="nav-content">
+                <?php if($chatList): ?>
                 <ul>
                     <?php foreach($chatList as $chat): ?>
                     <li class="chat">
@@ -88,6 +89,9 @@ $chatList = get_chat_list();
                     </li>
                     <?php endforeach ?>
                 </ul>
+                <?php else: ?>
+                <div>チャット記録はありません。</div>
+                <?php endif ?>
             </div>
         </div>
 
