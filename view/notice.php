@@ -7,6 +7,7 @@ if(!isset($current_user)){
 }
 
 $notifications = Notification::where(['user_id' => $current_user->id]);
+$notifications = array_reverse($notifications); // 降順にする
 
 // 既読カラムをtrueにする
 foreach($notifications as $notification){
@@ -55,7 +56,7 @@ foreach($notifications as $notification){
 
                 <div id="notice-list">
                     <?php if($notifications): ?>
-
+                        
                         <?php foreach($notifications as $notification): ?>
 
                             <?php if($notification->notified_type === 'fav'): ?>
@@ -89,7 +90,7 @@ foreach($notifications as $notification){
 
                                 <div class="notification-box">
                                     <figure>
-                                        <img src="../images/windows xp.jpg" class="wallpaper">
+                                        <img src="../<?php print $notification->item()->image ?>" class="wallpaper">
                                     </figure>
                                     
                                     <div class="text">

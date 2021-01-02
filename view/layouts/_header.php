@@ -5,10 +5,10 @@ require_once(dirname(__FILE__).'/../../app/fn_components/cart_processing.php');
 $number_of_CartItems = count(get_cartItem());
 
 if(isset($current_user)){
-    $notifications = Notification::where(['user_id' => $current_user->id]);
+    $notification_records = Notification::where(['user_id' => $current_user->id]);
     $new_notifications = [];
 
-    foreach($notifications as $notification){
+    foreach($notification_records as $notification){
         if(!$notification->read){
             $new_notifications[] = $notification;
         }

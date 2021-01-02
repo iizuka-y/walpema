@@ -36,6 +36,18 @@ foreach($items as $item){
 
     // 購入に成功した商品から順にカートから商品を削除する
     del_cartItem('an_item', $item->id);
+
+    // お知らせテーブルのカラム作成
+    $purchase_record = Purchase_history::find($params);
+    $notification_params = [
+        'user_id' => $item->user()->id,
+        'notified_id' => $current_user->id,
+        'item_id' => $item->id,
+        'notified_type' => 'purchase',
+        'purchase_id' => $purchase_record->id
+    ];
+
+    Notification::create($notification_params);
 }
 
 

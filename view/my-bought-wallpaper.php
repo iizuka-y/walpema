@@ -49,7 +49,7 @@ if(!$user){
                 <?php if($user->bought_items()): ?>
                     <?php foreach($user->bought_items() as $bought_item): ?>
                     <div class="img-container ">
-                        <a href="wallpaper_detail.php">
+                        <a href="wallpaper_detail.php?id=<?php print $bought_item->id ?>">
                             <div class="img-box">
                                 <img src="../<?php print $bought_item->image ?>">
                                 <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">

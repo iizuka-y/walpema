@@ -28,9 +28,9 @@ if(!Favorite::create($params)){
 
 }
 
-$fav_record = Favorite::find($params);
 
 // お知らせテーブルのレコード作成
+$fav_record = Favorite::find($params);
 $notification_params = [
     'user_id' => $item->user()->id,
     'notified_id' => $current_user->id,
