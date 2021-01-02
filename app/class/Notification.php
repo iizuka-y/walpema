@@ -14,9 +14,26 @@ class Notification extends Model{
     public $notified_type;
     public $created_at;
     public $updated_at;
+    public $fav_id;
+    public $purchase_id;
+    public $chat_id;
+    public $follow_id;
 
 
-    public function __construct($id, $user_id, $notified_id, $item_id, $read, $notified_type, $created_at, $updated_at) {
+    public function __construct(
+        $id,
+        $user_id,
+        $notified_id,
+        $item_id,
+        $read,
+        $notified_type,
+        $created_at,
+        $updated_at,
+        $fav_id,
+        $purchase_id,
+        $chat_id,
+        $follow_id
+        ){
         $this->id = $id;
         $this->user_id = $user_id;
         $this->notified_id = $notified_id;
@@ -25,6 +42,10 @@ class Notification extends Model{
         $this->notified_type = $notified_type;
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
+        $this->fav_id = $fav_id;
+        $this->purchase_id = $purchase_id;
+        $this->chat_id = $chat_id;
+        $this->follow_id = $follow_id;
     }
 
     public function notified_user(){
@@ -32,6 +53,14 @@ class Notification extends Model{
         $notified_user = User::findById($this->notified_id);
 
         return $notified_user;
+
+    }
+
+    public function item(){
+
+        $item = Item::findById($this->item_id);
+
+        return $item;
 
     }
 

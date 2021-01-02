@@ -19,11 +19,30 @@ $params = [
 ];
 
 // favoriteテーブルに保存
-if(Favorite::create($params)){
-    header("Location: ../../view/wallpaper_detail.php?id=".$item->id);
+if(!Favorite::create($params)){
+
+    //失敗した場合
+    $errorMsg = ["お気に入り登録に失敗しました。"];
+    fnc_setData("session", "errorMsg", $errorMsg);
+    header("Location: ../../view/error_page.php");
+
 }
 
+$fav_record = Favorite::find($params);
 
+// お知らせテーブルのレコード作成
+$notification_params = [
+    'user_id' => $item->user()->id,
+    'notified_id' => $current_user->id,
+    'item_id' => $item->id,
+    'notified_type' => 'fav',
+    'fav_id' => $fav_record->id
+];
+
+Notification::create($notification_params);
+
+
+header("Location: ../../view/wallpaper_detail.php?id=".$item->id);
 
 
 ?>

@@ -62,7 +62,7 @@ header nav ul li img{
     width: 50px;
 }
 
-header nav ul li .number-of-cartItem{
+header nav ul li .number-of-cartItem, header nav ul li .number-of-notification{
     display: inline-block;
     position: absolute;
     top: -4px;

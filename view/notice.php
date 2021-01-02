@@ -6,8 +6,19 @@ if(!isset($current_user)){
     exit();
 }
 
-// $notification_records = Notification::where(['user_id'] => $current_user->id);
+$notifications = Notification::where(['user_id' => $current_user->id]);
 
+// 既読カラムをtrueにする
+foreach($notifications as $notification){
+    if(!$notification->read){
+        $notification_params = [
+            'id' => $notification->id,
+            '`read`' => true
+        ];
+        Notification::update($notification_params);
+    }
+    
+}
 
 ?>
 
@@ -43,57 +54,86 @@ if(!isset($current_user)){
                 <h2>通知</h2>
 
                 <div id="notice-list">
-                    <div class="content">
-                        <div class="date">
-                            <p>2020/10/05/11:05</p>
-                        </div>
+                    <?php if($notifications): ?>
 
-                        <div class="notification-box">
-                            <figure>
-                                <img src="../images/windows xp.jpg" class="wallpaper">
-                            </figure>
-                            
-                            <div class="text">
-                                <p>○○さんがあなたの作品をお気に入り登録しました。</p>
+                        <?php foreach($notifications as $notification): ?>
+
+                            <?php if($notification->notified_type === 'fav'): ?>
+
+                            <div class="content">
+                                <div class="date">
+                                    <p><?php print $notification->updated_at ?></p>
+                                </div>
+
+                                <div class="notification-box">
+                                    <figure>
+                                        <img src="../<?php print $notification->item()->image ?>" class="wallpaper">
+                                    </figure>
+                                    
+                                    <div class="text">
+                                        <p>
+                                            <?php print $notification->notified_user()->name ?>
+                                            さんがあなたの作品をお気に入り登録しました。
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
 
-                    </div>
-
-                    <div class="content">
-                        <div class="date">
-                            <p>2020/10/05/11:05</p>
-                        </div>
-
-                        <div class="notification-box">
-                            <figure>
-                                <img src="../images/windows xp.jpg" class="wallpaper">
-                            </figure>
+                            <?php elseif($notification->notified_type === 'purchase'): ?>
                             
-                            <div class="text">
-                                <p>○○さんがあなたの作品を購入しました。</p>
+                            <div class="content">
+                                <div class="date">
+                                    <p><?php print $notification->updated_at ?></p>
+                                </div>
+
+                                <div class="notification-box">
+                                    <figure>
+                                        <img src="../images/windows xp.jpg" class="wallpaper">
+                                    </figure>
+                                    
+                                    <div class="text">
+                                        <p>
+                                            <?php print $notification->notified_user()->name ?>
+                                            さんがあなたの作品を購入しました。
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
 
-                    </div>
+                            <?php elseif($notification->notified_type === 'chat'): ?>
 
-                    <div class="content">
-                        <div class="date">
-                            <p>2020/10/05/11:05</p>
-                        </div>
+                            <div class="content">
+                                <div class="date">
+                                    <p><?php print $notification->updated_at ?></p>
+                                </div>
 
-                        <div class="notification-box">
-                            <figure>
-                                <img src="../images/windows xp.jpg" class="user">
-                            </figure>
-                            
-                            <div>               
-                                <p>○○さんからチャットが来ています。</p>
-                                <p class="chat-content">こんにちは！</p>             
+                                <div class="notification-box">
+                                    <figure>
+                                        <img src="../images/windows xp.jpg" class="user">
+                                    </figure>
+                                    
+                                    <div>               
+                                        <p>
+                                            <?php print $notification->notified_user()->name ?>                                       
+                                            さんからチャットが来ています。
+                                        </p>
+                                        <p class="chat-content">こんにちは！</p>             
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
 
-                    </div>
+                            <?php endif ?>
+
+                        <?php endforeach ?>
+
+                    <?php else: ?>
+
+                        <p>まだお知らせはありません。</p>
+
+                    <?php endif ?>
 
                 </div>
             </div>

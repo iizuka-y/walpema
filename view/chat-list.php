@@ -5,6 +5,7 @@ $user = $current_user;
 
 if(!$user){
     header("Location: index.php");
+    exit();
 }
 
 function get_chat_list(){
