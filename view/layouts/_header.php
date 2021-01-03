@@ -31,6 +31,7 @@ if(isset($current_user)){
 
         <form method="get" action="wallpaper_list.php" class="search_container">
             <input type="text" size="25" placeholder="　作品を検索" name="search" id="search">
+            <input type="hidden" value="search" name="type">
             <input type="submit" value="&#xf002">
         </form>
 
