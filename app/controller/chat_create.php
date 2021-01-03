@@ -45,13 +45,42 @@ $params = [
 ];
 
 
-if(Chat::create($params)){
-    header("Location: ../../view/chat.php?id=".$_POST['opponent_id']);
-}else{
+// チャットルームの中で一番新しい投稿(ただし新しいチャットレコードを作成する前)を取得
+if($chats = Chat::where(['chat_room' => $chat_room])){
+    $new_chat = end($chats);
+    $notification_params = [
+        'user_id' => $_POST['opponent_id'],
+        'notified_id' => $current_user->id,
+        'notified_type' => 'chat',
+        'chat_id' => $new_chat->id
+    ];
+
+    // すでにお知らせテーブルにそのチャットルームの最新レコードが存在していたら削除
+    if($notification = Notification::find($notification_params)){
+        Notification::delete($notification->id);
+    };
+}
+
+
+// チャットレーブルのレコード作成
+if(!Chat::create($params)){
     $errorMsg = ["チャット送信に失敗しました。"];
     fnc_setData("session", "errorMsg", $errorMsg);
     header("Location: ../../view/chat.php?id=".$_POST['opponent_id']);
+    exit();
 }
+
+// お知らせテーブルのレコード作成
+$chat = Chat::find($params);
+$notification_params = [
+    'user_id' => $_POST['opponent_id'],
+    'notified_id' => $current_user->id,
+    'notified_type' => 'chat',
+    'chat_id' => $chat->id
+]; // $notification_paramsのchat_idを最新のID(新しいチャットレコード作成後)に更新
+Notification::create($notification_params); // そのチャットルームで一番新しいチャットのIDのみをNotificationテーブルに保存する！
+
+header("Location: ../../view/chat.php?id=".$_POST['opponent_id']);
 
 
 ?>

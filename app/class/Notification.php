@@ -64,6 +64,14 @@ class Notification extends Model{
 
     }
 
+    public function chat(){
+
+        $chat = Chat::findById($this->chat_id);
+
+        return $chat;
+
+    }
+
 }
 
 ?>

@@ -112,7 +112,7 @@ foreach($notifications as $notification){
 
                                 <div class="notification-box">
                                     <figure>
-                                        <img src="../images/windows xp.jpg" class="user">
+                                        <img src="../<?php print $notification->notified_user()->image() ?>" class="user">
                                     </figure>
                                     
                                     <div>               
@@ -120,7 +120,7 @@ foreach($notifications as $notification){
                                             <?php print $notification->notified_user()->name ?>                                       
                                             さんからチャットが来ています。
                                         </p>
-                                        <p class="chat-content">こんにちは！</p>             
+                                        <p class="chat-content"><?php print $notification->chat()->content ?></p>             
                                     </div>
                                 </div>
 
