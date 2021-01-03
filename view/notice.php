@@ -68,12 +68,16 @@ foreach($notifications as $notification){
 
                                 <div class="notification-box">
                                     <figure>
-                                        <img src="../<?php print $notification->item()->image ?>" class="wallpaper">
+                                        <a href="wallpaper_detail.php?id=<?php print $notification->item()->id ?>">
+                                            <img src="../<?php print $notification->item()->image ?>" class="wallpaper">
+                                        </a>
                                     </figure>
                                     
                                     <div class="text">
                                         <p>
-                                            <?php print $notification->notified_user()->name ?>
+                                            <a href="profile.php?id=<?php print $notification->notified_user()->id ?>">
+                                                <?php print $notification->notified_user()->name ?>
+                                            </a>
                                             さんがあなたの作品をお気に入り登録しました。
                                         </p>
                                     </div>
@@ -90,12 +94,16 @@ foreach($notifications as $notification){
 
                                 <div class="notification-box">
                                     <figure>
-                                        <img src="../<?php print $notification->item()->image ?>" class="wallpaper">
+                                        <a href="wallpaper_detail.php?id=<?php print $notification->item()->id ?>">
+                                            <img src="../<?php print $notification->item()->image ?>" class="wallpaper">
+                                        </a>
                                     </figure>
                                     
                                     <div class="text">
                                         <p>
-                                            <?php print $notification->notified_user()->name ?>
+                                            <a href="profile.php?id=<?php print $notification->notified_user()->id ?>">
+                                                <?php print $notification->notified_user()->name ?>
+                                            </a>
                                             さんがあなたの作品を購入しました。
                                         </p>
                                     </div>
@@ -112,15 +120,23 @@ foreach($notifications as $notification){
 
                                 <div class="notification-box">
                                     <figure>
-                                        <img src="../<?php print $notification->notified_user()->image() ?>" class="user">
+                                        <a href="profile.php?id=<?php print $notification->notified_user()->id ?>">
+                                            <img src="../<?php print $notification->notified_user()->image() ?>" class="user">
+                                        </a>
                                     </figure>
                                     
                                     <div>               
                                         <p>
-                                            <?php print $notification->notified_user()->name ?>                                       
+                                            <a href="profile.php?id=<?php print $notification->notified_user()->id ?>">
+                                                <?php print $notification->notified_user()->name ?>
+                                            </a>                                    
                                             さんからチャットが来ています。
                                         </p>
-                                        <p class="chat-content"><?php print $notification->chat()->content ?></p>             
+                                        <p class="chat-content">
+                                            <a href="chat.php?id=<?php print $notification->notified_user()->id ?>">
+                                                <?php print $notification->chat()->content ?>
+                                            </a>
+                                        </p>             
                                     </div>
                                 </div>
 
