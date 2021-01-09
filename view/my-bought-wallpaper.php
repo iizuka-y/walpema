@@ -27,6 +27,7 @@ if(!$user){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/file_download.js"></script>
 
     </head>
 
@@ -52,7 +53,8 @@ if(!$user){
                         <a href="wallpaper_detail.php?id=<?php print $bought_item->id ?>">
                             <div class="img-box">
                                 <img src="../<?php print $bought_item->image ?>">
-                                <input type="checkbox" name="downlode" class="downlode-checkbox" style="transform:scale(1.8);">
+                                <input type="hidden" value="<?php print $bought_item->id ?>">
+                                <input type="checkbox" name="download" class="download-checkbox" style="transform:scale(1.8);">
                             </div>
                             <div class="img-name"><?php $bought_item->name ?></div>
                         </a>
@@ -62,8 +64,11 @@ if(!$user){
                     <div>購入した壁紙はありません</div>
                 <?php endif ?>
                 
-                <div class="downlode">
-                    <button class="downlode-btn">画像をダウンロード</button>
+                <div class="download">
+                    <form method="post" action="../app/controller/file_download.php">
+                        <input type="hidden" name="item_id" id="post_item_id" value="">
+                        <button class="download-btn lock">画像をダウンロード</button>
+                    </form>
                 </div>
                 
             </div>
