@@ -1,10 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
-
-define('POPULAR_ITEM_NUM', 5); // 画面に表示する人気の商品の数
-define('MAX_FAVITEM_NUM', 4); // 画面に表示するお気に入り商品の最大数
-define('MAX_TAG_NUM', 24); // 画面に表示する人気タグの最大数
-define('MAX_NEWITEM_NUM', 24); // 画面に表示する新着商品の最大数
+require_once(dirname(__FILE__).'/../config/top_page.php');
 
 function getPopularItem(){
     $popular_itemRecords = Favorite::popular('item_id');
@@ -12,8 +8,11 @@ function getPopularItem(){
     $count = 0;
     foreach($popular_itemRecords as $popular_itemRecord){
         if($count >= POPULAR_ITEM_NUM) break;
-        $popular_items[] = Item::find(['id' => $popular_itemRecord['item_id']]);
-        $count ++;
+        $popular_item = Item::find(['id' => $popular_itemRecord['item_id']]);
+        if($popular_item->sale){
+            $popular_items[] = $popular_item;
+            $count ++;
+        }
     }
 
     return $popular_items;
@@ -56,8 +55,10 @@ function getNewItem(){
     $count = 0;
     foreach($newAllItems as $newItem){
         if($count >= MAX_NEWITEM_NUM) break;
-        $newItems[] = $newItem;
-        $count ++;
+        if($newItem->sale){
+            $newItems[] = $newItem;
+            $count ++;
+        }
     }
     
     return $newItems;

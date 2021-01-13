@@ -126,26 +126,40 @@ function form_action_controller(){
     
                         <div class="text">
                             <h3>作品詳細</h3>
+                            <?php if($item->sale): ?>
                             <p>
                                 <?php print $item->explanation ?>
                             </p>
+                            <?php else: ?>
+                            <p>
+                                この商品の取り扱いは終了しました。
+                            </p>
+                            <?php endif ?>
+
                         </div>
 
                         <div id="favorite">
-                            <form method="post" action="../app/controller/<?php form_action_controller() ?>" id="fav-form">
-                                <input type="hidden" name="item_id" value="<?php print $item->id ?>"></input>
+
+                            <?php if($item->sale): ?>
+
+                                <form method="post" action="../app/controller/<?php form_action_controller() ?>" id="fav-form">
+                                    <input type="hidden" name="item_id" value="<?php print $item->id ?>"></input>
+                                    <?php if(isset($current_user) && $thisItem = is_favriteItem()): ?>
+                                    <input type="image" src="../images/fav-1.png" class="fav"></input>
+                                    <?php else: ?>
+                                    <input type="image" src="../images/fav-0.png" class="fav"></input>
+                                    <?php endif ?>
+                                </form>
+                                
+
                                 <?php if(isset($current_user) && $thisItem = is_favriteItem()): ?>
-                                <input type="image" src="../images/fav-1.png" class="fav"></input>
+                                <span class="fav-state">お気に入り登録済み</span>
                                 <?php else: ?>
-                                <input type="image" src="../images/fav-0.png" class="fav"></input>
+                                <span class="fav-state">お気に入り登録する</span>
                                 <?php endif ?>
-                            </form>
-                            <!-- <img src="../images/fav-0.png" class="fav"> -->
-                            <?php if(isset($current_user) && $thisItem = is_favriteItem()): ?>
-                            <span class="fav-state">お気に入り登録済み</span>
-                            <?php else: ?>
-                            <span class="fav-state">お気に入り登録する</span>
+
                             <?php endif ?>
+
                         </div>
 
                     </div>
@@ -184,10 +198,14 @@ function form_action_controller(){
 
                         <?php elseif(isset($current_user) && alreadyBoughtItem()): ?>
 
-                        <form action="../app/controller/cart.php" method="POST">
+                        <form action="../app/controller/file_download.php" method="POST">
                             <input type="hidden" value="<?php print $item->id ?>" name="item_id">
                             <input type="submit" value="ダウンロード" name="cart" class="submit">
                         </form>
+
+                        <?php elseif(!$item->sale): ?>
+
+                        <!-- 取り扱いが終了したらボタンを表示しない -->
 
                         <?php else: ?>
 

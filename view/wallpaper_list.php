@@ -44,11 +44,13 @@ function get_items(){
         }
     }
 
+    // 検索ワードから壁紙を取得する場合
     if($_GET['type'] === 'search'){
         $tags = Tag::where(['tag_name' => $_GET['search']]);
         $items = [];
         foreach($tags as $tag){
-            $items[] = Item::find(['id' => $tag->item_id]);
+            $item = Item::find(['id' => $tag->item_id]);
+            if($item->sale) $items[] = $item;
         }
         return $items;
     }

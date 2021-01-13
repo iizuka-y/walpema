@@ -69,7 +69,7 @@ $tagCsv = implode(",", $tag_names);
         
 
         <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="wallpaper_detail.php?=<?php print $item->id ?>">作品詳細</a>><a href="wallpaper_edit.php">投稿した壁紙の編集</a>
+            <a href="index.php">トップ</a>><a href="wallpaper_detail.php?id=<?php print $item->id ?>">作品詳細</a>><a href="wallpaper_edit.php">投稿した壁紙の編集</a>
         </div>
 
         <div id="wrap">
