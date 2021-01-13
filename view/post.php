@@ -119,16 +119,6 @@ if(isset($_POST['modify'])){
                     </div>
 
                     <div class="input-box">
-                        <div class="radio-box">
-                            <input type="radio" value="pc" class="radio" name="device" checked><div>PC</div>
-                        </div>
-
-                        <div class="radio-box">
-                            <input type="radio" value="smartphone" class="radio" name="device"><div>スマホ</div>
-                        </div>
-                    </div>
-
-                    <div class="input-box">
                         <input type="submit" class="submit">
                     </div>
 

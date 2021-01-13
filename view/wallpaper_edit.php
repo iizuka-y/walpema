@@ -118,10 +118,20 @@ $tagCsv = implode(",", $tag_names);
                     </div>
 
                     <input type="hidden" value="<?php print $item->id ?>" name="item_id">
-
+                    
+                    <?php if($item->sale): ?>
                     <input type="submit" value="変更する" class="edit-submit"> 
+                    <?php else: ?>
+                    <input type="submit" value="再度出品" class="edit-submit"> 
+                    <?php endif ?>
                 </form>
-                
+
+                <?php if($item->sale): ?>
+                <form action="../app/controller/item_delete.php" method="POST" class="delete-submit-box">
+                    <input type="hidden" value="<?php print $item->id ?>" name="item_id">
+                    <input type="submit" value="出品を取り消す" class="delete-submit">
+                </form>
+                <?php endif ?>
 
             </div>
         </div>

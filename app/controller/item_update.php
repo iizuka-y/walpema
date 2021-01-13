@@ -36,7 +36,8 @@ $params = [
     'item_name' => $_POST['name'],
     'price' => $_POST['price'],
     'explanation' => $_POST['explanation'],
-    'image' => $img_path
+    'image' => $img_path,
+    'sale' => true
 ];
 
 
