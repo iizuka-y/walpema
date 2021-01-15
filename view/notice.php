@@ -18,7 +18,6 @@ foreach($notifications as $notification){
         ];
         Notification::update($notification_params);
     }
-    
 }
 
 ?>

@@ -39,7 +39,7 @@ if(!isset($current_user)){
         
 
         <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="profile.php">マイページ</a>><a href="profile_edit.php">マイページ編集</a>
+            <a href="index.php">トップ</a>><a href="profile.php?id=<?php print $current_user->id ?>">マイページ</a>><a href="profile_edit.php">マイページ編集</a>
         </div>
 
         <div id="wrap">

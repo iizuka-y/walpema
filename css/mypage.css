@@ -135,7 +135,7 @@
 }
 
 
-/* チャットのレイアウト */
+/* チャットリストのレイアウト */
 li.chat{
   width: 100%;
   margin-bottom: 30px;
@@ -156,8 +156,9 @@ li.chat{
 }
 
 .chat-box{
-  display: flex;
-  padding: 20px;
+    position: relative;
+    display: flex;
+    padding: 20px;
 }
 
 .chat-box img{
@@ -176,6 +177,21 @@ li.chat{
 
 .chat-content{
   margin-bottom: 20px;
+}
+
+.unread-num{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ff7d64;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
 }
 
 .chat-others{

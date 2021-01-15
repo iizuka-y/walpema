@@ -35,6 +35,17 @@ if(!$chat_room = create_chatroomId($_GET['id'])){
 
 $chatList = Chat::where(['chat_room' => $chat_room]);
 
+// 既読カラムをtrueにする
+foreach($chatList as $chat){
+    if(!$chat->read){
+        $chat_params = [
+            'id' => $chat->id,
+            '`read`' => true
+        ];
+        Chat::update($chat_params);
+    }
+}
+
 ?>
 
 <html>

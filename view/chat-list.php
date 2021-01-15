@@ -31,6 +31,23 @@ function get_chat_list(){
 
 $chatList = get_chat_list();
 
+
+function get_unread_num($chat){
+    global $user;
+
+    // 自分が参加しているチャットルームであり自分宛ての投稿で未読のチャットの件数を取得
+    $params = [
+        'chat_room' => $chat->room,
+        'chatted_id' => $user->id,
+        '`read`' => 0
+    ];
+    $unread_num = count(Chat::where($params));
+    
+
+    return $unread_num;
+}
+
+
 ?>
 
 
@@ -81,6 +98,13 @@ $chatList = get_chat_list();
                                     <div class="chat-content">
                                         <?php print $chat->content ?>
                                     </div>
+
+                                    <?php if(get_unread_num($chat) > 0): ?>
+                                    <div class="unread-num">
+                                        <?php print get_unread_num($chat) ?>
+                                    </div>
+                                    <?php endif ?>
+
                                     <div class="chat-others">
                                         <?php print $chat->updated_at ?>
                                     </div>
