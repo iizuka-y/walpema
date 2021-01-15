@@ -4,6 +4,12 @@
 // ユーザー名の文字数制限
 const USER_NAME = 10;
 
+// パスワードの最小文字数
+const MIN_PASSWORD = 4;
+
+// パスワードの最大文字数
+const MAX_PASSWORD = 16;
+
 // ユーザーコメントの文字数制限
 const SELF_INTRODUCTION = 100;
 

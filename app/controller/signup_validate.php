@@ -35,6 +35,14 @@ if(mb_strlen($_POST['user_name']) > USER_NAME){
     $errorMsg[] = "名前は".USER_NAME."文字以内で入力してください";
 }
 
+if($_POST['password'] && mb_strlen($_POST['password']) < MIN_PASSWORD){
+    $errorMsg[] = "パスワードは".MIN_PASSWORD."文字以上で入力してください";
+}
+
+if(mb_strlen($_POST['password']) > MAX_PASSWORD){
+    $errorMsg[] = "パスワードは".MAX_PASSWORD."文字以下で入力してください";
+}
+
 // メールアドレス重複チェック
 if(User::where(['email' => $_POST['email']])){
     $errorMsg[] = "送信されたメールアドレスは使用できません";
