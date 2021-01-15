@@ -35,9 +35,9 @@ if(!$chat_room = create_chatroomId($_GET['id'])){
 
 $chatList = Chat::where(['chat_room' => $chat_room]);
 
-// 既読カラムをtrueにする
+// 既読カラムをtrueにする(ただし自分の投稿はtrueにしない)
 foreach($chatList as $chat){
-    if(!$chat->read){
+    if(!$chat->read && $chat->chatting_id != $current_user->id){
         $chat_params = [
             'id' => $chat->id,
             '`read`' => true

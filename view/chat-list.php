@@ -12,7 +12,7 @@ function get_chat_list(){
     global $user;
 
     // 自分が参加している各chat_roomの中で一番idが大きいレコードを取得
-    $sql = 'select chat_room, max(id) from chat where chatting_id = '.$user->id.' OR chatted_id = '.$user->id.' group by chat_room order by max(id) asc;';
+    $sql = 'select chat_room, max(id) from chat where chatting_id = '.$user->id.' OR chatted_id = '.$user->id.' group by chat_room order by max(id) desc;';
     $chatRecords = Chat::sql($sql); // この$chatRecordsにはchat_roomとmax(id)のカラムしかない
 
     $mychatroom_maxId = [];
