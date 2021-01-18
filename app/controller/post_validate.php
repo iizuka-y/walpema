@@ -73,6 +73,9 @@ if(!preg_match('/^[0-9]+$/', $_POST['price'])){
 
 if(!empty($errorMsg)){
     fnc_setData("session", "errorMsg", $errorMsg);
+    $params['tags'] = $_POST['tag']; // カンマ区切りのデータにする
+    fnc_setData("session", "sendData", $params);
+
     // アップロードした画像は削除
     if(file_exists('../../'.$img_path)){
         unlink('../../'.$img_path);

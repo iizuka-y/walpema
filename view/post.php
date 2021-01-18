@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/get_senddata.php');
 
 $user = $current_user;
 
@@ -14,13 +15,19 @@ if(isset($_SESSION["errorMsg"])){
     fnc_delData("session", "errorMsg", "");
 }
 
+if(isset($_SESSION["sendData"])){
+    $sendData = fnc_getData("session", "sendData");
+    fnc_delData("session", "sendData", "");
+}
+
 // 確認画面から戻ってきた場合
 if(isset($_POST['modify'])){
-    $params = [
+    $sendData = [
         'item_name' => $_POST['name'],
         'price' => $_POST['price'],
         'explanation' => $_POST['explanation'],
-        'image' => $_POST['image']
+        'image' => $_POST['image'],
+        'tags' => $_POST['tag']
     ];
 
     // アップロードした画像は削除
@@ -28,6 +35,8 @@ if(isset($_POST['modify'])){
         unlink('../'.$_POST['image']);
     }
 }
+
+
 
 
 ?>
@@ -97,25 +106,25 @@ if(isset($_POST['modify'])){
 
                     <div class="input-box">
                         <label>タイトル</label>
-                        <input type="text" class="title" name="name">
+                        <input type="text" class="title" name="name" value="<?php print get_sendData('item_name') ?>">
                         <span class="titleMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>説明</label>
-                        <textarea placeholder="150字以内で入力" class="explanation" name="explanation"></textarea>
+                        <textarea placeholder="150字以内で入力" class="explanation" name="explanation"><?php print get_sendData('explanation') ?></textarea>
                         <span class="explanationMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>タグ</label>
-                        <input type="text" class="tag" id="tag-input" name="tag">
+                        <input type="text" class="tag" id="tag-input" name="tag" value="<?php print get_sendData('tags') ?>">
                         <span class="tagMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>価格</label>
-                        <input type="text" class="price" name="price">円
+                        <input type="text" class="price" name="price" value="<?php print get_sendData('price') ?>">円
                         <span class="priceMsg errorMsg"></span>
                     </div>
 
