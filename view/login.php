@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/get_senddata.php');
 require_once(dirname(__FILE__).'/../config/validate_config.php');
 
 
@@ -8,6 +9,13 @@ if(isset($_SESSION["errorMsg"])){
     $errorMsgs = fnc_getData("session", "errorMsg");
     fnc_delData("session", "errorMsg", "");
 }
+
+if(isset($_SESSION["sendData"])){
+    $sendData = fnc_getData("session", "sendData");
+    fnc_delData("session", "sendData", "");
+}
+
+
 ?>
 
 <html>
@@ -50,7 +58,7 @@ if(isset($_SESSION["errorMsg"])){
 
                     <form action="../app/controller/login_validate.php" method="POST">
 
-                        <input type="text" placeholder="メールアドレス" class="email" name="email">
+                        <input type="text" placeholder="メールアドレス" class="email" name="email" value="<?php print get_sendData('email') ?>">
                         <span class="emailMsg errorMsg"></span>
 
                         <input type="password" placeholder="パスワード" class="password" name="password" maxlength='<?php print MAX_PASSWORD ?>'>

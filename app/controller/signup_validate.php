@@ -52,7 +52,9 @@ if(User::where(['email' => $_POST['email']])){
 
 if(!empty($errorMsg)){
     fnc_setData("session", "errorMsg", $errorMsg);
+    fnc_setData("session", "sendData", $params);
     header("Location: ../../view/signup.php");
+
 }else{
     fnc_setData("session", "params", $params);
     header("Location: ../../view/signup_check.php");

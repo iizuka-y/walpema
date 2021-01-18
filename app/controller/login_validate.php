@@ -41,6 +41,7 @@ if(!empty($errorMsg)){
     }else{
         $errorMsg = ["メールアドレスまたはパスワードが間違っています"];
         fnc_setData("session", "errorMsg", $errorMsg);
+        fnc_setData("session", "sendData", $params);
         header("Location: ../../view/login.php");
     }
 
