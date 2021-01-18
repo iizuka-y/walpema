@@ -24,7 +24,7 @@ function set_validation(config) {
 
 	// ログイン、新規登録時のバリデーション
 	$('.login-btn').on('click', function (e) {
-		
+
 		$('.errorMsg').empty();
 
 		var flag = 0;
@@ -69,7 +69,15 @@ function set_validation(config) {
 
 	// 壁紙を投稿するときのバリデーション
 	$('.submit').on('click', function () {
+
+		$('.errorMsg').empty();
+
 		var flag = 0;
+		console.log($('.file').val());
+		if (!$('.file').val()) {
+			$('.fileMsg').html("画像を投稿してください");
+			flag = 1;
+		}
 
 		if ($('.title').val() === "") {
 			$('.titleMsg').html("タイトルを入力してください");
@@ -101,6 +109,9 @@ function set_validation(config) {
 
 	// プロフィールページのバリデーション
 	$('.edit-submit').on('click', function () {
+
+		$('.errorMsg').empty();
+		
 		var flag = 0;
 
 		if ($('.user_name').val() === "") {

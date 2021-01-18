@@ -50,7 +50,7 @@ if(isset($_POST['modify'])){
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
         <script type="text/javascript" src="../js/image-preview.js"></script>
-        <!-- <script type="text/javascript" src="../js/validate.js"></script> -->
+        <script type="text/javascript" src="../js/validate.js"></script>
 
 
         <!-- タグ用 -->
@@ -92,30 +92,31 @@ if(isset($_POST['modify'])){
                         <div id="img-field">
                             <img src="../images/img-icon.png" class="preview">
                         </div>
+                        <span class="fileMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>タイトル</label>
                         <input type="text" class="title" name="name">
-                        <span class="titleMsg error"></span>
+                        <span class="titleMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>説明</label>
                         <textarea placeholder="150字以内で入力" class="explanation" name="explanation"></textarea>
-                        <span class="explanationMsg error"></span>
+                        <span class="explanationMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>タグ</label>
                         <input type="text" class="tag" id="tag-input" name="tag">
-                        <span class="tagMsg error"></span>
+                        <span class="tagMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>価格</label>
                         <input type="text" class="price" name="price">円
-                        <span class="priceMsg error"></span>
+                        <span class="priceMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
