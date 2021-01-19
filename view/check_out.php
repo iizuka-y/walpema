@@ -12,7 +12,7 @@ if(!isset($current_user)){
 // カートが空の状態でアクセスした場合
 $items = get_cartItem();
 if(empty($items)){
-    header("Location: login.php");
+    header("Location: cart.php");
     exit();
 }
 

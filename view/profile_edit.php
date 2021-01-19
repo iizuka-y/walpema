@@ -67,7 +67,7 @@ if(!isset($current_user)){
                     <textarea class="edit message" name="self_introduction"><?php print $current_user->self_introduction ?></textarea>
                     <span class="messageMsg"></span>
 
-                    <input type="submit" value="変更する" class="edit-submit"> 
+                    <input type="submit" value="変更する" class="edit-submit profile-update"> 
                 </form>
                 
 

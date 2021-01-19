@@ -64,12 +64,13 @@
 
 #wrap form .input-box input.price{
   width: 300px;
-  margin-right: 10px;
 }
 
-#wrap form span.error{
-  margin-bottom: 50px;
-  color: red;
+#wrap form span.errorMsg{
+    display: block;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    color: red;
 }
 
 #wrap form textarea.edit{

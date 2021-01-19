@@ -53,7 +53,7 @@ $tagCsv = implode(",", $tag_names);
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
         <script type="text/javascript" src="../js/image-preview.js"></script>
-        <!-- <script type="text/javascript" src="../js/validate.js"></script> -->
+        <script type="text/javascript" src="../js/validate.js"></script>
 
         <!-- タグ用 -->
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
@@ -95,34 +95,34 @@ $tagCsv = implode(",", $tag_names);
 
                     <div class="input-box">
                         <label>タイトル</label>
-                        <input type="text" class="edit user_name" name="name" value="<?php print $item->name ?>">
-                        <span class="userNameMsg error"></span>
+                        <input type="text" class="title" name="name" value="<?php print $item->name ?>">
+                        <span class="titleMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>説明(150字以内)</label>
-                        <textarea class="edit message" name="explanation"><?php print $item->explanation ?></textarea>
-                        <span class="messageMsg error"></span>
+                        <textarea class="edit explanation" name="explanation"><?php print $item->explanation ?></textarea>
+                        <span class="explanationMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>タグ</label>
-                        <input type="text" id="tag-input" class="edit_tag" name="tag" value="<?php print $tagCsv ?>">
-                        <span class="tagMsg error"></span>
+                        <input type="text" id="tag-input" class="edit_tag tag" name="tag" value="<?php print $tagCsv ?>">
+                        <span class="tagMsg errorMsg"></span>
                     </div>
 
                     <div class="input-box">
                         <label>価格</label>
-                        <input type="text" class="price" name="price" value="<?php print $item->price ?>">円
-                        <span class="priceMsg error"></span>
+                        <input type="text" class="price" name="price" value="<?php print $item->price ?>">　円
+                        <span class="priceMsg errorMsg"></span>
                     </div>
 
                     <input type="hidden" value="<?php print $item->id ?>" name="item_id">
                     
                     <?php if($item->sale): ?>
-                    <input type="submit" value="変更する" class="edit-submit"> 
+                    <input type="submit" value="変更する" class="edit-submit wallpaper-update"> 
                     <?php else: ?>
-                    <input type="submit" value="再度出品" class="edit-submit"> 
+                    <input type="submit" value="再度出品" class="edit-submit wallpaper-update"> 
                     <?php endif ?>
                 </form>
 

@@ -36,6 +36,7 @@ foreach($items as $item){
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/btn-lock.js"></script>
 
     </head>
 
@@ -83,7 +84,7 @@ foreach($items as $item){
                             <p class="price">￥<?php print $total_price ?></p>
 
                             <form action="check_out.php" method="POST">
-                                <input type="submit" value="購入する">
+                                <input type="submit" value="購入する" class="check-out <?php if(empty($items)) print "lock" ?>">
                             </form>
                         </div>
                     </div>

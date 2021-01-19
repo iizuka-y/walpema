@@ -68,12 +68,12 @@ function set_validation(config) {
 	});
 
 	// 壁紙を投稿するときのバリデーション
-	$('.submit').on('click', function () {
+	$('.wallpaper-post').on('click', function () {
 
 		$('.errorMsg').empty();
 
 		var flag = 0;
-		console.log($('.file').val());
+
 		if (!$('.file').val()) {
 			$('.fileMsg').html("画像を投稿してください");
 			flag = 1;
@@ -103,12 +103,45 @@ function set_validation(config) {
 			return false;
 		}
 
-	});
+    });
+    
+    // 壁紙を更新するときのバリデーション
+    $('.wallpaper-update').on('click', function () {
+
+		$('.errorMsg').empty();
+
+		var flag = 0;
+
+		if ($('.title').val() === "") {
+			$('.titleMsg').html("タイトルを入力してください");
+			flag = 1;
+		}
+
+		if ($('.explanation').val() === "") {
+			$('.explanationMsg').html("説明を入力してください");
+			flag = 1;
+		}
+
+		if ($('.tag').val() === "") {
+			$('.tagMsg').html("説明を入力してください");
+			flag = 1;
+		}
+
+		if ($('.price').val() === "") {
+			$('.priceMsg').html("価格を入力してください");
+			flag = 1;
+		}
+
+		if (flag === 1) {
+			return false;
+		}
+
+    });
 
 
 
 	// プロフィールページのバリデーション
-	$('.edit-submit').on('click', function () {
+	$('.profile-update').on('click', function () {
 
 		$('.errorMsg').empty();
 		

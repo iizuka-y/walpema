@@ -129,7 +129,7 @@ if(isset($_POST['modify'])){
                     </div>
 
                     <div class="input-box">
-                        <input type="submit" class="submit">
+                        <input type="submit" class="submit wallpaper-post">
                     </div>
 
                 </form>

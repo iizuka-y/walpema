@@ -80,6 +80,11 @@ h3{
     margin: 5px;
 }
 
+#buy input.lock{
+    background-color: #a9a9a9;
+    cursor: auto;
+}
+
 .cart-text form{
     margin-top: 30px;
 }
