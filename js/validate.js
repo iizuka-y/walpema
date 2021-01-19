@@ -70,36 +70,44 @@ function set_validation(config) {
 	// 壁紙を投稿するときのバリデーション
 	$('.wallpaper-post').on('click', function () {
 
-		$('.errorMsg').empty();
+        $('.errorMsg').empty();
+        
+        $('.input-box').removeClass("error");
 
 		var flag = 0;
 
 		if (!$('.file').val()) {
-			$('.fileMsg').html("画像を投稿してください");
+            $('.fileMsg').html("画像を投稿してください");
+            $('.fileMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if ($('.title').val() === "") {
-			$('.titleMsg').html("タイトルを入力してください");
+            $('.titleMsg').html("タイトルを入力してください");
+            $('.titleMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if ($('.explanation').val() === "") {
-			$('.explanationMsg').html("説明を入力してください");
+            $('.explanationMsg').html("説明を入力してください");
+            $('.explanationMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if ($('.tag').val() === "") {
-			$('.tagMsg').html("説明を入力してください");
+            $('.tagMsg').html("説明を入力してください");
+            $('.tagMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if ($('.price').val() === "") {
-			$('.priceMsg').html("価格を入力してください");
+            $('.priceMsg').html("価格を入力してください");
+            $('.priceMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if (flag === 1) {
+            scrollToErrorMsg();
 			return false;
 		}
 
@@ -108,31 +116,40 @@ function set_validation(config) {
     // 壁紙を更新するときのバリデーション
     $('.wallpaper-update').on('click', function () {
 
-		$('.errorMsg').empty();
+        $('.errorMsg').empty();
+        
+        $('.input-box').removeClass("error");
+
 
 		var flag = 0;
 
 		if ($('.title').val() === "") {
-			$('.titleMsg').html("タイトルを入力してください");
+            $('.titleMsg').html("タイトルを入力してください");
+            $('.titleMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if ($('.explanation').val() === "") {
-			$('.explanationMsg').html("説明を入力してください");
+            $('.explanationMsg').html("説明を入力してください");
+            $('.explanationMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if ($('.tag').val() === "") {
-			$('.tagMsg').html("説明を入力してください");
+            $('.tagMsg').html("説明を入力してください");
+            $('.tagMsg').parent().addClass("error");
+
 			flag = 1;
 		}
 
 		if ($('.price').val() === "") {
-			$('.priceMsg').html("価格を入力してください");
+            $('.priceMsg').html("価格を入力してください");
+            $('.priceMsg').parent().addClass("error");
 			flag = 1;
 		}
 
 		if (flag === 1) {
+            scrollToErrorMsg();
 			return false;
 		}
 
@@ -156,6 +173,17 @@ function set_validation(config) {
 			return false;
 		}
 
-	});
+    });
+    
+
+    // エラーがある入力欄まで自動スクロール
+    function scrollToErrorMsg() {
+        var error_inputs = document.getElementsByClassName('error');
+        console.log(error_inputs[0]);
+        var error_position = error_inputs[0].getBoundingClientRect(); // エラーのある入力欄の中でも一番上の相対座標を取得
+        console.log(error_position);
+        window.scrollTo( 0, error_position.top + pageYOffset); // 絶対座標にして移動
+
+    }
 
 }
