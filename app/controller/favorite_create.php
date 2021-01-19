@@ -29,17 +29,20 @@ if(!Favorite::create($params)){
 }
 
 
-// お知らせテーブルのレコード作成
-$fav_record = Favorite::find($params);
-$notification_params = [
-    'user_id' => $item->user()->id,
-    'notified_id' => $current_user->id,
-    'item_id' => $item->id,
-    'notified_type' => 'fav',
-    'fav_id' => $fav_record->id
-];
+// お知らせテーブルのレコード作成(ただし自分の投稿以外なら)
+if($item->user_id != $current_user->id){
+    
+    $fav_record = Favorite::find($params);
+    $notification_params = [
+        'user_id' => $item->user()->id,
+        'notified_id' => $current_user->id,
+        'item_id' => $item->id,
+        'notified_type' => 'fav',
+        'fav_id' => $fav_record->id
+    ];
 
-Notification::create($notification_params);
+    Notification::create($notification_params);
+}
 
 
 header("Location: ../../view/wallpaper_detail.php?id=".$item->id);

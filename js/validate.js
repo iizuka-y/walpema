@@ -179,9 +179,9 @@ function set_validation(config) {
     // エラーがある入力欄まで自動スクロール
     function scrollToErrorMsg() {
         var error_inputs = document.getElementsByClassName('error');
-        console.log(error_inputs[0]);
+        // console.log(error_inputs[0]);
         var error_position = error_inputs[0].getBoundingClientRect(); // エラーのある入力欄の中でも一番上の相対座標を取得
-        console.log(error_position);
+        // console.log(error_position);
         window.scrollTo( 0, error_position.top + pageYOffset); // 絶対座標にして移動
 
     }
