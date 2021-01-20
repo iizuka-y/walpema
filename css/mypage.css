@@ -28,21 +28,23 @@
   line-height: 30px;
 }
 
-.user-info-left .logout, .user-info-left .chat{
+.user-info-left .logout, .user-info-left .chat-btn{
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-.chat-btn{
+.user-info-left .chat-btn{
   display: inline-block;
-  width: 30%;
+  width: 120px;
   padding: 10px 0;
-  margin-top: 50px;
   text-align: center;
-  color: #fff;
   background-color: #ff7d64;
   border-radius: 5px;
+}
+
+.user-info-left .chat-btn a{
+    color: #fff;
 }
 
 

@@ -87,7 +87,7 @@ foreach($chatList as $chat){
                 <div class="yourChatBox">
                     <div class="mycomment">
                         <p>
-                            <?php print $chat->content ?>
+                            <?php print nl2br($chat->content) ?>
                         </p>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ foreach($chatList as $chat){
                     <div class="chatting">
                         <div class="says">
                         <p>
-                            <?php print $chat->content ?>
+                            <?php print nl2br($chat->content) ?>
                         </p>
                         </div>
                     </div>
