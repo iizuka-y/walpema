@@ -22,7 +22,7 @@
             <h3>運営者情報</h3>
             <div class="footer-links">
                 <p><a href="#">会社概要</a></p>
-                <p><a href="#">プライバシー</a></p>
+                <p><a href="privacy_policy.php">プライバシー</a></p>
             </div>
         </div>
     </div>

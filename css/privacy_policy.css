@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+#pr-po-box{
+  font-size: 1.5rem;
+  color: #333;
+}
+
+#pr-po-box h2{
+  margin-top:50px;
+font-size: 30px;
+}
+
+p, li{
+	margin-top: 18px;
+	font-size: 17px;
+}
+
+li {
+	list-style: none;
+}
+
+#content {
+    background-color:white;
+    line-height:1.5;
+    width:600px;
+    padding:20px;
+    margin:50px auto;
+}
+h4 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}

@@ -45,7 +45,13 @@ foreach($items as $item){
         <?php require_once('layouts/_header.php'); //headerの読み込み ?>
         
         <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="wallpaper_detail.php">商品詳細</a>><a href="cart.php">カート</a>
+            <?php
+            if(!empty($items)){
+                $end_item = end($items);
+            }
+            
+            ?>
+            <a href="index.php">トップ</a>><a href="wallpaper_detail.php?id=<?php print $end_item->id ?>">商品詳細</a>><a href="cart.php">カート</a>
         </div>
 
         <div id="wrap">
