@@ -472,3 +472,17 @@ li.chat{
 .display-none{
     display: none;
 }
+
+/* 売上管理用ボタン */
+.sales-management-container{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.sales-management-container a{
+    display: inline-block;
+    background-color: #ff7d64;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+}

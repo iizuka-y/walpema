@@ -1,0 +1,157 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+}
+
+:focus {
+  outline: none;
+}
+
+body{
+}
+
+main{
+	text-align: center;
+}
+
+	main p{
+		font-size: 20px;
+	}
+
+
+	main .first{
+		width: 1000px;
+		margin: 80px auto;
+		padding: 50px 30px;
+		background-color: #eafff4;
+	}
+
+    main .first h2{
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 50px;
+		padding-top: 10px;
+		border-bottom: solid 3px #ff7d64;
+    }
+
+  main .uriage-box{
+    padding-top:25px; 
+    background-color: #fff;
+    width: 800px;
+    margin: auto;
+    margin-top:30px;
+    margin-bottom: 30px;
+  }
+
+    main .uriage-box .hurikomi{
+    margin-top:30px;
+  }
+
+    main .uriage-box table{
+      width: 500px;
+      justify-content: space-between;
+      border-spacing:auto;
+      border:1px #999 solid;
+      margin:auto;
+      font-size:20px;
+      margin-bottom: 30px;
+    }
+
+        main .uriage-box table tr{
+      border-bottom: 1px #999 solid;
+      width: 500px;
+    }
+
+        main .uriage-box table td{
+      padding-left: 10px;
+    }
+
+  main .shozikin{
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    border-bottom: 2px #999 solid;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+    main .shozikin .setumei{
+      padding-top: 5px;
+    }
+
+    main .shozikin .uriagekin{
+      margin-left: 50px;
+      font-size: 30px;
+    }
+
+  main .sentaku{
+    margin-top: 30px;
+    justify-content: flex-start;
+  }
+
+  main label {
+    font-size: 20px;
+    line-height: 28px;    /* ボタンのサイズに合わせる */
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+  }
+
+  main .radio-1{
+    margin-bottom: 10px;
+  }
+
+  main .radio-2{
+    margin-right: 10px;
+  }
+
+  main .number-in{
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+  }
+
+  main .button{
+    margin-bottom: 10px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FF7D64;
+    color: #fff;
+    font-size: 16px;
+    border-style: none;
+	cursor: pointer;
+  }
+  
+  main .button:hover{
+    background-color: #FF9999;
+  }
+
+
+  main .uriage-box p{}
+
+  main .uriage-box .left-box{
+    margin: 0,0;
+  }
+
+
+  main .tourokugamen{
+    color: #777;
+    margin: 30px 0px;
+  }
+
+  main .return-link{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    width: 300px;
+  }
+
+  main .return{
+    color: #000;
+    margin-bottom: 30px;
+  }

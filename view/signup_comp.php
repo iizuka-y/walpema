@@ -12,7 +12,7 @@ require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 
         <link rel="stylesheet" type="text/css" href="../css/reset.css">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
-        <link rel="stylesheet" type="text/css" href="../css/new-login-comp.css">
+        <link rel="stylesheet" type="text/css" href="../css/signup-comp.css">
 
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 

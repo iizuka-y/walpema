@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+}
+
+:focus {
+  outline: none;
+}
+
+
+main{
+	text-align: center;
+}
+
+	main p{
+		font-size: 20px;
+	}
+
+
+	main .first{
+		width: 1000px;
+		margin: 80px auto;
+		padding: 50px 30px;
+		background-color: #eafff4;
+	}
+
+		main .first h2{
+			width: 100%;
+			margin: 0 auto;
+			margin-bottom: 50px;
+			padding-top: 10px;
+			border-bottom: solid 3px #ff7d64;
+		}
+
+		main .first .uriage-box{
+			width: 100%;
+			margin-top:15px;
+			padding: 35px 0;
+			background-color: #fff;
+		}
+
+			main .first .uriage-box .shozikin{
+				display: flex;
+				justify-content: center;
+				border-bottom: 2px #999 solid;
+				width: 500px;
+				margin: auto;
+			}
+
+				main .first .uriage-box .shozikin .setumei{
+					padding-top: 5px;
+				}
+
+				main .first .uriage-box .shozikin .uriagekin{
+					margin-left: 50px;
+					font-size: 30px;
+				}
+
+		main .uriage-box .sentaku{
+			margin-top: 30px;
+			text-align: left;
+			padding-left: 270px;
+		}
+
+	
+
+            main .uriage-box .sentaku b{
+              font-size: 20px;
+                font-weight: 400;
+                margin-left: 5px;
+            } 
+
+			main .uriage-box .sentaku label {
+				font-size: 20px;
+				line-height: 28px;    /* ボタンのサイズに合わせる */
+				display: inline-block;
+				cursor: pointer;
+				position: relative;
+			}
+
+				main .uriage-box .sentaku .radio-1{
+					margin-bottom: 10px;
+				}
+
+				main .uriage-box .sentaku .radio-2{
+					margin-right: 10px;
+				}
+
+				main .uriage-box .sentaku .number-in{
+					margin-bottom: 4px;
+					width: 70px;
+					font-size: 20px;
+                    text-align: right;
+				}
+
+		main .uriage-box .button{
+			margin-bottom: 10px;
+			width: 100px;
+			height: 50px;
+			border-radius: 10px;
+			background-color: #FF7D64;
+			color: #fff;
+			font-size: 16px;
+			border-style: none;
+			cursor: pointer;
+		}
+  
+		main .uriage-box .button:hover{
+			background-color: #FF9999;
+		}
+
+	main .uriage-box p{}
+
+	main .return-link{
+		text-align: center;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: auto;
+		width: 300px;
+	}
+
+		main .return-link .tourokugamen{
+			margin: 30px 0;
+			color: #777;
+			margin-bottom: 30px;
+		}
+
+		main .return-link .return{
+			color: #000;
+			margin-bottom: 30px;
+		}

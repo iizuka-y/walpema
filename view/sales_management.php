@@ -1,3 +1,12 @@
+<?php
+require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+
+if(!$current_user){
+    header("Location: index.php");
+    exit();
+}
+
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -19,10 +28,6 @@
 
         <?php require_once('layouts/_header.php'); //headerの読み込み ?>
 
-        <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="sales_management.php">売上金管理</a>
-        </div>
-
         <div id="wrap">
             <div id="sale">
                 <h2>
@@ -43,8 +48,8 @@
 					
 					<a href="">
 						<div id="sales-payment-button">
-							<a href="sales_management.php">
-							売上金を口座へ入金する　▶
+							<a href="manage_payment.php">
+							    売上金を口座へ入金する　▶
 							</a>
 						</div>
 					</a>
@@ -65,9 +70,6 @@
 								
 				</div>
 					
-					
-					
-                </div>
 
             </div>
 
