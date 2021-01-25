@@ -9,7 +9,7 @@ if(isset($_SESSION["errorMsg"])){
 }
 
 if(!isset($current_user)){
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 

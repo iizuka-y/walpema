@@ -56,7 +56,7 @@ foreach($items as $item){
 
 
 
-
+fnc_setData('session', 'purchase_complete', '購入完了');
 
 header("Location: ../../view/my-bought-wallpaper.php");
 

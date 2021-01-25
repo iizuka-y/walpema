@@ -3,6 +3,11 @@ require_once(dirname(__FILE__).'/../app/controller/before_view.php');
 require_once(dirname(__FILE__).'/../app/fn_components/get_senddata.php');
 require_once(dirname(__FILE__).'/../config/validate_config.php');
 
+if(isset($current_user)){
+    header("Location: index.php");
+    exit();
+}
+
 
 // 入力内容に不備がある場合
 if(isset($_SESSION["errorMsg"])){

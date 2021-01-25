@@ -454,3 +454,21 @@ li.chat{
   background-color: gold;
 }
 
+
+/* お知らせ用(購入完了など) */
+#notice{
+    width: 100%;
+    background-color: #ff7d63;
+    height: 60px;
+}
+
+#notice .purchase-comp{
+    width: 1000px;
+    margin: 0 auto;
+    color: white;
+    line-height: 60px;
+}
+
+.display-none{
+    display: none;
+}

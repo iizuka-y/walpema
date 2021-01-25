@@ -7,6 +7,13 @@ if(!$user){
     header("Location: index.php");
 }
 
+
+$purchase_flg = "display-none";
+if(isset($_SESSION["purchase_complete"])){
+    $purchase_flg = "purchase-true";
+    fnc_delData("session", "purchase_complete", "");
+}
+
 ?>
 
 <html>
@@ -35,6 +42,9 @@ if(!$user){
 
         <?php require_once('layouts/_header.php'); //headerの読み込み ?>
         
+        <div id="notice" class="<?php print $purchase_flg ?>">
+            <p class="purchase-comp">壁紙の購入が完了しました!</p>
+        </div>
 
         <div class="bread-nav">
             <a href="index.php">トップ</a>><a href="profile.php?id=<?php print $user->id ?>">ユーザー</a>><a href="my-bought-wallpaper.php">購入済みの壁紙</a>
