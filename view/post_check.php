@@ -47,10 +47,6 @@ $tagCsv = implode(",", $params['tags']);
                     <img src="../<?php print $params['image'] ?>">
                 </div>
 
-                <div class="kindOfWp">
-                    PC用壁紙
-                </div>
-
                 <div class="postcheck-item">
                     <h3>タイトル</h3>
                     <p><?php print $params['item_name'] ?></p>

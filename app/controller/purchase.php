@@ -23,7 +23,8 @@ if(empty($items)){
 foreach($items as $item){
     $params = [
         'user_id' => $current_user->id,
-        'item_id' => $item->id
+        'item_id' => $item->id,
+        'seller_id' => $item->user()->id
     ];
 
     if(!Purchase_history::create($params)){
@@ -48,6 +49,13 @@ foreach($items as $item){
     ];
 
     Notification::create($notification_params);
+
+    // moneyテーブルのレコード作成
+    $money_params = [
+        'user_id' => $item->user()->id,
+        'transaction' => $item->price
+    ];
+    Money::create($money_params);
 }
 
 

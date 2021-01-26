@@ -6,7 +6,17 @@ if(!$current_user){
     exit();
 }
 
+function get_possession_money(){
+    $sql = "select SUM(transaction) from money";
+    $possession_money = Money::sql($sql); // 1レコードだけでも配列が返ってくるので注意
+    return $possession_money[0]['SUM(transaction)']; // 配列なので0番目を返す
+}
+
+$purchase_history_records = Purchase_history::where(['seller_id' => $current_user->id]);
+$purchase_history_records = array_reverse($purchase_history_records); // 降順にする
+
 ?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -31,7 +41,7 @@ if(!$current_user){
         <div id="wrap">
             <div id="sale">
                 <h2>
-					売上金管理(ダミー)
+					売上金管理
 				</h2>
 				
 				
@@ -42,7 +52,7 @@ if(!$current_user){
 							現在所持している売上金
 						</div>
 						<div id="now-sales-detail">
-							500円
+							<?php print get_possession_money() ?>円
 						</div>
 					</div>
 					
@@ -55,18 +65,12 @@ if(!$current_user){
 					</a>
 					
 					<table>
-						<tr><th>履歴</th><th>金額</th><th>取扱日</th></tr>
-						<tr><td>壁紙売上</td><td>￥100</td><td>2020/11/30</td></tr>
-						<tr><td>壁紙売上</td><td>￥100</td><td>2020/11/30</td></tr>
-						<tr><td>壁紙売上</td><td>￥100</td><td>2020/11/30</td></tr>
-						<tr><td>壁紙売上</td><td>￥100</td><td>2020/11/30</td></tr>
+                        <tr><th>履歴</th><th>金額</th><th>取扱日</th></tr>
+                        <?php foreach($purchase_history_records as $purchase_history): ?>
+                        <tr><td>壁紙売上</td><td>￥<?php print $purchase_history->item()->price ?></td><td><?php print $purchase_history->updated_at ?></td></tr>
+                        <?php endforeach ?>
 					</table>
-					
-					<a href="#">
-						<div id= "history-seemore">
-							・・・もっと見る
-						</div>
-					</a>	
+						
 								
 				</div>
 					

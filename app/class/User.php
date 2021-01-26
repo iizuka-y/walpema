@@ -9,6 +9,7 @@ require_once(dirname(__FILE__).'/Tag.php');
 require_once(dirname(__FILE__).'/Tag.php');
 require_once(dirname(__FILE__).'/Chat.php');
 require_once(dirname(__FILE__).'/Notification.php');
+require_once(dirname(__FILE__).'/Money.php');
 
 
 class User extends Model{

@@ -9,6 +9,7 @@ class Purchase_history extends Model{
     public $id;
     public $user_id;
     public $item_id;
+    public $seller_id;
     public $created_at;
     public $updated_at;
 
@@ -16,6 +17,7 @@ class Purchase_history extends Model{
         $id,
         $user_id,
         $item_id,
+        $seller_id,
         $created_at,
         $updated_at
     ) {
@@ -23,8 +25,9 @@ class Purchase_history extends Model{
         $this->id = $id;
         $this->user_id = $user_id;
         $this->item_id = $item_id;
-        $this->created_at;
-        $this->updated_at;
+        $this->seller_id = $seller_id;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
 
     }
 
@@ -33,13 +36,13 @@ class Purchase_history extends Model{
 
         return User::findById($this->user_id);
     
-      }
+    }
     
-      public function item(){
+    public function item(){
     
         return Item::findById($this->item_id);
     
-      }
+    }
 
 }
 
