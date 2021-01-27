@@ -1,10 +1,21 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/sales_management.php');
+
+if(!isset($_SESSION["deposit_money"])){
+    header("Location: index.php");
+    exit();
+}
 
 if(!$current_user){
     header("Location: index.php");
     exit();
 }
+
+$deposit_money = fnc_getData("session", "deposit_money");
+fnc_delData("session", "deposit_money", "");
+
+
 
 ?>
 <html>
@@ -37,7 +48,9 @@ if(!$current_user){
 
                 <div class="money">
                     <h3>以下の金額を入金しました。</h3>
-                    <p>¥500</p>
+                    <p>¥<?php print $deposit_money ?></p>
+                    <br>
+                    <p>残高：<?php print get_possession_money() ?>円</p>
 
                     <div class="return-link">
                         <a class="tourokugamen" href="#">口座登録・確認・編集</a>

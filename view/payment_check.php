@@ -1,10 +1,50 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/sales_management.php');
+
+function return_error(){
+    $errorMsg[] = "入力値が不正です";
+    fnc_setData("session", "errorMsg", $errorMsg);
+    header("Location: manage_payment.php");
+    exit();
+}
 
 if(!$current_user){
     header("Location: index.php");
     exit();
 }
+
+if(!isset($_POST['deposit_money'])){
+    header("Location: index.php");
+    exit();
+}
+
+if(!isset($_POST['part-of-money'])){
+    header("Location: index.php");
+    exit();
+}
+
+
+if(!preg_match('/^[0-9]+$/', $_POST['part-of-money'])){
+    return_error();
+}
+
+if($_POST['deposit_money']){
+    if(!preg_match('/^[0-9]+$/', $_POST['deposit_money'])){
+        return_error();
+    }
+    $deposit_money = $_POST['deposit_money'];
+}else{
+    $deposit_money = $_POST['part-of-money'] * 100;
+}
+
+$balance = get_possession_money() - $deposit_money;
+
+if($balance < 0){
+    return_error();
+}
+
+
 
 ?>
 <html>
@@ -40,14 +80,14 @@ if(!$current_user){
                                 現在所持している売上金
                             </p>
                             <p class="uriagekin">
-                                ￥500
+                                ￥<?php print get_possession_money() ?>
                             </p>
                         </div>
                         <div class="shozikin">
-                            <p class="setumei">入金する売上金</p><p class="uriagekin">￥500</p>
+                            <p class="setumei">入金する売上金</p><p class="uriagekin">￥<?php print $deposit_money ?></p>
                         </div>
                         <div class="shozikin">
-                            <p class="setumei">売上金残高</p><p class="uriagekin">￥0</p>
+                            <p class="setumei">売上金残高</p><p class="uriagekin">￥<?php print $balance ?></p>
                         </div>
                     </div>
                     <p class="hurikomi">上記の金額を以下の口座に振り込みます。</p>
@@ -78,8 +118,9 @@ if(!$current_user){
                     </table>
 
 
-                    <form action="payment_comp.php" method="post">
-                        <input class="button" type="submit" name="" value="入金を確定" />
+                    <form action="../app/controller/payment_processing.php" method="post">
+                        <input type="hidden" value="<?php print $deposit_money ?>" name="deposit_money">
+                        <input class="button" type="submit" value="入金を確定" />
                     </form>
                     <div class="return-link">
                         <a class="tourokugamen" href="#">口座登録・確認・編集</a>

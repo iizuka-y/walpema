@@ -25,7 +25,7 @@ if(!Favorite::create($params)){
     $errorMsg = ["お気に入り登録に失敗しました。"];
     fnc_setData("session", "errorMsg", $errorMsg);
     header("Location: ../../view/error_page.php");
-
+    exit();
 }
 
 

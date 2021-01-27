@@ -1,5 +1,12 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/sales_management.php');
+
+// 入力内容に不備がある場合
+if(isset($_SESSION["errorMsg"])){
+    $errorMsgs = fnc_getData("session", "errorMsg");
+    fnc_delData("session", "errorMsg", "");
+}
 
 if(!$current_user){
     header("Location: index.php");
@@ -36,28 +43,35 @@ if(!$current_user){
                 <h2>売上金入金</h2>
             
                 <div class="uriage-box">
+                    <ul id="errorMsg-box">
+                        <?php if(isset($errorMsgs)): ?>
+                            <?php foreach($errorMsgs as $errorMsg): ?>
+                                <li><?php print $errorMsg ?></li>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    </ul>
                     <div class="shozikin">
                         <p class="setumei">
                             現在所持している売上金
                         </p>
-                        <p class="uriagekin">￥500</p>
+                        <p class="uriagekin">￥<?php print get_possession_money() ?></p>
                     </div>
 
                     <form action="payment_check.php" method="post">
                         <div class="sentaku">
                             <label class="radio-1">
-                                <input type="radio" name="uriage-in" value="zengaku" checked="" />
-                                    売上金全額(￥500)を入金する
+                                <input type="radio" name="deposit_money" value="<?php print get_possession_money() ?>" checked="" />
+                                売上金全額(￥<?php print get_possession_money() ?>)を入金する
                             </label><br>
                             <label class="radio-2">
-                                <input type="radio" name="uriage-in" value="itibu" />
-                                    売上金の一部を入金する
+                                <input type="radio" name="deposit_money" value=""/>
+                                売上金の一部を入金する
                             </label>
-                                ￥
-                            <input class="number-in" type="number" onkeydown="return event.keyCode !== 69" name="itibu" minlength="3" maxlength="6" min="1" value="1"/><b>00</b>
+                            ￥
+                            <input class="number-in" type="number" onkeydown="return event.keyCode !== 69" name="part-of-money" minlength="3" maxlength="6" min="1" value="1"/><b>00</b>
                         </div>
                         <br>
-                        <input class="button" type="submit" name="" value="入金" />
+                        <input class="button" type="submit" value="入金" />
                     </form>
                     
                     <div class="return-link">

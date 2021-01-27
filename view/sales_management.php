@@ -1,15 +1,10 @@
 <?php
 require_once(dirname(__FILE__).'/../app/controller/before_view.php');
+require_once(dirname(__FILE__).'/../app/fn_components/sales_management.php');
 
 if(!$current_user){
     header("Location: index.php");
     exit();
-}
-
-function get_possession_money(){
-    $sql = "select SUM(transaction) from money";
-    $possession_money = Money::sql($sql); // 1レコードだけでも配列が返ってくるので注意
-    return $possession_money[0]['SUM(transaction)']; // 配列なので0番目を返す
 }
 
 $purchase_history_records = Purchase_history::where(['seller_id' => $current_user->id]);
@@ -56,11 +51,9 @@ $purchase_history_records = array_reverse($purchase_history_records); // 降順�
 						</div>
 					</div>
 					
-					<a href="">
+					<a href="manage_payment.php">
 						<div id="sales-payment-button">
-							<a href="manage_payment.php">
-							    売上金を口座へ入金する　▶
-							</a>
+							売上金を口座へ入金する　▶
 						</div>
 					</a>
 					
