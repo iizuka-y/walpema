@@ -72,10 +72,10 @@ function is_followed(){
             ?>
 
             <div class="nav-content flex">
+                <?php if($user->items()): ?>
                 <div class="sales-management-container">
                     <a href="sales_management.php">売上管理ページへ▶</a>
                 </div>
-                <?php if($user->items()): ?>
                     <?php foreach($user->items() as $item): ?>
                     <div class="img-container">
                         <a href="wallpaper_detail.php?id=<?php print $item->id ?>">

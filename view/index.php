@@ -64,6 +64,25 @@ function getNewItem(){
     return $newItems;
 }
 
+function getFollowUserItems(){
+    global $current_user;
+    $followUserList = Follow::where(['following_id' => $current_user->id]);
+    if(!$followUserList){
+        return null;
+    }
+    foreach($followUserList as $followUser){
+        $followed_id_array[] = $followUser->followed_id;
+    }
+    $followed_id = implode(',',$followed_id_array);
+
+    $sql = "SELECT * FROM item where user_id in (${followed_id}) order by created_at desc";
+    // print $sql;
+
+    $followUserItems = Item::sql($sql);
+
+    return $followUserItems;
+
+}
 
 ?>
 
@@ -135,6 +154,21 @@ function getNewItem(){
             <?php endif ?>
 
 
+        </div>
+
+        <div id="followUserItem">
+            <h2>フォロー中のユーザーの新着壁紙</h2>
+            <div class="wallpaper-box">
+                <?php if($followUserItems = getFollowUserItems()): ?>
+                    <?php foreach($followUserItems as $followUserItem): ?>
+                    <a href="wallpaper_detail.php?id=<?php print $followUserItem['id'] ?>">
+                        <img src="../<?php print $followUserItem['image'] ?>">
+                    </a>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <p>フォロー中のユーザーの新着壁紙はありません</p>
+                <?php endif ?>
+            </div>
         </div>
         <?php endif ?>
 

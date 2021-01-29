@@ -12,6 +12,8 @@ $(document).ready(function() {
         // console.log('click!');
         e.preventDefault(); // 通常時のアクションをキャンセル
 
+        var self = $(this);
+
         $form = $(this).parents('#follow-form');
 
         follower_num = $('.follower_num').text();
@@ -46,7 +48,7 @@ $(document).ready(function() {
         }).done(function(data){
             // 成功時
             console.log('ajax success');
-            $('.follow-btn').val(followState);
+            self.val(followState);
             $('.follower_num').text(follower_num);
             $('.following_num').text(following_num);
             
