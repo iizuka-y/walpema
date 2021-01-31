@@ -57,7 +57,9 @@ if(!empty($errorMsg)){
     if(User::update($params)){
         // ユーザー画像が更新された場合、uploadフォルダ内の前の画像は削除
         if(file_exists('../../'.$oldImg) && $imgChangeFlg){
-            unlink('../../'.$oldImg);
+            if($oldImg != 'images/default-user-image.png'){
+                unlink('../../'.$oldImg);
+            }
         }
         header("Location: ../../view/profile.php?id=$current_user->id");
 

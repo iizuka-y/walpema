@@ -76,9 +76,12 @@ function getFollowUserItems(){
     $followed_id = implode(',',$followed_id_array);
 
     $sql = "SELECT * FROM item where user_id in (${followed_id}) order by created_at desc";
-    // print $sql;
 
     $followUserItems = Item::sql($sql);
+
+
+    $followUserItems = array_splice($followUserItems, 0, MAX_FOLLOWUSER_ITEM_NUM);
+    
 
     return $followUserItems;
 
@@ -166,7 +169,7 @@ function getFollowUserItems(){
                     </a>
                     <?php endforeach ?>
                 <?php else: ?>
-                    <p>フォロー中のユーザーの新着壁紙はありません</p>
+                    <p class="not-found-follow-wallpaper">フォロー中のユーザーの新着壁紙はありません</p>
                 <?php endif ?>
             </div>
         </div>

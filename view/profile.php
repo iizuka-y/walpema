@@ -58,7 +58,7 @@ function is_followed(){
         
 
         <div class="bread-nav">
-            <a href="index.php">トップ</a>><a href="profile.php?id=<?php print $user->id ?>">ユーザー</a>><a href="profile.php">投稿した壁紙</a>
+            <a href="index.php">トップ</a>><a href="profile.php?id=<?php print $user->id ?>">ユーザー</a>
         </div>
 
         <div id="user-container">

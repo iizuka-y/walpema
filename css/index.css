@@ -83,6 +83,12 @@
 }
 
 
+.not-found-follow-wallpaper{
+    width: 100%;
+    text-align: center;
+}
+
+
 
 /* タグ用のCSS */
 #favorite-tag{
